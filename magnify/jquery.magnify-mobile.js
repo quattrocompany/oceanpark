@@ -79,7 +79,7 @@
         'touchstart': function(e) {
           // Render zoom image
           // NOTE: In iOS background-image is url(...), not url("...").
-          $lensMobile.html('<img src="' + $(this).prev('.magnify-lens').css('background-image').replace(/url\(["']?|["']?\)/g, '') + '" alt="">');
+          $lensMobile.html('<img src="img/img/img/img/' + $(this).prev('.magnify-lens').css('background-image').replace(/url\(["']?|["']?\)/g, '') + '" alt="">');
           // Determine zoom position
           var $magnifyImage = $(this),
             oZoomSize = $magnifyImage.data('zoomSize'),

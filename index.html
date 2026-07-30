@@ -19,7 +19,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <!-- Primary Meta Tags -->
 <meta name="title" content="OCEAN PARK Condomínio Clube - Residencial | 55 e 34m² | Terraço Gourmet • 1 Vaga" />
@@ -58,14 +58,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="apple-touch-icon" sizes="144x144" href="favicon/apple-icon-144x144.png">
 <link rel="apple-touch-icon" sizes="152x152" href="favicon/apple-icon-152x152.png">
 <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-icon-180x180.png">
-<link rel="icon" type="image/png" sizes="192x192"  href="favicon/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon/android-icon-192x192.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
 <link rel="manifest" href="favicon/manifest.json">
 <meta name="msapplication-TileColor" content="#ffffff">
 <meta name="msapplication-TileImage" content="favicon/ms-icon-144x144.png">
-<meta name="theme-color" content="#0C82A0"> <!-- MOBILE BACKG -->
+<meta name="theme-color" content="#0C82A0"> 
    
 <!-- COOL -->
 <link rel="stylesheet" href="cool/coolalert.css">
@@ -75,16 +75,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<!-- CSS -->   
+<!-- CSS PRINCIPAL -->   
 <link rel="stylesheet" href="css/styles.css">
-<!--[if lt IE 9]>
-	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<link rel="stylesheet" href="css/ie.css">
-<![endif]-->
-<script src="js/responsive-nav.js"></script>
 
 <!-- FONTAWESOME - ICONES -->
-<script src="https://use.fontawesome.com/88ec3c20c2.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <!--SHADOWBOX-->
 <link rel="stylesheet" type="text/css" href="shadowbox/shadowbox.css">
@@ -93,219 +88,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 Shadowbox.init();
 </script>
 
-<!--//SCROLL PARA ÂNCORA-->
-<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js'></script>
-<script type="text/javascript">
-jQuery(document).ready(function($) { 
-    $(".scroll").click(function(event){        
-        event.preventDefault();
-        $('html,body').animate({scrollTop:$(this.hash).offset().top}, 800);
-   });
-});
-</script>
-<!--//SCROLL PARA ÂNCORA-->
-
 <!--SLICK-->
 <link rel="stylesheet" type="text/css" href="./slick/slick.css">
 <link rel="stylesheet" type="text/css" href="./slick/slick-theme.css">  
-<style type="text/css">
-    * {
-      box-sizing: border-box;
-    }
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      overflow-x: hidden;
-      background-color: #FFFFFF;
-    }
-    .slider {
-        width: 100%;
-        margin: 0px auto;
-    }
-    .slick-slide {
-      margin: 0px 0px;
-      transition: all ease-in-out .3s;
-      opacity: 1.0;
-    }
-    .slick-slide img {
-      width: 100%;
-    }
-    .slick-prev:before,
-    .slick-next:before {
-      color: #DD6810;
-      font-size:36px;
-    }
-    .slick-active, .slick-current {
-      opacity: 1.0;
-    }
-
-    /* Container de 1440px centralizado para conteúdo */
-    .content-1440 {
-        max-width: 1440px;
-        margin: 0 auto;
-        width: 100%;
-        position: relative;
-    }
-    .content-1440::after {
-        content: "";
-        display: table;
-        clear: both;
-    }
-
-    /* Header e alinhamento do Logotipo e Menu estendido até as bordas */
-    header {
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        z-index: 9999 !important;
-        background-color: #0C82A0 !important;
-        height: 60px !important;
-        padding: 0 !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: space-between !important;
-    }
-    header .logox {
-        margin: 0 0 0 20px !important;
-        float: none !important;
-        display: flex !important;
-        align-items: center !important;
-        height: 60px !important;
-    }
-    header .logox figure {
-        margin: 0 !important;
-        padding: 0 !important;
-        display: flex !important;
-        align-items: center !important;
-        height: 60px !important;
-    }
-    header .logox img {
-        display: block !important;
-        position: static !important;
-        max-height: 52px !important;
-        width: auto !important;
-        margin: 0 !important;
-    }
-    header nav.nav-collapse {
-        float: right !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        height: 60px !important;
-    }
-    header nav.nav-collapse ul {
-        margin: 0 !important;
-        padding: 0 !important;
-        display: flex !important;
-        align-items: center !important;
-        height: 60px !important;
-        list-style: none !important;
-    }
-    header nav.nav-collapse ul li {
-        margin: 0 !important;
-        padding: 0 !important;
-        height: 60px !important;
-        display: flex !important;
-        align-items: center !important;
-    }
-    header nav.nav-collapse ul li a {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        height: 60px !important;
-        padding: 0 22px !important;
-        color: #fff !important;
-        text-transform: uppercase !important;
-        font-weight: bold !important;
-        text-decoration: none !important;
-        box-sizing: border-box !important;
-    }
-    header nav.nav-collapse ul li.active a,
-    header nav.nav-collapse ul li a:hover {
-        background-color: #DD6810 !important;
-    }
-
-    .carousel-control-mobile.left img, .carousel-control-mobile.right img {
-        width: 24px !important;
-        height: auto !important;
-    }
-    .carousel-control-mobile.left img {
-        left: 5px !important;
-    }
-    .carousel-control-mobile.right img {
-        right: 5px !important;
-    }
-</style>  
-
-<!--PARALLAX-->
-<style>
-.paralax1 {
-  background-image: url("fundo01.jpg");
-  min-height: 100px;
-  position: relative;
-  background-attachment: fixed;
-  background-position: top left;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.paralax2 {
-  background-image: url("fundo02.jpg");
-  min-height: 100px;
-  position: relative;
-  background-attachment: fixed;
-  background-position: top center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.paralax3 {
-  background-image: url("fundo03.jpg");
-  min-height: 100px;
-  position: relative;
-  background-attachment: fixed;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.paralax4 {
-  background-image: url("fundo04.jpg");
-  min-height: 100px;
-  position: relative;
-  background-attachment: fixed;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.paralax5 {
-  background-image: url("fundo05.jpg");
-  min-height: 100px;
-  position: relative;
-  background-attachment: fixed;
-  background-position: top left;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.paralaxmobile {
-  background-image: url("fundomobile.jpg");
-  min-height: 100px;
-  position: relative;
-  background-attachment: fixed;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-</style>
 
 <!-- Magnific Popup Lightbox -->
 <link rel="stylesheet" href="magnifix-popup/magnific-popup.css">
-
-<!-- Shadowbox -->
-<link rel="stylesheet" type="text/css" href="shadowbox/shadowbox.css">
-<script type="text/javascript" src="shadowbox/shadowbox.js"></script>
-<script type="text/javascript">
-Shadowbox.init();
-</script>
 
 <!-- ANIMATE -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
@@ -315,87 +103,6 @@ Shadowbox.init();
 
 <!-- Magnify ZOOM -->
 <link rel="stylesheet" href="magnify/magnify.css">
-<style>
-#sample-glasses {
-  width: 100%;
-  max-width: 400px;
-  padding-bottom: 6em;
-}
-#sample-watch {
-  width: 100%;
-  max-width: 210px;
-}
-.magnify > .magnify-lens {
-  background-color: #fff !important;
-}
-</style>
-
-<!-- FORM POPUP STYLE -->
-<style>
-body {}
-* {box-sizing: border-box;}
-.open-button {
-  background-color: transparent;
-  color: white;
-  border: none;
-  cursor: pointer;
-  opacity: 1;
-  position: fixed;
-  bottom: 30px;
-  left: 0px;
-  width: 100px;
-}
-.form-popup {
-  font-family: Arial, Helvetica, sans-serif;
-  display: none;
-  position: fixed;
-  bottom: 0;
-  right: 15px;
-  border: 3px solid #f1f1f1;
-  z-index: 9;
-  border-radius: 10px 10px 0px 0px;
-}
-.form-container {
-  font-family: Arial, Helvetica, sans-serif;
-  max-width: 300px;
-  padding: 10px;
-  background-color: #CCCCCC;
-  border-radius: 5px 5px 0px 0px;
-}
-.form-container input[type=text], .form-container input[type=password] {
-  font-family: Arial, Helvetica, sans-serif;
-  width: 100%;
-  padding: 5px;
-  margin: 5px 0 15px 0;
-  border: none;
-  background-color: #999;
-  color: #000;
-}
-.form-container input[type=text]:focus, .form-container input[type=password]:focus {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #999;
-  outline: none;
-}
-.form-container .btn {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #29A656;
-  color: white;
-  padding: 12px 15px;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  margin-bottom:7px;
-  opacity: 1;
-}
-.form-container .cancel {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: red;
-}
-.form-container .btn:hover, .open-button:hover {
-  font-family: Arial, Helvetica, sans-serif;
-  filter: brightness(150%) ;
-}
-</style>
 
 <!-- Recaptcha -->
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
@@ -416,11 +123,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
 <!-- WHATS LATERAL DESLIZANTE & FORMULÁRIO WHATSAPP POP-UP -->
-<button class="open-button mobile-hide" onclick="openForm()" style="z-index:2; ">
-	<img src="w.png" border="0" style="width:60px; padding-left:10px; " title="Whastapp">
+<button class="open-button mobile-hide" onclick="openForm()" type="button" title="Whatsapp">
+	<img src="img/w.png" border="0" style="width:60px; padding-left:0px; " title="Whastapp" alt="Whatsapp">
 </button>
 
-<div class="form-popup" id="formWhatsapp" style="font-family: Arial, Helvetica, sans-serif;">
+<div class="form-popup" id="formWhatsapp">
   <form action="/action_page.php" class="form-container">
     <div align="center" style="width:100%">
     	<h3 style="font-family: Arial, Helvetica, sans-serif;">ATENDIMENTO WHATSAPP</h3>
@@ -435,36 +142,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <label for="wtelefone" style="font-family: Arial, Helvetica, sans-serif;"><b>Whatsapp</b> *</label>
     <input type="text" placeholder="Seu whatsapp" name="wtelefone" id="wtelefone" required>
 
-    <div><i style="color:#999999; font-size:10px; padding:-20px 0px 50px 0px; ">* Dados obrigatórios <br><br></i></div>
-    <div align="left" id="wmsg" class="col-sm-8" style="font-family:Arial, Helvetica, sans-serif; float:left; width:80%; "></div>
+    <div style="margin-bottom: 10px;"><i style="color:#666; font-size:10px; ">* Dados obrigatórios</i></div>
+    <div align="left" id="wmsg" class="col-sm-12" style="font-family:Arial, Helvetica, sans-serif; float:left; width:100%; padding:0; "></div>
 
-    <button type="submit" id="wenviar" class="btn" target="_blank">IR PARA WHATSAPP</button>
+    <button type="submit" id="wenviar" class="btn">IR PARA WHATSAPP</button>
     <button type="button" class="btn cancel" onclick="closeForm()">FECHAR</button>
-    <br><br><br><br>
   </form>
 </div>
 
 <!-- HEADER -->
-<header style="width: 100%;">
-    <a href="#Home" class="logox" data-scroll>
-        <figure class="mobile-hide">
-            <img src="logo2.png" border="0" id="logo" alt="Logo">
-        </figure>
-        <figure class="desktop-hide">
-            <img src="logo2.png" border="0" alt="Logo">
-        </figure>
-    </a>
-    <nav class="nav-collapse">
-        <ul>
-            <li class="menu-item active"><a href="#Home" data-scroll>Home</a></li>
-            <li class="menu-item"><a href="#Produto" data-scroll>Produto</a></li>
-            <li class="menu-item"><a href="#Lazer" data-scroll>Lazer</a></li>
-            <li class="menu-item"><a href="#Planta" data-scroll>Plantas</a></li>
-            <li class="menu-item"><a href="#Localizacao" data-scroll>Localização</a></li>
-            <li class="menu-item"><a href="#Realizacao" data-scroll>Realização</a></li>
-            <li class="menu-item"><a href="#Contato" data-scroll>Contato</a></li>
-        </ul>
-    </nav>
+<header>
+    <div class="content-1440">
+        <a href="#Home" class="logox scroll">
+            <img src="img/logo2.png" border="0" id="logo" alt="Logo">
+        </a>
+        <button class="nav-toggle" id="btnNavToggle" type="button" aria-label="Abrir Menu">
+            <i class="fa fa-bars" aria-hidden="true"></i>
+        </button>
+        <nav class="nav-collapse" id="mainNavCollapse">
+            <ul>
+                <li class="menu-item active"><a href="#Home" class="scroll">Home</a></li>
+                <li class="menu-item"><a href="#Produto" class="scroll">Produto</a></li>
+                <li class="menu-item"><a href="#Lazer" class="scroll">Lazer</a></li>
+                <li class="menu-item"><a href="#Planta" class="scroll">Plantas</a></li>
+                <li class="menu-item"><a href="#Localizacao" class="scroll">Localização</a></li>
+                <li class="menu-item"><a href="#Realizacao" class="scroll">Realização</a></li>
+                <li class="menu-item"><a href="#Contato" class="scroll">Contato</a></li>
+            </ul>
+        </nav>
+    </div>
 </header>
 
 <!-- HOME -->
@@ -479,31 +185,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			</div>
 		</div>
 	    <div align="center" class="mobile-hide wow animated fadeInDown slow" style="top:110px; position:absolute; width:100%; z-index:2; ">
-	        <figure style="">
-	            <img src="placa1.png" border="0" width="275" >
+	        <figure >
+	            <img src="img/placa1.png" border="0" width="275" alt="Placa Lançamento">
 	        </figure>
 	    </div>
         <div align="center" class="mobile-hide wow animated fadeInUp" style="bottom:-20px; position:absolute; width:100%; z-index:2; ">
-	        <figure style="">
-	            <img src="mcmv.png" border="0" width="200" >
+	        <figure >
+	            <img src="img/mcmv.png" border="0" width="200" alt="Minha Casa Minha Vida">
 	        </figure>
 	    </div>
 	    <div class="content-1440">
 		    <figure style="padding-top:60px;">
-			    <img src="01.jpg" border="0" class="img-responsive" style="width:100%">
+			    <img src="img/01.jpg" border="0" class="img-responsive" style="width:100%" alt="Ocean Park Banner">
 		    </figure>
 	    </div>
 	</div>
 </div>
 <div style="clear:both"></div>
 
-<div class="desktop-hide" align="center" style="background-color:#fff; padding:120px 0 10px 0; margin:0px; width:100%;">
+<div class="desktop-hide" align="center" style="background-color:#fff; padding:80px 0 10px 0; margin:0px; width:100%;">
 	<div class="content-1440">
 		<p class="wow animated fadeInUp" style="font-family:Josefin Sans; color:#DD6810; font-size:calc(1.0em + 1vw); letter-spacing: 3px; ">
 			<b>LANÇAMENTO <br> PADROEIRA / OSASCO</b>
 	    </p>
 	    <div align="center" class="wow animated fadeIn slow" style="width:100%; ">
-	        <img src="01mobile.jpg" border="0" class="img-responsive" style="width:100%">
+	        <img src="img/01mobile.jpg" border="0" class="img-responsive" style="width:100%" alt="Banner Mobile">
 		</div>
 	</div>
 </div>
@@ -512,8 +218,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- AÉREA -->
 <div align="center" style="background-color:#FFFFFF; margin-top:0px; position:relative; width:100%;">
 	<div class="content-1440">
-		<div align="left" class="mobile-hide" style="width:auto; position:absolute; top:0px; left:0px; z-index:2  ">
-			<img src="plantas.png" class="img-responsive" style="" width="150">
+		<div align="left" class="mobile-hide" style="width:auto; position:absolute; top:0px; left:0px; z-index:2;">
+			<img src="img/plantas.png" class="img-responsive"  width="150" alt="Plantas">
 		</div>
 
 		<div class="wow animated fadeInUp" style="font-family:Josefin Slab; color:#DD6810; font-size:calc(1.2em + 1vw); padding:40px 10px 20px 10px;">
@@ -521,13 +227,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	    </div>
 		
 		<div class="mobile-hide wow animated fadeInUp row" align="center" style="width:100%; background-color:#FFFFFF; display:flex; ">
-		    <div><img src="aereaborrada1.jpg" border="0" class="img-responsive" style="width:100%;"></div>
-	        <div><img src="aerea-desktop.jpg" class="img-responsive zoom" data-magnify-src="aereaG.jpg" style="width:100%;"></div>
-	        <div><img src="aereaborrada2.jpg" border="0" class="img-responsive" style="width:100%;"></div>
+		    <div><img src="img/aereaborrada1.jpg" border="0" class="img-responsive" style="width:100%;" alt=""></div>
+	        <div><img src="img/aerea-desktop.jpg" class="img-responsive zoom" data-magnify-src="aereaG.jpg" style="width:100%;" alt="Vista Aérea"></div>
+	        <div><img src="img/aereaborrada2.jpg" border="0" class="img-responsive" style="width:100%;" alt=""></div>
 		</div>
-	   
+	    
 	    <div class="desktop-hide wow animated fadeInUp slow" align="center" style="width:100%; ">
-			<img src="aerea-mobile.jpg" border="0" class="img-responsive" style="width:100%;">
+			<img src="img/aerea-mobile.jpg" border="0" class="img-responsive" style="width:100%;" alt="Vista Aérea Mobile">
 		</div>
 	</div>
 </div>
@@ -538,18 +244,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	<div class="content-1440">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="background-color:#DD6810; padding-bottom:30px; ">
 			<div align="center" class="wow animated fadeInUp slow" style="width:80%; ">
-	        	<div class="mobile-hide" align="center" style="width:100%; padding:40px 0 10px 0; z-index:99999999; ">
+	        	<div class="mobile-hide" align="center" style="width:100%; padding:40px 0 10px 0; z-index:9999; ">
 	        		<p align="left" style="font-family:Josefin Sans; color:#fff; font-size:calc(0.8em + 0.8vw); text-transform:uppercase; ">
-	             		<b>&nbsp; Cadastre-se e receba em 1ª mão todas as informações: </b>
+	              		<b>&nbsp; Cadastre-se e receba em 1ª mão todas as informações: </b>
 	            	</p>
 	            </div>
-	            <div class="desktop-hide" align="center" style="width:100%; padding:40px 0 10px 0; z-index:99999999; ">
+	            <div class="desktop-hide" align="center" style="width:100%; padding:40px 0 10px 0; z-index:9999; ">
 	        		<p align="center" style="font-family:Josefin Sans; color:#fff; font-size:calc(0.8em + 0.8vw); text-transform:uppercase; ">
-	             		<b>&nbsp; Cadastre-se e receba<br>em 1ª mão todas as informações: </b>
+	              		<b>&nbsp; Cadastre-se e receba<br>em 1ª mão todas as informações: </b>
 	            	</p>
 	            </div>
             
-		    	<form class="contact-form" action="" method="post" id="formcontato" name="formcontato" style="">
+		    	<form class="contact-form" action="" method="post" id="formcontato" name="formcontato" >
                 	<input type="hidden" name="config"		value="ocean_park_osasco">
 					<input type="hidden" name="token"		value="NTZmQzZGY5NDY2Mjg0ODRhYjNiZjNhZG">
 	                <input type="hidden" name="response"	value="location">
@@ -560,13 +266,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	                <div><input name="telefone" type="text" id="telefone" placeholder=" TELEFONE (*):"></div>
 	                <div><textarea name="mensagem" id="mensagem" rows="8" placeholder=" INFORMAÇÕES:"></textarea></div>
 	                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="width:100%; display:inline-block; ">
-                		<div align="left" class="col-lg-8 col-md-8 col-sm-8 col-xs-12" >
-                			<div class="g-recaptcha" data-sitekey="6Lfd8pQrAAAAAGVj_aDG9H9VGq5H3Gi-iAMlpeX5" xdata-callback="enableButton"></div>
+                		<div align="left" class="col-lg-8 col-md-8 col-sm-8 col-xs-12" style="padding-left:0;">
+                			<div class="g-recaptcha" data-sitekey="6Lfd8pQrAAAAAGVj_aDG9H9VGq5H3Gi-iAMlpeX5"></div>
 	                    </div>
-						<div align="right" class="col-lg-4 col-md-4 col-sm-4 col-xs-12" >
-			                <input value="ENVIAR" type="submit" class="form-submit-button" name="enviar" id="enviar" style="">
+						<div align="right" class="col-lg-4 col-md-4 col-sm-4 col-xs-12" style="padding-right:0;">
+			                <input value="ENVIAR" type="submit" class="form-submit-button" name="enviar" id="enviar" >
 			            </div>
-            	        <div align="center" id="msg" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="font-family:arial; float:left; width:100%; font-size:12px; "></div>
+                	    <div align="center" id="msg" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="font-family:arial; float:left; width:100%; font-size:12px; margin-top:10px;"></div>
                 	</div>
 	            </form>
     		</div>
@@ -583,30 +289,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			<div align="center" class="wow animated fadeInUp col-lg-6 col-md-6 col-sm-12 col-xs-12" style="padding:20px 0 0 80px; ">
 		    	<div align="center" style="width:100%">
 		        	<br>
-		        	<a href="#Home" data-scroll><img src="logo.png" border="0" class="img-responsive" style="" width="200" ></a>
+		        	<a href="#Home" class="scroll"><img src="img/logo.png" border="0" class="img-responsive"  width="200" alt="Logo"></a>
 		            <br><br>
 		        </div>
-				<div class="row mudar" style="width:80%; ">
-		            <p align="left" style="font-family:Josefin Sans; color:#006184; font-size:calc(0.9em + 1vw); line-height:calc(0.7em + 1vw); ">
-		                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Conforto absoluto e lazer de clube,<br>
-		                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;com segurança planejada.
-					</p>
+<div class="row mudar" style="width:80%;">
+    <p align="left" style="font-family: 'Josefin Sans', sans-serif; color: #006184; font-size: calc(1.3em + 1vw); line-height: calc(1.1em + 1vw);">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Conforto absoluto e lazer de clube,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;com segurança planejada.
+    </p>
+</div>
 		            
 		            <br>
 		            <p align="left" style="font-family:Josefin Sans; color:#000; font-size:calc(0.5em + 1vw); line-height:calc(0.4em + 1vw); ">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="concha.png" width="30">&nbsp; Condomínio fechado</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="concha.png" width="30">&nbsp; Portaria central com WC</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="concha.png" width="30">&nbsp; Acesso de pedestres com eclusa</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="concha.png" width="30">&nbsp; Sistema de monitoramento interno (CFTV)</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="concha.png" width="30">&nbsp; Portões automatizados</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="concha.png" width="30">&nbsp; Sensores de presença nas áreas comuns<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="img/concha.png" width="30" alt="">&nbsp; Condomínio fechado</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="img/concha.png" width="30" alt="">&nbsp; Portaria central com WC</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="img/concha.png" width="30" alt="">&nbsp; Acesso de pedestres com eclusa</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="img/concha.png" width="30" alt="">&nbsp; Sistema de monitoramento interno (CFTV)</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="img/concha.png" width="30" alt="">&nbsp; Portões automatizados</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="img/concha.png" width="30" alt="">&nbsp; Sensores de presença nas áreas comuns<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; com iluminação em LED</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="concha.png" width="30">&nbsp; Sistema de interfonia</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="concha.png" width="30">&nbsp; 13 vagas para visitantes</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="img/concha.png" width="30" alt="">&nbsp; Sistema de interfonia</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="img/concha.png" width="30" alt="">&nbsp; 13 vagas para visitantes</span><br>
 					</p>
 		    	</div>
 			</div>
-		   
+		    
 		    <div align="right" class="mobile-hide wow animated fadeInUp slow col-lg-6 col-md-6 col-sm-12 col-xs-12" style="margin-top:-5px; ">
 				<!-- Carrossel FACHADA Deskttop -->
 				<section id="carrossel-Fachada" class="mobile-hide" style="width:100%; ">
@@ -616,30 +323,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				        <li data-target="#myCarousel-Fachada" data-slide-to="1"></li>
 				      </ol>
 				      <div align="center" class="carousel-inner">
-						<div class="item active">	<img src="FACHADA/01.jpg" style="width:100%;"></div>
-						<div class="item">			<img src="FACHADA/02.jpg" style="width:100%;"></div>
+						<div class="item active">	<img src="img/FACHADA/01.jpg" style="width:100%;" alt="Fachada 1"></div>
+						<div class="item">			<img src="img/FACHADA/02.jpg" style="width:100%;" alt="Fachada 2"></div>
 				      </div>
 				      <a class="left carousel-control-mobile" href="#myCarousel-Fachada" data-slide="prev">
-				        <img src="seta-esq2.png" style="position:absolute;top:40%;">
+				        <img src="img/seta-esq2.png" style="position:absolute;top:40%;" alt="Anterior">
 				        <span class="sr-only">Prévia</span>
 				      </a>
 				      <a class="right carousel-control-mobile" href="#myCarousel-Fachada" data-slide="next">
-				        <img src="seta-dir2.png" style="position:absolute;top:40%;">
+				        <img src="img/seta-dir2.png" style="position:absolute;top:40%;" alt="Próximo">
 				        <span class="sr-only">Próxima</span>
 				      </a>
 					</div>
 				</section>
 			</div>
-		    <div align="right" class="mobile-hide" style="width:auto; position:absolute; bottom:0px; right:400px;  ">
-				<img src="plantas2.png" class="img-responsive" style="" width="200">
+		    <div align="right" class="mobile-hide" style="width:auto; position:absolute; bottom:0px; right:400px;">
+				<img src="img/plantas2.png" class="img-responsive"  width="200" alt="Plantas">
 			</div>
 		</div>
 
 		<!--mobile-->
-		<div align="center" class="wow animated fadeInUp col-lg-6 col-md-6 col-sm-12 col-xs-12 desktop-hide" style="padding:20px 0 0 20px; background-position:top left; background-size:cover; position:relative; width:100%;">
+		<div align="center" class="wow animated fadeInUp col-lg-6 col-md-6 col-sm-12 col-xs-12 desktop-hide" style="padding:20px 0 0 0px; background-position:top left; background-size:cover; position:relative; width:100%;">
 	    	<div align="center" style="width:100%">
 	        	<br>
-	            <img src="logo.png" border="0" class="img-responsive" style="" width="200" >
+	            <img src="img/logo.png" border="0" class="img-responsive"  width="200" alt="Logo">
 	            <br><br>
 	        </div>
 			<div class="row mudar" style="width:90%; ">
@@ -650,21 +357,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	            
 	            <br>
 	            <p align="left" style="font-family:Josefin Sans; color:#000; font-size:calc(0.6em + 1vw); line-height:calc(0.5em + 1vw); ">
-&nbsp;&nbsp;&nbsp;<span><img src="concha.png" width="30">&nbsp; Condomínio fechado</span><br>
-&nbsp;&nbsp;&nbsp;<span><img src="concha.png" width="30">&nbsp; Portaria central com WC</span><br>
-&nbsp;&nbsp;&nbsp;<span><img src="concha.png" width="30">&nbsp; Acesso de pedestres com eclusa</span><br>
-&nbsp;&nbsp;&nbsp;<span><img src="concha.png" width="30">&nbsp; Sistema de monitoramento interno (CFTV)</span><br>
-&nbsp;&nbsp;&nbsp;<span><img src="concha.png" width="30">&nbsp; Portões automatizados</span><br>
-&nbsp;&nbsp;&nbsp;<span><img src="concha.png" width="30">&nbsp; Sensores de presença nas áreas comuns<br>
+&nbsp;&nbsp;&nbsp;<span><img src="img/concha.png" width="30" alt="">&nbsp; Condomínio fechado</span><br>
+&nbsp;&nbsp;&nbsp;<span><img src="img/concha.png" width="30" alt="">&nbsp; Portaria central com WC</span><br>
+&nbsp;&nbsp;&nbsp;<span><img src="img/concha.png" width="30" alt="">&nbsp; Acesso de pedestres com eclusa</span><br>
+&nbsp;&nbsp;&nbsp;<span><img src="img/concha.png" width="30" alt="">&nbsp; Sistema de monitoramento interno (CFTV)</span><br>
+&nbsp;&nbsp;&nbsp;<span><img src="img/concha.png" width="30" alt="">&nbsp; Portões automatizados</span><br>
+&nbsp;&nbsp;&nbsp;<span><img src="img/concha.png" width="30" alt="">&nbsp; Sensores de presença nas áreas comuns<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; com iluminação em LED</span><br>
-&nbsp;&nbsp;&nbsp;<span><img src="concha.png" width="30">&nbsp; Sistema de interfonia</span><br>
-&nbsp;&nbsp;&nbsp;<span><img src="concha.png" width="30">&nbsp; 13 vagas para visitantes</span><br><br><br>
+&nbsp;&nbsp;&nbsp;<span><img src="img/concha.png" width="30" alt="">&nbsp; Sistema de interfonia</span><br>
+&nbsp;&nbsp;&nbsp;<span><img src="img/concha.png" width="30" alt="">&nbsp; 13 vagas para visitantes</span><br><br><br>
 				</p>
 	    	</div>
 		</div>
-	   
+	    
 	    <div style="clear:both"></div>
-	   
+	    
 	    <div align="left" class="desktop-hide wow animated fadeInUp slow" style="margin-top:0px; width:100%;">
 			<!-- Carrossel FACHADA Mobile -->
 			<section id="carrossel-FachadaMobile" class="desktop-hide" style="width:100%; ">
@@ -674,15 +381,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			        <li data-target="#myCarousel-FachadaMobile" data-slide-to="1"></li>
 			      </ol>
 			      <div align="center" class="carousel-inner">
-					<div class="item active">	<img src="FACHADA/01.jpg" style="width:100%;"><div style="background-color:#DD6810; color:#FFFFFF;">FACHADA</div></div>
-					<div class="item">			<img src="FACHADA/02.jpg" style="width:100%;"><div style="background-color:#DD6810; color:#FFFFFF;">FACHADA</div></div>
+					<div class="item active">	<img src="img/FACHADA/01.jpg" style="width:100%;" alt="Fachada"><div style="background-color:#DD6810; color:#FFFFFF;">FACHADA</div></div>
+					<div class="item">			<img src="img/FACHADA/02.jpg" style="width:100%;" alt="Fachada"><div style="background-color:#DD6810; color:#FFFFFF;">FACHADA</div></div>
 			      </div>
 			      <a class="left carousel-control-mobile" href="#myCarousel-FachadaMobile" data-slide="prev">
-			        <img src="seta-esq2.png" style="position:absolute;top:50%;">
+			        <img src="img/seta-esq2.png" style="position:absolute;top:50%;" alt="Anterior">
 			        <span class="sr-only">Prévia</span>
 			      </a>
 			      <a class="right carousel-control-mobile" href="#myCarousel-FachadaMobile" data-slide="next">
-			        <img src="seta-dir2.png" style="position:absolute;top:50%;">
+			        <img src="img/seta-dir2.png" style="position:absolute;top:50%;" alt="Próximo">
 			        <span class="sr-only">Próxima</span>
 			      </a>
 				</div>
@@ -703,23 +410,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		        <li data-target="#myCarousel-Exterior" data-slide-to="2"></li>
 		      </ol>
 		      <div align="center" class="carousel-inner">
-				<div class="item active">	<img src="EXTERIOR/01.jpg" style="width:100%;"></div>
-				<div class="item">			<img src="EXTERIOR/02.jpg" style="width:100%;"></div>
-		        <div class="item">			<img src="EXTERIOR/03.jpg" style="width:100%;"></div>
+				<div class="item active">	<img src="img/EXTERIOR/01.jpg" style="width:100%;" alt="Exterior 1"></div>
+				<div class="item">			<img src="img/EXTERIOR/02.jpg" style="width:100%;" alt="Exterior 2"></div>
+		        <div class="item">			<img src="img/EXTERIOR/03.jpg" style="width:100%;" alt="Exterior 3"></div>
 		      </div>
 		      <a class="left carousel-control-mobile" href="#myCarousel-Exterior" data-slide="prev">
-		        <img src="seta-esq2.png" style="position:absolute;top:40%;">
+		        <img src="img/seta-esq2.png" style="position:absolute;top:40%;" alt="Anterior">
 		        <span class="sr-only">Prévia</span>
 		      </a>
 		      <a class="right carousel-control-mobile" href="#myCarousel-Exterior" data-slide="next">
-		        <img src="seta-dir2.png" style="position:absolute;top:40%;">
+		        <img src="img/seta-dir2.png" style="position:absolute;top:40%;" alt="Próximo">
 		        <span class="sr-only">Próxima</span>
 		      </a>
 			</div>
 		</section>
 
 		<!-- Carrossel EXTERIOR Mobile -->
-		<section id="carrossel-ExteriorMobile wow animated fadeInUp" class="desktop-hide" style="width:100%; ">
+		<section id="carrossel-ExteriorMobile" class="desktop-hide wow animated fadeInUp" style="width:100%; ">
 			<div id="myCarousel-ExteriorMobile" class="carousel slide" data-ride="carousel" style="width:100%; " >
 		      <ol class="carousel-indicators" style="margin-bottom:20px; ">
 		        <li data-target="#myCarousel-ExteriorMobile" data-slide-to="0" class="active"></li>
@@ -727,16 +434,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		        <li data-target="#myCarousel-ExteriorMobile" data-slide-to="2"></li>
 		      </ol>
 		      <div align="center" class="carousel-inner">
-				<div class="item active">	<img src="EXTERIOR/mobile/01.jpg" style="width:100%;"><div style="background-color:#DD6810; color:#FFFFFF;">PORTARIA CENTRAL</div></div>
-				<div class="item">			<img src="EXTERIOR/mobile/02.jpg" style="width:100%;"><div style="background-color:#DD6810; color:#FFFFFF;">MINI MERCADO</div></div>
-		        <div class="item">			<img src="EXTERIOR/mobile/03.jpg" style="width:100%;"><div style="background-color:#DD6810; color:#FFFFFF;">ESPAÇO DELIVERY</div></div>
+				<div class="item active">	<img src="img/EXTERIOR/mobile/01.jpg" style="width:100%;" alt="Portaria"><div style="background-color:#DD6810; color:#FFFFFF;">PORTARIA CENTRAL</div></div>
+				<div class="item">			<img src="img/EXTERIOR/mobile/02.jpg" style="width:100%;" alt="Mercado"><div style="background-color:#DD6810; color:#FFFFFF;">MINI MERCADO</div></div>
+		        <div class="item">			<img src="img/EXTERIOR/mobile/03.jpg" style="width:100%;" alt="Delivery"><div style="background-color:#DD6810; color:#FFFFFF;">ESPAÇO DELIVERY</div></div>
 		      </div>
 		      <a class="left carousel-control-mobile" href="#myCarousel-ExteriorMobile" data-slide="prev">
-		        <img src="seta-esq2.png" style="position:absolute;top:40%;">
+		        <img src="img/seta-esq2.png" style="position:absolute;top:40%;" alt="Anterior">
 		        <span class="sr-only">Prévia</span>
 		      </a>
 		      <a class="right carousel-control-mobile" href="#myCarousel-ExteriorMobile" data-slide="next">
-		        <img src="seta-dir2.png" style="position:absolute;top:40%;">
+		        <img src="img/seta-dir2.png" style="position:absolute;top:40%;" alt="Próximo">
 		        <span class="sr-only">Próxima</span>
 		      </a>
 			</div>
@@ -746,14 +453,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div style="clear:both"></div>
 
-<!-- LAZER ---------------------------------------------------------------------------------------------------->
+<!-- LAZER -->
 <div id="Lazer"></div>
 
 <!-- implantação desktop -->
 <div align="center" style="width:100%; height:auto; background-image:url(fundo02.jpg); background-position:top left; background-size:cover; position:relative; ">
 	<div class="content-1440">
 	    <div align="center" style="display:flex;">
-	    	<div align="center" style="width:40%"><img src="logo.png" width="250" ></div>
+	    	<div align="center" style="width:40%"><img src="img/logo.png" width="250" alt="Logo"></div>
 	        <div align="left" style="width:60%">
 	        	<p class="wow animated fadeInUp" style="font-family:Josefin Slab Bold; color:#006184; font-size:calc(1.0em + 1vw);  line-height:calc(0.8em + 1vw); padding:10px ">
 					Planejado para oferecer<br>O QUE A VIDA TEM DE MELHOR.
@@ -761,7 +468,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			</div>
 	    </div>
 	    <div style="clear:both"></div>
-	   
+	    
 	    <div align="center" class="wow animated fadeInUp col-lg-8 col-md-8 col-sm-12 col-xs-12 mobile-hide" style="margin-top:0px; ">
 			<!-- Carrossel IMPLANTAÇÃO Deskttop -->
 			<section id="carrossel-Implantacao" class="" style="width:100%; ">
@@ -771,15 +478,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			        <li data-target="#myCarousel-Implantacao" data-slide-to="1"></li>
 			      </ol>
 			      <div align="center" class="carousel-inner">
-					<div class="item active">	<img src="IMPLANTACAO/01.png" style="width:100%;"></div>
-					<div class="item">			<img src="IMPLANTACAO/02.png" style="width:100%;"></div>
+					<div class="item active">	<img src="img/IMPLANTACAO/01.png" style="width:100%;" alt="Implantação 1"></div>
+					<div class="item">			<img src="img/IMPLANTACAO/02.png" style="width:100%;" alt="Implantação 2"></div>
 			      </div>
 			      <a class="left carousel-control" href="#myCarousel-Implantacao" data-slide="prev">
-			        <img src="seta-esq2.png" style="position:absolute;top:40%;">
+			        <img src="img/seta-esq2.png" style="position:absolute;top:40%;" alt="Anterior">
 			        <span class="sr-only">Prévia</span>
 			      </a>
 			      <a class="right carousel-control" href="#myCarousel-Implantacao" data-slide="next">
-			        <img src="seta-dir2.png" style="position:absolute;top:40%;">
+			        <img src="img/seta-dir2.png" style="position:absolute;top:40%;" alt="Próximo">
 			        <span class="sr-only">Próxima</span>
 			      </a>
 				</div>
@@ -789,17 +496,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			<div class="row mudar" style="width:80%; ">
 	            
 	            <div align="left" style="width:100%; ">
-	            	<p style="color:#000; font-family:Montserrat Regular; color:#006184;">PAVIMENTO TÉRREO</p>
-		            <span align="left" style="color:#000; font-family:Montserrat Regular; color:#000; font-size:calc(0.3em + 0.3vw); line-height:calc(0.2em + 0.2vw); ">
-			            &nbsp; <div class='circulo'>&nbsp;1&nbsp;</div> EMBARQUE E DESEMBARQUE <br>
-						&nbsp; <div class='circulo'>&nbsp;2&nbsp;</div> ACESSO DE VEÍCULOS <br>
-						&nbsp; <div class='circulo'>&nbsp;3&nbsp;</div> ACESSO DE PEDESTRES <br>
-						&nbsp; <div class='circulo'>&nbsp;4&nbsp;</div> PORTARIA CENTRAL C/ W.C. <br>
-						&nbsp; <div class='circulo'>&nbsp;5&nbsp;</div> MINI MERCADO <br>
-						&nbsp; <div class='circulo'>&nbsp;6&nbsp;</div> HALL SOCIAL <br>
-						&nbsp; <div class='circulo'>&nbsp;7&nbsp;</div> ESPAÇO DELIVERY <br>
-	                    &nbsp; <div class='circulo'>&nbsp;8&nbsp;</div> VAGAS P/ VISITANTES <br>
-						&nbsp; <div class='circulo'>&nbsp;9&nbsp;</div> PRAÇA ZEN <br>
+	            	<p style="font-family:'Montserrat Regular'; color:#006184;">PAVIMENTO TÉRREO</p>
+		            <span align="left" style="font-family:'Montserrat Regular'; color:#000; font-size:calc(0.3em + 0.3vw); line-height:calc(0.2em + 0.2vw); ">
+			            &nbsp; <div class='circulo'>1</div> EMBARQUE E DESEMBARQUE <br>
+						&nbsp; <div class='circulo'>2</div> ACESSO DE VEÍCULOS <br>
+						&nbsp; <div class='circulo'>3</div> ACESSO DE PEDESTRES <br>
+						&nbsp; <div class='circulo'>4</div> PORTARIA CENTRAL C/ W.C. <br>
+						&nbsp; <div class='circulo'>5</div> MINI MERCADO <br>
+						&nbsp; <div class='circulo'>6</div> HALL SOCIAL <br>
+						&nbsp; <div class='circulo'>7</div> ESPAÇO DELIVERY <br>
+	                    &nbsp; <div class='circulo'>8</div> VAGAS P/ VISITANTES <br>
+						&nbsp; <div class='circulo'>9</div> PRAÇA ZEN <br>
 						&nbsp; <div class='circulo'>10</div> REDÁRIO <br>
 	                    &nbsp; <div class='circulo'>11</div> PRAÇA DO FOGO <br>
 	                    &nbsp; <div class='circulo'>12</div> PRAÇA BOULEVARD <br>
@@ -811,8 +518,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	                    &nbsp; <div class='circulo'>18</div> HALL DE ELEVADORES <br>
 	                    <br>
 		            </span>
-	                <p style="color:#000; font-family:Montserrat Regular; color:#DD6810;">1º SUBSOLO</p>
-		            <span align="left" style="color:#000; font-family:Montserrat Regular; color:#000; font-size:calc(0.3em + 0.3vw); line-height:calc(0.2em + 0.2vw); ">
+	                <p style="font-family:'Montserrat Regular'; color:#DD6810;">1º SUBSOLO</p>
+		            <span align="left" style="font-family:'Montserrat Regular'; color:#000; font-size:calc(0.3em + 0.3vw); line-height:calc(0.2em + 0.2vw); ">
 						&nbsp; <div class='circulo2'>18</div> HALL DE ELEVADORES <br>
 	                    &nbsp; <div class='circulo2'>19</div> VAGAS <br>
 	                    &nbsp; <div class='circulo2'>20</div> QUADRA ESPORTIVA <br>
@@ -842,9 +549,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 	    	</div>
 		</div>
-	   
+	    
 	    <div align="right" class="mobile-hide" style="width:auto; position:absolute; bottom:0px; right:400px;  ">
-			<img src="lazer.png" class="img-responsive" style="" width="350">
+			<img src="img/lazer.png" class="img-responsive"  width="350" alt="Lazer">
 		</div>
 	</div>
 </div>
@@ -855,14 +562,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	<div class="content-1440">
 	    <div align="center" class="wow animated fadeInUp" style="width:100%">
 	    	<br><br>
-	    	<img src="logo.png" width="250">
+	    	<img src="img/logo.png" width="250" alt="Logo">
 	        <br><br>
 			<p class="wow animated fadeInUp" style="font-family:Josefin Slab Bold; color:#006184; font-size:calc(1.0em + 1vw);  line-height:calc(0.8em + 1vw); padding:10px ">
 				Planejado para oferecer<br>O QUE A VIDA TEM DE MELHOR.
 	    	</p>
 		</div>
 	    <div style="clear:both"></div>
-	   
+	    
 	    <div align="left" class="wow animated fadeInUp slow" style="margin-top:0px; ">
 			<!-- Carrossel IMPLANTACAO Mobile -->
 			<section id="carrossel-ImplantacaoMobile" class="" style="width:100%; ">
@@ -872,36 +579,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			        <li data-target="#myCarousel-ImplantacaoMobile" data-slide-to="1"></li>
 			      </ol>
 			      <div align="center" class="carousel-inner">
-					<div class="item active">	<img src="IMPLANTACAO/mobile/01.png" style="width:100%;"></div>
-					<div class="item">			<img src="IMPLANTACAO/mobile/02.png" style="width:100%;"></div>
+					<div class="item active">	<img src="img/IMPLANTACAO/mobile/01.png" style="width:100%;" alt="Implantação"></div>
+					<div class="item">			<img src="img/IMPLANTACAO/mobile/02.png" style="width:100%;" alt="Implantação"></div>
 			      </div>
 			      <a class="left carousel-control-mobile" href="#myCarousel-ImplantacaoMobile" data-slide="prev">
-			        <img src="seta-esq2.png" style="position:absolute;top:50%;">
+			        <img src="img/seta-esq2.png" style="position:absolute;top:50%;" alt="Anterior">
 			        <span class="sr-only">Prévia</span>
 			      </a>
 			      <a class="right carousel-control-mobile" href="#myCarousel-ImplantacaoMobile" data-slide="next">
-			        <img src="seta-dir2.png" style="position:absolute;top:50%;">
+			        <img src="img/seta-dir2.png" style="position:absolute;top:50%;" alt="Próximo">
 			        <span class="sr-only">Próxima</span>
 			      </a>
 				</div>
 			</section>
 		</div>
 	        
-	     <div align="center" class="wow animated fadeInUp" style="padding:20px 0 0 00px; width:100%; ">
+	     <div align="center" class="wow animated fadeInUp" style="padding:20px 0 0 0px; width:100%; ">
 			<div class="row mudar" style="width:95%; display:flex; ">
 	            
 	            <div align="left" style="width:50%; ">
-	            	<p style="color:#000; font-family:Montserrat Regular; color:#006184;">PAVIMENTO TÉRREO</p>
-		            <span align="left" style="color:#000; font-family:Montserrat Regular; color:#000; font-size:calc(0.5em + 0.5vw); line-height:calc(0.3em + 0.3vw); ">
-			            <div class='circulo'>&nbsp;1&nbsp;</div> EMBARQUE E DESEMBARQUE <br>
-						<div class='circulo'>&nbsp;2&nbsp;</div> ACESSO DE VEÍCULOS <br>
-						<div class='circulo'>&nbsp;3&nbsp;</div> ACESSO DE PEDESTRES <br>
-						<div class='circulo'>&nbsp;4&nbsp;</div> PORTARIA CENTRAL C/ W.C. <br>
-						<div class='circulo'>&nbsp;5&nbsp;</div> MINI MERCADO <br>
-						<div class='circulo'>&nbsp;6&nbsp;</div> HALL SOCIAL <br>
-						<div class='circulo'>&nbsp;7&nbsp;</div> ESPAÇO DELIVERY <br>
-	                    <div class='circulo'>&nbsp;8&nbsp;</div> VAGAS P/ VISITANTES <br>
-						<div class='circulo'>&nbsp;9&nbsp;</div> PRAÇA ZEN <br>
+	            	<p style="font-family:'Montserrat Regular'; color:#006184;">PAVIMENTO TÉRREO</p>
+		            <span align="left" style="font-family:'Montserrat Regular'; color:#000; font-size:calc(0.5em + 0.5vw); line-height:1.6; display:block;">
+			            <div class='circulo'>1</div> EMBARQUE E DESEMBARQUE <br>
+						<div class='circulo'>2</div> ACESSO DE VEÍCULOS <br>
+						<div class='circulo'>3</div> ACESSO DE PEDESTRES <br>
+						<div class='circulo'>4</div> PORTARIA CENTRAL C/ W.C. <br>
+						<div class='circulo'>5</div> MINI MERCADO <br>
+						<div class='circulo'>6</div> HALL SOCIAL <br>
+						<div class='circulo'>7</div> ESPAÇO DELIVERY <br>
+	                    <div class='circulo'>8</div> VAGAS P/ VISITANTES <br>
+						<div class='circulo'>9</div> PRAÇA ZEN <br>
 						<div class='circulo'>10</div> REDÁRIO <br>
 	                    <div class='circulo'>11</div> PRAÇA DO FOGO <br>
 	                    <div class='circulo'>12</div> PRAÇA BOULEVARD <br>
@@ -915,8 +622,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		            </span>
 	            </div>
 	            <div align="left" style="width:50%; ">
-	                <p style="color:#000; font-family:Montserrat Regular; color:#DD6810;">1º SUBSOLO</p>
-		            <span align="left" style="color:#000; font-family:Montserrat Regular; color:#000; font-size:calc(0.5em + 0.5vw); line-height:calc(0.3em + 0.3vw); ">
+	                <p style="font-family:'Montserrat Regular'; color:#DD6810;">1º SUBSOLO</p>
+		            <span align="left" style="font-family:'Montserrat Regular'; color:#000; font-size:calc(0.5em + 0.5vw); line-height:1.6; display:block;">
 						<div class='circulo2'>18</div> HALL DE ELEVADORES <br>
 	                    <div class='circulo2'>19</div> VAGAS <br>
 	                    <div class='circulo2'>20</div> QUADRA ESPORTIVA <br>
@@ -946,9 +653,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 	    	</div>
 		</div>
-	   
+	    
 	    <div align="left" class="desktop-hide" style="width:auto; position:absolute; bottom:0px; left:0px;  ">
-			<img src="lazermobile2.png" class="img-responsive" style="" width="150">
+			<img src="img/lazermobile2.png" class="img-responsive"  width="150" alt="Lazer">
 		</div>
 	</div>
 </div>
@@ -959,9 +666,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div align="center" style="width:100%; background-color:#fff; background-image:url(fundo02.jpg); background-position:center center; background-size:cover; background-repeat:no-repeat; position:relative; ">
         <div class="content-1440">
 	        <div align="center" class="mobile-hide wow animated fadeInUp" style="width:100%; position:absolute; top:0px; z-index:2;">
-	            <img src="lazer-teto.png" class="img-responsive" style="">
+	            <img src="img/lazer-teto.png" class="img-responsive"  alt="Lazer Teto">
 	        </div>
-	   
+	    
 			<!-- Carrossel Lazer Deskttop -->
 			<section id="carrossel-Lazer" class="mobile-hide wow animated fadeInUp slow" style="width:100%; ">
 				<div id="myCarousel-Lazer" class="carousel slide" data-ride="carousel" style="width:100%; " >
@@ -990,35 +697,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	                  <li data-target="#myCarousel-Lazer" data-slide-to="21"></li>
 				      </ol>
 				      <div align="center" class="carousel-inner">
-						<div class="item active">	<img src="LAZER/01.jpg" style="width:100%;"></div>
-						<div class="item">			<img src="LAZER/02.jpg" style="width:100%;"></div>
-						<div class="item">			<img src="LAZER/03.jpg" style="width:100%;"></div>
-						<div class="item">			<img src="LAZER/04.jpg" style="width:100%;"></div>
-						<div class="item">			<img src="LAZER/05.jpg" style="width:100%;"></div>
-						<div class="item">			<img src="LAZER/06.jpg" style="width:100%;"></div>
-						<div class="item">			<img src="LAZER/07.jpg" style="width:100%;"></div>
-						<div class="item">			<img src="LAZER/08.jpg" style="width:100%;"></div>
-		              <div class="item">			<img src="LAZER/09.jpg" style="width:100%;"></div>
-		              <div class="item">			<img src="LAZER/10.jpg" style="width:100%;"></div>
-		              <div class="item">			<img src="LAZER/11.jpg" style="width:100%;"></div>
-		              <div class="item">			<img src="LAZER/12.jpg" style="width:100%;"></div>
-		              <div class="item">			<img src="LAZER/13.jpg" style="width:100%;"></div>
-	                  <div class="item">			<img src="LAZER/14.jpg" style="width:100%;"></div>
-	                  <div class="item">			<img src="LAZER/15.jpg" style="width:100%;"></div>
-	                  <div class="item">			<img src="LAZER/16.jpg" style="width:100%;"></div>
-	                  <div class="item">			<img src="LAZER/17.jpg" style="width:100%;"></div>
-	                  <div class="item">			<img src="LAZER/18.jpg" style="width:100%;"></div>
-	                  <div class="item">			<img src="LAZER/19.jpg" style="width:100%;"></div>
-	                  <div class="item">			<img src="LAZER/20.jpg" style="width:100%;"></div>
-	                  <div class="item">			<img src="LAZER/21.jpg" style="width:100%;"></div>
-	                  <div class="item">			<img src="LAZER/22.jpg" style="width:100%;"></div>
+						<div class="item active">	<img src="img/LAZER/01.jpg" style="width:100%;" alt="Lazer"></div>
+						<div class="item">			<img src="img/LAZER/02.jpg" style="width:100%;" alt="Lazer"></div>
+						<div class="item">			<img src="img/LAZER/03.jpg" style="width:100%;" alt="Lazer"></div>
+						<div class="item">			<img src="img/LAZER/04.jpg" style="width:100%;" alt="Lazer"></div>
+						<div class="item">			<img src="img/LAZER/05.jpg" style="width:100%;" alt="Lazer"></div>
+						<div class="item">			<img src="img/LAZER/06.jpg" style="width:100%;" alt="Lazer"></div>
+						<div class="item">			<img src="img/LAZER/07.jpg" style="width:100%;" alt="Lazer"></div>
+						<div class="item">			<img src="img/LAZER/08.jpg" style="width:100%;" alt="Lazer"></div>
+		              <div class="item">			<img src="img/LAZER/09.jpg" style="width:100%;" alt="Lazer"></div>
+		              <div class="item">			<img src="img/LAZER/10.jpg" style="width:100%;" alt="Lazer"></div>
+		              <div class="item">			<img src="img/LAZER/11.jpg" style="width:100%;" alt="Lazer"></div>
+		              <div class="item">			<img src="img/LAZER/12.jpg" style="width:100%;" alt="Lazer"></div>
+		              <div class="item">			<img src="img/LAZER/13.jpg" style="width:100%;" alt="Lazer"></div>
+	                  <div class="item">			<img src="img/LAZER/14.jpg" style="width:100%;" alt="Lazer"></div>
+	                  <div class="item">			<img src="img/LAZER/15.jpg" style="width:100%;" alt="Lazer"></div>
+	                  <div class="item">			<img src="img/LAZER/16.jpg" style="width:100%;" alt="Lazer"></div>
+	                  <div class="item">			<img src="img/LAZER/17.jpg" style="width:100%;" alt="Lazer"></div>
+	                  <div class="item">			<img src="img/LAZER/18.jpg" style="width:100%;" alt="Lazer"></div>
+	                  <div class="item">			<img src="img/LAZER/19.jpg" style="width:100%;" alt="Lazer"></div>
+	                  <div class="item">			<img src="img/LAZER/20.jpg" style="width:100%;" alt="Lazer"></div>
+	                  <div class="item">			<img src="img/LAZER/21.jpg" style="width:100%;" alt="Lazer"></div>
+	                  <div class="item">			<img src="img/LAZER/22.jpg" style="width:100%;" alt="Lazer"></div>
 				      </div>
 				      <a class="left carousel-control-mobile" href="#myCarousel-Lazer" data-slide="prev">
-				        <img src="seta-esq2.png" style="position:absolute;top:50%;">
+				        <img src="img/seta-esq2.png" style="position:absolute;top:50%;" alt="Anterior">
 				        <span class="sr-only">Prévia</span>
 				      </a>
 				      <a class="right carousel-control-mobile" href="#myCarousel-Lazer" data-slide="next">
-				        <img src="seta-dir2.png" style="position:absolute;top:50%;">
+				        <img src="img/seta-dir2.png" style="position:absolute;top:50%;" alt="Próximo">
 				        <span class="sr-only">Próxima</span>
 				      </a>
 				</div>
@@ -1026,11 +733,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		
 			<!-- Carrossel Lazer Mobile -->
 	        <div align="center" class="desktop-hide wow animated fadeInUp" style="width:100%; position:absolute; top:0px; z-index:2;">
-	            <img src="lazer-teto-mobile2.png" class="img-responsive" style="">
+	            <img src="img/lazer-teto-mobile2.png" class="img-responsive"  alt="Lazer Teto Mobile">
 	        </div>        
 			<section id="carrossel-LazerMobile" class="desktop-hide" style="width:100%; ">
 				<div id="myCarousel-LazerMobile" class="carousel slide" data-ride="carousel" style="width:100%; " >
-				      <ol class="carousel-indicators" style="">
+				      <ol class="carousel-indicators" >
 				        <li data-target="#myCarousel-LazerMobile" data-slide-to="0" class="active"></li>
 				        <li data-target="#myCarousel-LazerMobile" data-slide-to="1"></li>
 				        <li data-target="#myCarousel-LazerMobile" data-slide-to="2"></li>
@@ -1055,35 +762,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	                  <li data-target="#myCarousel-LazerMobile" data-slide-to="21"></li>
 				      </ol>
 				      <div align="center" class="carousel-inner">
-						<div class="item active">	<img src="LAZER/mobile/01.jpg" style="width:100%;"><div style="background-color:#DD6810; color:#FFFFFF;">VISTA AÉREA DO COMPLEXO AQUÁTICO</div></div>
-						<div class="item">			<img src="LAZER/mobile/02.jpg" style="width:100%;"><div style="background-color:#DD6810; color:#FFFFFF;">PISCINA ADULTO COM PRAIA</div></div>
-						<div class="item">			<img src="LAZER/mobile/03.jpg" style="width:100%;"><div style="background-color:#DD6810; color:#FFFFFF;">PISCINA INFANTIL C/ BRINQUEDOS D’ÁGUA</div></div>
-						<div class="item">			<img src="LAZER/mobile/04.jpg" style="width:100%;"><div style="background-color:#DD6810; color:#FFFFFF;">PISCINA ADULTO COM DECK PRAIA (AO ANOITECER)</div></div>
-						<div class="item">			<img src="LAZER/mobile/05.jpg" style="width:100%;"><div style="background-color:#DD6810; color:#FFFFFF;">VISTA AÉREA DO LAZER</div></div>
-						<div class="item">			<img src="LAZER/mobile/06.jpg" style="width:100%;"><div style="background-color:#DD6810; color:#FFFFFF;">BEACH TENNIS</div></div>
-						<div class="item">			<img src="LAZER/mobile/07.jpg" style="width:100%;"><div style="background-color:#DD6810; color:#FFFFFF;">ÁREA DE DESCANSO DO BEACH TENNIS</div></div>
-						<div class="item">			<img src="LAZER/mobile/08.jpg" style="width:100%;"><div style="background-color:#DD6810; color:#FFFFFF;">PLAYGROUND</div></div>
-		              <div class="item">			<img src="LAZER/mobile/09.jpg" style="width:100%;"><div style="background-color:#DD6810; color:#FFFFFF;">PET PLACE</div></div>
-		              <div class="item">			<img src="LAZER/mobile/10.jpg" style="width:100%;"><div style="background-color:#DD6810; color:#FFFFFF;">QUADRA ESPORTIVA</div></div>
-		              <div class="item">			<img src="LAZER/mobile/11.jpg" style="width:100%;"><div style="background-color:#DD6810; color:#FFFFFF;">PLAY BABY</div></div>
-		              <div class="item">			<img src="LAZER/mobile/12.jpg" style="width:100%;"><div style="background-color:#DD6810; color:#FFFFFF;">BRINQUEDOTECA</div></div>
-		              <div class="item">			<img src="LAZER/mobile/13.jpg" style="width:100%;"><div style="background-color:#DD6810; color:#FFFFFF;">COWORKING</div></div>
-	                  <div class="item">			<img src="LAZER/mobile/14.jpg" style="width:100%;"><div style="background-color:#DD6810; color:#FFFFFF;">FITNESS</div></div>
-	                  <div class="item">			<img src="LAZER/mobile/15.jpg" style="width:100%;"><div style="background-color:#DD6810; color:#FFFFFF;">SALÃO DE FESTAS INFANTIL</div></div>
-	                  <div class="item">			<img src="LAZER/mobile/16.jpg" style="width:100%;"><div style="background-color:#DD6810; color:#FFFFFF;">LOBBY / FESTAS INFANTIL</div></div>
-	                  <div class="item">			<img src="LAZER/mobile/17.jpg" style="width:100%;"><div style="background-color:#DD6810; color:#FFFFFF;">ESPAÇO GRILL</div></div>
-	                  <div class="item">			<img src="LAZER/mobile/18.jpg" style="width:100%;"><div style="background-color:#DD6810; color:#FFFFFF;">SALÃO DE FESTAS ADULTO</div></div>
-	                  <div class="item">			<img src="LAZER/mobile/19.jpg" style="width:100%;"><div style="background-color:#DD6810; color:#FFFFFF;">REDÁRIO</div></div>
-	                  <div class="item">			<img src="LAZER/mobile/20.jpg" style="width:100%;"><div style="background-color:#DD6810; color:#FFFFFF;">PRAÇA ZEN</div></div>
-	                  <div class="item">			<img src="LAZER/mobile/21.jpg" style="width:100%;"><div style="background-color:#DD6810; color:#FFFFFF;">PRAÇA DE CONTEMPLAÇÃO</div></div>
-	                  <div class="item">			<img src="LAZER/mobile/22.jpg" style="width:100%;"><div style="background-color:#DD6810; color:#FFFFFF;">PRAÇA DE LEITURA SOB PÉRGOLAS</div></div>
+						<div class="item active">	<img src="img/LAZER/mobile/01.jpg" style="width:100%;" alt="Lazer"><div style="background-color:#DD6810; color:#FFFFFF;">VISTA AÉREA DO COMPLEXO AQUÁTICO</div></div>
+						<div class="item">			<img src="img/LAZER/mobile/02.jpg" style="width:100%;" alt="Lazer"><div style="background-color:#DD6810; color:#FFFFFF;">PISCINA ADULTO COM PRAIA</div></div>
+						<div class="item">			<img src="img/LAZER/mobile/03.jpg" style="width:100%;" alt="Lazer"><div style="background-color:#DD6810; color:#FFFFFF;">PISCINA INFANTIL C/ BRINQUEDOS D’ÁGUA</div></div>
+						<div class="item">			<img src="img/LAZER/mobile/04.jpg" style="width:100%;" alt="Lazer"><div style="background-color:#DD6810; color:#FFFFFF;">PISCINA ADULTO COM DECK PRAIA (AO ANOITECER)</div></div>
+						<div class="item">			<img src="img/LAZER/mobile/05.jpg" style="width:100%;" alt="Lazer"><div style="background-color:#DD6810; color:#FFFFFF;">VISTA AÉREA DO LAZER</div></div>
+						<div class="item">			<img src="img/LAZER/mobile/06.jpg" style="width:100%;" alt="Lazer"><div style="background-color:#DD6810; color:#FFFFFF;">BEACH TENNIS</div></div>
+						<div class="item">			<img src="img/LAZER/mobile/07.jpg" style="width:100%;" alt="Lazer"><div style="background-color:#DD6810; color:#FFFFFF;">ÁREA DE DESCANSO DO BEACH TENNIS</div></div>
+						<div class="item">			<img src="img/LAZER/mobile/08.jpg" style="width:100%;" alt="Lazer"><div style="background-color:#DD6810; color:#FFFFFF;">PLAYGROUND</div></div>
+		              <div class="item">			<img src="img/LAZER/mobile/09.jpg" style="width:100%;" alt="Lazer"><div style="background-color:#DD6810; color:#FFFFFF;">PET PLACE</div></div>
+		              <div class="item">			<img src="img/LAZER/mobile/10.jpg" style="width:100%;" alt="Lazer"><div style="background-color:#DD6810; color:#FFFFFF;">QUADRA ESPORTIVA</div></div>
+		              <div class="item">			<img src="img/LAZER/mobile/11.jpg" style="width:100%;" alt="Lazer"><div style="background-color:#DD6810; color:#FFFFFF;">PLAY BABY</div></div>
+		              <div class="item">			<img src="img/LAZER/mobile/12.jpg" style="width:100%;" alt="Lazer"><div style="background-color:#DD6810; color:#FFFFFF;">BRINQUEDOTECA</div></div>
+		              <div class="item">			<img src="img/LAZER/mobile/13.jpg" style="width:100%;" alt="Lazer"><div style="background-color:#DD6810; color:#FFFFFF;">COWORKING</div></div>
+	                  <div class="item">			<img src="img/LAZER/mobile/14.jpg" style="width:100%;" alt="Lazer"><div style="background-color:#DD6810; color:#FFFFFF;">FITNESS</div></div>
+	                  <div class="item">			<img src="img/LAZER/mobile/15.jpg" style="width:100%;" alt="Lazer"><div style="background-color:#DD6810; color:#FFFFFF;">SALÃO DE FESTAS INFANTIL</div></div>
+	                  <div class="item">			<img src="img/LAZER/mobile/16.jpg" style="width:100%;" alt="Lazer"><div style="background-color:#DD6810; color:#FFFFFF;">LOBBY / FESTAS INFANTIL</div></div>
+	                  <div class="item">			<img src="img/LAZER/mobile/17.jpg" style="width:100%;" alt="Lazer"><div style="background-color:#DD6810; color:#FFFFFF;">ESPAÇO GRILL</div></div>
+	                  <div class="item">			<img src="img/LAZER/mobile/18.jpg" style="width:100%;" alt="Lazer"><div style="background-color:#DD6810; color:#FFFFFF;">SALÃO DE FESTAS ADULTO</div></div>
+	                  <div class="item">			<img src="img/LAZER/mobile/19.jpg" style="width:100%;" alt="Lazer"><div style="background-color:#DD6810; color:#FFFFFF;">REDÁRIO</div></div>
+	                  <div class="item">			<img src="img/LAZER/mobile/20.jpg" style="width:100%;" alt="Lazer"><div style="background-color:#DD6810; color:#FFFFFF;">PRAÇA ZEN</div></div>
+	                  <div class="item">			<img src="img/LAZER/mobile/21.jpg" style="width:100%;" alt="Lazer"><div style="background-color:#DD6810; color:#FFFFFF;">PRAÇA DE CONTEMPLAÇÃO</div></div>
+	                  <div class="item">			<img src="img/LAZER/mobile/22.jpg" style="width:100%;" alt="Lazer"><div style="background-color:#DD6810; color:#FFFFFF;">PRAÇA DE LEITURA SOB PÉRGOLAS</div></div>
 				      </div>
 				      <a class="left carousel-control-mobile" href="#myCarousel-LazerMobile" data-slide="prev">
-				        <img src="seta-esq2.png" style="position:absolute;top:40%;">
+				        <img src="img/seta-esq2.png" style="position:absolute;top:40%;" alt="Anterior">
 				        <span class="sr-only">Prévia</span>
 				      </a>
 				      <a class="right carousel-control-mobile" href="#myCarousel-LazerMobile" data-slide="next">
-				        <img src="seta-dir2.png" style="position:absolute;top:40%;">
+				        <img src="img/seta-dir2.png" style="position:absolute;top:40%;" alt="Próximo">
 				        <span class="sr-only">Próxima</span>
 				      </a><br><br><br>
 				</div>
@@ -1097,7 +804,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div align="center" class="mobile-hide" style="width:100%; background-color:#fff; padding:40px 10px 20px 10px; position:relative">
 	<div class="content-1440">
-		<div style="left:0px; top:0px; position:absolute; z-index:2; "><img src="plantas.png" border="0" style="" width="200"></div>
+		<div style="left:0px; top:0px; position:absolute; z-index:2; "><img src="img/plantas.png" border="0"  width="200" alt="Plantas"></div>
 		<p class="wow animated fadeInUp" style="font-family:Josefin Slab Bold; color:#DD6810; font-size:calc(1.5em + 1vw); line-height:calc(0.9em + 1vw); ">
 			Plantas inteligentes garantem o melhor aproveitamento por m².
 		</p>
@@ -1106,7 +813,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div align="center" class="desktop-hide wow animated fadeInUp" style="width:100%; background-color:#fff; padding:50px 0 20px 0; position:relative">
     <div class="content-1440">
-	    <div style="left:0px; top:0px; position:absolute; z-index:2; "><img src="plantas.png" border="0" style="" width="20"></div>
+	    <div style="left:0px; top:0px; position:absolute; z-index:2; "><img src="img/plantas.png" border="0"  width="20" alt="Plantas"></div>
 	    <p class="wow animated fadeInUp" style="font-family:Josefin Slab Bold; color:#DD6810; font-size:calc(1.5em + 1vw); line-height:calc(0.9em + 1vw); ">
 			Plantas inteligentes garantem o melhor aproveitamento por m².
 		</p>
@@ -1125,17 +832,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			      <li data-target="#myCarousel-Plantas" data-slide-to="3"></li>
 			    </ol>
 			    <div align="center" class="carousel-inner">
-					<div class="item active">	<img src="PLANTAS/01.jpg" style="width:100%;"></div>
-					<div class="item">			<img src="PLANTAS/02.jpg" style="width:100%;"></div>
-					<div class="item">			<img src="PLANTAS/03.jpg" style="width:100%;"></div>
-					<div class="item">			<img src="PLANTAS/04.jpg" style="width:100%;"></div>
+					<div class="item active">	<img src="img/PLANTAS/01.jpg" style="width:100%;" alt="Planta 1"></div>
+					<div class="item">			<img src="img/PLANTAS/02.jpg" style="width:100%;" alt="Planta 2"></div>
+					<div class="item">			<img src="img/PLANTAS/03.jpg" style="width:100%;" alt="Planta 3"></div>
+					<div class="item">			<img src="img/PLANTAS/04.jpg" style="width:100%;" alt="Planta 4"></div>
 			    </div>
 			    <a class="left carousel-control" href="#myCarousel-Plantas" data-slide="prev">
-			      <img src="seta-esq2.png" style="position:absolute;top:50%;">
+			      <img src="img/seta-esq2.png" style="position:absolute;top:50%;" alt="Anterior">
 			      <span class="sr-only">Prévia</span>
 			    </a>
 			    <a class="right carousel-control" href="#myCarousel-Plantas" data-slide="next">
-			      <img src="seta-dir2.png" style="position:absolute;top:50%;">
+			      <img src="img/seta-dir2.png" style="position:absolute;top:50%;" alt="Próximo">
 			      <span class="sr-only">Próxima</span>
 			    </a>
 			</div>
@@ -1146,31 +853,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			<div id="myCarousel-PlantasMobile" class="carousel slide" data-ride="carousel" style="width:100%; " >
 			    <ol class="carousel-indicators" style="margin-bottom:20px; ">
 			      <li data-target="#myCarousel-PlantasMobile" data-slide-to="0" class="active"></li>
-			      <li data-target="#myCarousel-Plantas" data-slide-to="1"></li>
-			      <li data-target="#myCarousel-Plantas" data-slide-to="2"></li>
-			      <li data-target="#myCarousel-Plantas" data-slide-to="3"></li>
+			      <li data-target="#myCarousel-PlantasMobile" data-slide-to="1"></li>
+			      <li data-target="#myCarousel-PlantasMobile" data-slide-to="2"></li>
+			      <li data-target="#myCarousel-PlantasMobile" data-slide-to="3"></li>
 			    </ol>
 			    <div align="center" class="carousel-inner">
-					<div class="item active">	<img src="PLANTAS/mobile/01.jpg" style="width:100%;"></div>
-					<div class="item">			<img src="PLANTAS/mobile/02.jpg" style="width:100%;"></div>
-					<div class="item">			<img src="PLANTAS/mobile/03.jpg" style="width:100%;"></div>
-					<div class="item">			<img src="PLANTAS/mobile/04.jpg" style="width:100%;"></div>
+					<div class="item active">	<img src="img/PLANTAS/mobile/01.jpg" style="width:100%;" alt="Planta 1"></div>
+					<div class="item">			<img src="img/PLANTAS/mobile/02.jpg" style="width:100%;" alt="Planta 2"></div>
+					<div class="item">			<img src="img/PLANTAS/mobile/03.jpg" style="width:100%;" alt="Planta 3"></div>
+					<div class="item">			<img src="img/PLANTAS/mobile/04.jpg" style="width:100%;" alt="Planta 4"></div>
 			    </div>
 			    <a class="left carousel-control-mobile" href="#myCarousel-PlantasMobile" data-slide="prev">
-			      <img src="seta-esq2.png" style="position:absolute;top:50%;">
+			      <img src="img/seta-esq2.png" style="position:absolute;top:50%;" alt="Anterior">
 			      <span class="sr-only">Prévia</span>
 			    </a>
 			    <a class="right carousel-control-mobile" href="#myCarousel-PlantasMobile" data-slide="next">
-			      <img src="seta-dir2.png" style="position:absolute;top:50%;">
+			      <img src="img/seta-dir2.png" style="position:absolute;top:50%;" alt="Próximo">
 			      <span class="sr-only">Próxima</span>
 			    </a>
 			</div>
 		</section>
 
-	    <div align="center" class="mobile-hide" style="widht:100%; font-size:9px; line-height:9px; color:#999; padding:10px 10px 10px 10px; ">
+	    <div align="center" class="mobile-hide" style="width:100%; font-size:9px; line-height:9px; color:#999; padding:10px 10px 10px 10px; ">
 	        Ilustração artística da planta decorada. Móveis, objetos de decoração, revestimentos e utensílios, são meramente ilustrativos e não integram o memorial descritivo.
 	    </div>
-	    <div align="center" class="desktop-hide" style="widht:100%; font-size:9px; line-height:9px; color:#999; padding:10px 10px 10px 10px; ">
+	    <div align="center" class="desktop-hide" style="width:100%; font-size:9px; line-height:9px; color:#999; padding:10px 10px 10px 10px; ">
 	        Ilustração artística da planta decorada. Móveis, objetos de decoração, revestimentos e utensílios, são meramente ilustrativos e não integram o memorial descritivo.
 	    </div>
 	</div>
@@ -1195,60 +902,60 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				</p>
 	    	</div>
 	    </div>
-	   
+	    
 	    <div class="row mobile-hide wow animated fadeInUp slow">
 	        <section class="regular slider" style="width:90%">
-				<div><img src="LOCALIZACAO/01.jpg" class="img-responsive" style="padding-right:10px"><div style="color:#FFF;">PONTE METÁLICA</div></div>
-				<div><img src="LOCALIZACAO/02.jpg" class="img-responsive" style="padding-right:10px"><div style="color:#FFF;">BARBOSA SUPERMERCADOS</div></div>
-	            <div><img src="LOCALIZACAO/03.jpg" class="img-responsive" style="padding-right:10px"><div style="color:#FFF;">FACULDADE DE OSASCO - UNIESP S.A.</div></div>
-				<div><img src="LOCALIZACAO/04.jpg" class="img-responsive" style="padding-right:10px"><div style="color:#FFF;">EMEF BENEDITO ALVES TURIBIO</div></div>
-	            <div><img src="LOCALIZACAO/05.jpg" class="img-responsive" style="padding-right:10px"><div style="color:#FFF;">SAM´S CLUB</div></div>
-				<div><img src="LOCALIZACAO/06.jpg" class="img-responsive" style="padding-right:10px"><div style="color:#FFF;">CEU JOSÉ SARAMAGO</div></div>
-	            <div><img src="LOCALIZACAO/07.jpg" class="img-responsive" style="padding-right:10px"><div style="color:#FFF;">ATACADÃO</div></div>
-	            <div><img src="LOCALIZACAO/08.jpg" class="img-responsive" style="padding-right:10px"><div style="color:#FFF;">UBS GETULINO JOSÉ DIAS</div></div>
-	            <div><img src="LOCALIZACAO/09.jpg" class="img-responsive" style="padding-right:10px"><div style="color:#FFF;">SUPERSHOPPING OSASCO</div></div>
-	            <div><img src="LOCALIZACAO/10.jpg" class="img-responsive" style="padding-right:10px"><div style="color:#FFF;">LOPES SUPERMERCADOS</div></div>
-				<div><img src="LOCALIZACAO/11.jpg" class="img-responsive" style="padding-right:10px"><div style="color:#FFF;">SUPERMERCADO ROSSI</div></div>
-	            <div><img src="LOCALIZACAO/12.jpg" class="img-responsive" style="padding-right:10px"><div style="color:#FFF;">ESTAÇÃO CPTM • COMANDANTE SAMPAIO</div></div>
-				<div><img src="LOCALIZACAO/13.jpg" class="img-responsive" style="padding-right:10px"><div style="color:#FFF;">SHOPPING UNIÃO</div></div>
-	            <div><img src="LOCALIZACAO/14.jpg" class="img-responsive" style="padding-right:10px"><div style="color:#FFF;">BRADESCO – CIDADE DE DEUS</div></div>
-				<div><img src="LOCALIZACAO/15.jpg" class="img-responsive" style="padding-right:10px"><div style="color:#FFF;">ESCOLA ESTADUAL TARSILA DO AMARAL</div></div>
-	            <div><img src="LOCALIZACAO/16.jpg" class="img-responsive" style="padding-right:10px"><div style="color:#FFF;">CONTINENTAL SHOPPING</div></div>
-	            <div><img src="LOCALIZACAO/17.jpg" class="img-responsive" style="padding-right:10px"><div style="color:#FFF;">CARREFOUR</div></div>
-	            <div><img src="LOCALIZACAO/18.jpg" class="img-responsive" style="padding-right:10px"><div style="color:#FFF;">PRONTO SOCORRO DR. CONRRADO C. NUVOLINI</div></div>
+				<div><img src="img/LOCALIZACAO/01.jpg" class="img-responsive" style="padding-right:10px" alt="Localização"><div style="color:#FFF;">PONTE METÁLICA</div></div>
+				<div><img src="img/LOCALIZACAO/02.jpg" class="img-responsive" style="padding-right:10px" alt="Localização"><div style="color:#FFF;">BARBOSA SUPERMERCADOS</div></div>
+	            <div><img src="img/LOCALIZACAO/03.jpg" class="img-responsive" style="padding-right:10px" alt="Localização"><div style="color:#FFF;">FACULDADE DE OSASCO - UNIESP S.A.</div></div>
+				<div><img src="img/LOCALIZACAO/04.jpg" class="img-responsive" style="padding-right:10px" alt="Localização"><div style="color:#FFF;">EMEF BENEDITO ALVES TURIBIO</div></div>
+	            <div><img src="img/LOCALIZACAO/05.jpg" class="img-responsive" style="padding-right:10px" alt="Localização"><div style="color:#FFF;">SAM´S CLUB</div></div>
+				<div><img src="img/LOCALIZACAO/06.jpg" class="img-responsive" style="padding-right:10px" alt="Localização"><div style="color:#FFF;">CEU JOSÉ SARAMAGO</div></div>
+	            <div><img src="img/LOCALIZACAO/07.jpg" class="img-responsive" style="padding-right:10px" alt="Localização"><div style="color:#FFF;">ATACADÃO</div></div>
+	            <div><img src="img/LOCALIZACAO/08.jpg" class="img-responsive" style="padding-right:10px" alt="Localização"><div style="color:#FFF;">UBS GETULINO JOSÉ DIAS</div></div>
+	            <div><img src="img/LOCALIZACAO/09.jpg" class="img-responsive" style="padding-right:10px" alt="Localização"><div style="color:#FFF;">SUPERSHOPPING OSASCO</div></div>
+	            <div><img src="img/LOCALIZACAO/10.jpg" class="img-responsive" style="padding-right:10px" alt="Localização"><div style="color:#FFF;">LOPES SUPERMERCADOS</div></div>
+				<div><img src="img/LOCALIZACAO/11.jpg" class="img-responsive" style="padding-right:10px" alt="Localização"><div style="color:#FFF;">SUPERMERCADO ROSSI</div></div>
+	            <div><img src="img/LOCALIZACAO/12.jpg" class="img-responsive" style="padding-right:10px" alt="Localização"><div style="color:#FFF;">ESTAÇÃO CPTM • COMANDANTE SAMPAIO</div></div>
+				<div><img src="img/LOCALIZACAO/13.jpg" class="img-responsive" style="padding-right:10px" alt="Localização"><div style="color:#FFF;">SHOPPING UNIÃO</div></div>
+	            <div><img src="img/LOCALIZACAO/14.jpg" class="img-responsive" style="padding-right:10px" alt="Localização"><div style="color:#FFF;">BRADESCO – CIDADE DE DEUS</div></div>
+				<div><img src="img/LOCALIZACAO/15.jpg" class="img-responsive" style="padding-right:10px" alt="Localização"><div style="color:#FFF;">ESCOLA ESTADUAL TARSILA DO AMARAL</div></div>
+	            <div><img src="img/LOCALIZACAO/16.jpg" class="img-responsive" style="padding-right:10px" alt="Localização"><div style="color:#FFF;">CONTINENTAL SHOPPING</div></div>
+	            <div><img src="img/LOCALIZACAO/17.jpg" class="img-responsive" style="padding-right:10px" alt="Localização"><div style="color:#FFF;">CARREFOUR</div></div>
+	            <div><img src="img/LOCALIZACAO/18.jpg" class="img-responsive" style="padding-right:10px" alt="Localização"><div style="color:#FFF;">PRONTO SOCORRO DR. CONRRADO C. NUVOLINI</div></div>
 			</section>
 		</div>
 	    <div class="row desktop-hide wow animated fadeInUp">
 	        <section class="regular2 slider" style="width:100%">
-				<div><img src="LOCALIZACAO/01.jpg" class="img-responsive" style="padding-right:0px"><div style="color:#FFF;">PONTE METÁLICA</div></div>
-				<div><img src="LOCALIZACAO/02.jpg" class="img-responsive" style="padding-right:0px"><div style="color:#FFF;">BARBOSA SUPERMERCADOS</div></div>
-	            <div><img src="LOCALIZACAO/03.jpg" class="img-responsive" style="padding-right:0px"><div style="color:#FFF;">FACULDADE DE OSASCO - UNIESP S.A.</div></div>
-				<div><img src="LOCALIZACAO/04.jpg" class="img-responsive" style="padding-right:0px"><div style="color:#FFF;">EMEF BENEDITO ALVES TURIBIO</div></div>
-	            <div><img src="LOCALIZACAO/05.jpg" class="img-responsive" style="padding-right:0px"><div style="color:#FFF;">SAM´S CLUB</div></div>
-				<div><img src="LOCALIZACAO/06.jpg" class="img-responsive" style="padding-right:0px"><div style="color:#FFF;">CEU JOSÉ SARAMAGO</div></div>
-	            <div><img src="LOCALIZACAO/07.jpg" class="img-responsive" style="padding-right:0px"><div style="color:#FFF;">ATACADÃO</div></div>
-	            <div><img src="LOCALIZACAO/08.jpg" class="img-responsive" style="padding-right:0px"><div style="color:#FFF;">UBS GETULINO JOSÉ DIAS</div></div>
-	            <div><img src="LOCALIZACAO/09.jpg" class="img-responsive" style="padding-right:0px"><div style="color:#FFF;">SUPERSHOPPING OSASCO</div></div>
-	            <div><img src="LOCALIZACAO/10.jpg" class="img-responsive" style="padding-right:0px"><div style="color:#FFF;">LOPES SUPERMERCADOS</div></div>
-				<div><img src="LOCALIZACAO/11.jpg" class="img-responsive" style="padding-right:0px"><div style="color:#FFF;">SUPERMERCADO ROSSI</div></div>
-	            <div><img src="LOCALIZACAO/12.jpg" class="img-responsive" style="padding-right:0px"><div style="color:#FFF;">ESTAÇÃO CPTM • COMANDANTE SAMPAIO</div></div>
-				<div><img src="LOCALIZACAO/13.jpg" class="img-responsive" style="padding-right:0px"><div style="color:#FFF;">SHOPPING UNIÃO</div></div>
-	            <div><img src="LOCALIZACAO/14.jpg" class="img-responsive" style="padding-right:0px"><div style="color:#FFF;">BRADESCO – CIDADE DE DEUS</div></div>
-				<div><img src="LOCALIZACAO/15.jpg" class="img-responsive" style="padding-right:0px"><div style="color:#FFF;">ESCOLA ESTADUAL TARSILA DO AMARAL</div></div>
-	            <div><img src="LOCALIZACAO/16.jpg" class="img-responsive" style="padding-right:0px"><div style="color:#FFF;">CONTINENTAL SHOPPING</div></div>
-	            <div><img src="LOCALIZACAO/17.jpg" class="img-responsive" style="padding-right:0px"><div style="color:#FFF;">CARREFOUR</div></div>
-	            <div><img src="LOCALIZACAO/18.jpg" class="img-responsive" style="padding-right:0px"><div style="color:#FFF;">PRONTO SOCORRO DR. CONRRADO C. NUVOLINI</div></div>
+				<div><img src="img/LOCALIZACAO/01.jpg" class="img-responsive" style="padding-right:0px" alt="Localização"><div style="color:#FFF;">PONTE METÁLICA</div></div>
+				<div><img src="img/LOCALIZACAO/02.jpg" class="img-responsive" style="padding-right:0px" alt="Localização"><div style="color:#FFF;">BARBOSA SUPERMERCADOS</div></div>
+	            <div><img src="img/LOCALIZACAO/03.jpg" class="img-responsive" style="padding-right:0px" alt="Localização"><div style="color:#FFF;">FACULDADE DE OSASCO - UNIESP S.A.</div></div>
+				<div><img src="img/LOCALIZACAO/04.jpg" class="img-responsive" style="padding-right:0px" alt="Localização"><div style="color:#FFF;">EMEF BENEDITO ALVES TURIBIO</div></div>
+	            <div><img src="img/LOCALIZACAO/05.jpg" class="img-responsive" style="padding-right:0px" alt="Localização"><div style="color:#FFF;">SAM´S CLUB</div></div>
+				<div><img src="img/LOCALIZACAO/06.jpg" class="img-responsive" style="padding-right:0px" alt="Localização"><div style="color:#FFF;">CEU JOSÉ SARAMAGO</div></div>
+	            <div><img src="img/LOCALIZACAO/07.jpg" class="img-responsive" style="padding-right:0px" alt="Localização"><div style="color:#FFF;">ATACADÃO</div></div>
+	            <div><img src="img/LOCALIZACAO/08.jpg" class="img-responsive" style="padding-right:0px" alt="Localização"><div style="color:#FFF;">UBS GETULINO JOSÉ DIAS</div></div>
+	            <div><img src="img/LOCALIZACAO/09.jpg" class="img-responsive" style="padding-right:0px" alt="Localização"><div style="color:#FFF;">SUPERSHOPPING OSASCO</div></div>
+	            <div><img src="img/LOCALIZACAO/10.jpg" class="img-responsive" style="padding-right:0px" alt="Localização"><div style="color:#FFF;">LOPES SUPERMERCADOS</div></div>
+				<div><img src="img/LOCALIZACAO/11.jpg" class="img-responsive" style="padding-right:0px" alt="Localização"><div style="color:#FFF;">SUPERMERCADO ROSSI</div></div>
+	            <div><img src="img/LOCALIZACAO/12.jpg" class="img-responsive" style="padding-right:0px" alt="Localização"><div style="color:#FFF;">ESTAÇÃO CPTM • COMANDANTE SAMPAIO</div></div>
+				<div><img src="img/LOCALIZACAO/13.jpg" class="img-responsive" style="padding-right:0px" alt="Localização"><div style="color:#FFF;">SHOPPING UNIÃO</div></div>
+	            <div><img src="img/LOCALIZACAO/14.jpg" class="img-responsive" style="padding-right:0px" alt="Localização"><div style="color:#FFF;">BRADESCO – CIDADE DE DEUS</div></div>
+				<div><img src="img/LOCALIZACAO/15.jpg" class="img-responsive" style="padding-right:0px" alt="Localização"><div style="color:#FFF;">ESCOLA ESTADUAL TARSILA DO AMARAL</div></div>
+	            <div><img src="img/LOCALIZACAO/16.jpg" class="img-responsive" style="padding-right:0px" alt="Localização"><div style="color:#FFF;">CONTINENTAL SHOPPING</div></div>
+	            <div><img src="img/LOCALIZACAO/17.jpg" class="img-responsive" style="padding-right:0px" alt="Localização"><div style="color:#FFF;">CARREFOUR</div></div>
+	            <div><img src="img/LOCALIZACAO/18.jpg" class="img-responsive" style="padding-right:0px" alt="Localização"><div style="color:#FFF;">PRONTO SOCORRO DR. CONRRADO C. NUVOLINI</div></div>
 			</section>
 		</div>
-	   
+	    
 	    <div align="center" class="mobile-hide" style="width:100%; ">
-	    	<img src="polvopraia.jpg" class="img-responsive" style="">
+	    	<img src="img/polvopraia.jpg" class="img-responsive"  alt="Polvo Praia">
 	    </div>
 	    <div align="center" class="desktop-hide" style="width:100%; ">
-	    	<img src="polvopraia-mobile.jpg" class="img-responsive" style="">
+	    	<img src="img/polvopraia-mobile.jpg" class="img-responsive"  alt="Polvo Praia Mobile">
 	    </div>
 	</div>
-   
+    
     <!--desktop-->
     <div align="center" class="row mobile-hide" style="width:100%; display:flex; background-color:#DE6810; margin:0;">
         <div class="content-1440" style="display:flex; width:100%;">
@@ -1266,7 +973,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				</p>
             </div>
 			<div align="right" class="mobile-hide" style="width:15%;  ">
-				<img src="mcmv-plantas.png" class="img-responsive" style="padding-right:0px">
+				<img src="img/mcmv-plantas.png" class="img-responsive" style="padding-right:0px" alt="Minha Casa Minha Vida">
             </div>
         </div>
     </div>
@@ -1288,18 +995,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				</p>
             </div>
             <div align="center" class="wow animated fadeInUp Slow desktop-hide" style="width:100%;  ">
-				<img src="mcmv.png" class="img-responsive" width="250" style="padding-bottom:10px">
+				<img src="img/mcmv.png" class="img-responsive" width="250" style="padding-bottom:10px" alt="Minha Casa Minha Vida">
             </div>
         </div>
     </div>
 
 	<div align="center" class="mobile-hide" style="width:100%; ">
-    	<img src="ondalaranja.jpg" class="img-responsive" style="">
+    	<img src="img/ondalaranja.jpg" class="img-responsive"  alt="Onda Laranja">
     </div>
     <div align="center" class="desktop-hide" style="width:100%; ">
-    	<img src="ondalaranja-mobile.jpg" class="img-responsive" style="">
+    	<img src="img/ondalaranja-mobile.jpg" class="img-responsive"  alt="Onda Laranja Mobile">
     </div>   
-   
 </div>
 
 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3547.512782712201!2d-46.79176892470415!3d-23.567247061808462!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce557edec747bf%3A0xb3ce498eed915209!2sAv.%20Novo%20Osasco%2C%201010%20-%20Bussocaba%2C%20Osasco%20-%20SP%2C%2006056-000!5e1!3m2!1spt-BR!2sbr!4v1769616169975!5m2!1spt-BR!2sbr" width="100%" height="400" style="border:0; margin-top:-15px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -1310,14 +1016,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		<div align="right" class="wow animated fadeInUp" style="width:50%; padding-right:5px;">
 	    	<a href="https://www.waze.com/pt-BR/live-map/directions/br/sp/av.-novo-osasco,-1010?to=place.ChIJv0fH3n5VzpQRCVKR7Y5JzrM" target="_blank" title="Waze">
 	        	<div align="center" style="width:250px; background-color:#0099FF; border:#fff solid 2px; height:50px; padding-top:10px; border-radius:30px; ">
-	        		<span style="color:#fff; font-family:Arial, Helvetica, sans-serif; "><img src="ico-waze.gif" width="30"> <b>Veja pelo Waze</b></span>
+	        		<span style="color:#fff; font-family:Arial, Helvetica, sans-serif; "><img src="img/ico-waze.gif" width="30" alt="Waze"> <b>Veja pelo Waze</b></span>
 	        	</div>
 	        </a>
 	    </div>
 	    <div align="left" class="wow animated fadeInUp" style="width:50%; padding-left:5px;">
 	    	<a href="https://www.google.com/maps?ll=-23.567252,-46.789194&z=16&t=h&hl=pt-BR&gl=BR&mapclient=embed&q=Av.+Novo+Osasco,+1010+-+Bussocaba+Osasco+-+SP+06056-000" target="_blank" title="Mapa Ampliado">
 	    		<div align="center" style="width:250px; background-color:#fff; border:#0099FF solid 2px; height:50px; padding-top:10px; border-radius:30px; ">
-	        		<span style="color:#000; font-family:Arial, Helvetica, sans-serif; "><img src="ico-mapa.gif" width="30"> <b>Ver mapa ampliado</b></span>
+	        		<span style="color:#000; font-family:Arial, Helvetica, sans-serif; "><img src="img/ico-mapa.gif" width="30" alt="Mapa"> <b>Ver mapa ampliado</b></span>
 	        	</div>
 	        </a>
 	    </div>
@@ -1330,14 +1036,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		<div align="center" class="wow animated fadeInUp" style="width:100%; ">
 	    	<a href="https://www.waze.com/pt-BR/live-map/directions/br/sp/av.-novo-osasco,-1010?to=place.ChIJv0fH3n5VzpQRCVKR7Y5JzrM" target="_blank" title="Waze">
 	        	<div align="center" style="width:250px; background-color:#0099FF; border:#fff solid 2px; height:50px; padding-top:10px; border-radius:30px; ">
-	        		<span style="color:#fff; font-family:Arial, Helvetica, sans-serif; "><img src="ico-waze.gif" width="30"> <b>Veja pelo Waze</b></span>
+	        		<span style="color:#fff; font-family:Arial, Helvetica, sans-serif; "><img src="img/ico-waze.gif" width="30" alt="Waze"> <b>Veja pelo Waze</b></span>
 	        	</div>
 	        </a>
 	    </div>
 	    <div align="center" class="wow animated fadeInUp" style="width:100%; ">
 	    	<a href="https://www.google.com/maps?ll=-23.567252,-46.789194&z=16&t=h&hl=pt-BR&gl=BR&mapclient=embed&q=Av.+Novo+Osasco,+1010+-+Bussocaba+Osasco+-+SP+06056-000" target="_blank" title="Mapa Ampliado">
 	    		<div align="center" style="width:250px; background-color:#fff; border:#0099FF solid 2px; height:50px; padding-top:10px; border-radius:30px; ">
-	        		<span style="color:#000; font-family:Arial, Helvetica, sans-serif; "><img src="ico-mapa.gif" width="30"> <b>Ver mapa ampliado</b></span>
+	        		<span style="color:#000; font-family:Arial, Helvetica, sans-serif; "><img src="img/ico-mapa.gif" width="30" alt="Mapa"> <b>Ver mapa ampliado</b></span>
 	        	</div>
 	        </a>
 	    </div>
@@ -1345,60 +1051,95 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <!-- REALIZAÇÃO -->
-<div id="Realizacao"></div>   
+<div id="Realizacao"></div>    
 
-<div align="center" style="width:100%; background-color:#FFFFFF; ">
-	<div class="content-1440">
-		<p class="wow animated bounce slow polinkko" style="font-family:Montserrat Regular; font-weight:bold; font-size:calc(3.5em + 1vw); padding-top:20px; ">
-				<a onclick="openForm()" style="cursor:pointer;" target="_blank" alt="Whatsapp" title="Whatsapp">
-					<i class="fa fa-whatsapp" aria-hidden="true" style="color:#4BCA59"></i> <b>98856.8852</b>
-				</a>
-		</p>
-	    <div style="width:100%;">
-	    	<img src="linha.png" border="0" style="width:100%; ">
-	    </div>
-		<br><br>
-	   
-	<!--desktop-->   
+<!--mobile-->    
+		<div align="center" class="desktop-hide" style="width:100%; display:inline-block; ">
+	        
+			<div class="wow animated fadeInUp polinkkkkk" style="padding:5px 10px; width:50%; margin: 0 auto;">
+				<a href="https://www.direcoesconsultoria.com.br/" target="_blank" title="Conheça..." >
+					<p style="font-size:10px; font-family:arial; ">INTERMEDIAÇÃO FUTURA:</p>
+	            	<img src="img/L1mobile.png" border="0" style="max-width:140px; width:100%;" class="img-responsive" alt="Direções">
+	            </a>
+			</div>
+	        
+	<br>
+	<div style="border-bottom:#999999 solid thin; width:80%;"></div>
+	<br>
+			
+	        <div class="wow animated fadeInUp polinkkkkk" style="padding:5px 10px; width:50%; margin: 0 auto;">
+				<a href="https://www.caixa.gov.br/voce/habitacao/minha-casa-minha-vida/faixa-I/consulta-MCMV/Paginas/default.aspx" target="_blank" title="Conheça..." >
+		            <p style="font-size:10px; font-family:arial; ">FINANCIAMENTO FUTURO:</p>
+		            <img src="img/L2mobile.png" border="0" style="max-width:140px; width:100%;" class="img-responsive" alt="Caixa">
+	            </a>
+			</div>
+
+	<br>
+	<div style="border-bottom:#999999 solid thin; width:80%;"></div>
+	<br>
+	  
+	        <div class="wow animated fadeInUp polinkkkkk" style="padding:5px 10px; width:45%; margin: 0 auto;">
+				<a href="https://www.quattroconstrutora.com.br/" target="_blank" title="Conheça..." >
+	    	        <p style="font-size:10px; font-family:arial; ">CONSTRUÇÃO FUTURA:</p>
+	        	    <img src="img/L3.png" border="0" style="max-width:110px; width:100%;" class="img-responsive" alt="Quattro Construtora">
+	            </a>
+			</div>
+
+	<br>
+	<div style="border-bottom:#999999 solid thin; width:80%;"></div>
+	<br>
+	  
+	        <div class="wow animated fadeInUp polinkkkkk" style="padding:5px 10px; width:50%; margin: 0 auto;">
+				<a href="https://www.direcoesconsultoria.com.br/" target="_blank" title="Conheça..." >
+	    	        <p style="font-size:10px; font-family:arial; ">INCORPORAÇÃO FUTURA:</p>
+	        	    <img src="img/L4mobile.png" border="0" style="max-width:140px; width:100%;" class="img-responsive" alt="Direções">
+	            </a>
+			</div>
+	<br>
+	<div style="border-bottom:#999999 solid thin; width:80%;"></div>
+	<br>
+		</div>
+	    
+	<!--desktop-->    
 		<div align="center" class="mobile-hide" style="width:80%; display:inline-block; ">
 			<div class="wow animated fadeInUp fast polinkkkkk" style="float:left; padding:5px 40px; width:25%; ">
 				<a href="https://www.direcoesconsultoria.com.br/" target="_blank" title="Conheça..." >
 					<p style="font-size:10px; font-family:arial; text-transform:uppercase ">INTERMEDIAÇÃO:</p>
-		            <img src="L1.png" border="0" style="width:75%;" class="img-responsive" >
+	            	<img src="img/L1.png" border="0" style="width:75%;" class="img-responsive" alt="Direções">
 	            </a>
 			</div>
 			
 	        <div class="wow animated fadeInUp polinkkkkk" style="float:left; padding:5px 40px; width:25%; ">
 				<a href="https://www.caixa.gov.br/voce/habitacao/minha-casa-minha-vida/faixa-I/consulta-MCMV/Paginas/default.aspx" target="_blank" title="Conheça..." >
 		            <p style="font-size:10px; font-family:arial; text-transform:uppercase ">FINANCIAMENTO:</p>
-	            	<img src="L2.png" border="0" style="width:75%;" class="img-responsive" >
+	            	<img src="img/L2.png" border="0" style="width:75%;" class="img-responsive" alt="Caixa">
 	            </a>
 			</div>
 	        
 	        <div class="wow animated fadeInUp slow polinkkkkk" style="float:left; padding:5px 40px; width:25%; ">
 				<a href="https://www.quattroconstrutora.com.br/" target="_blank" title="Conheça..." >
 	            	<p style="font-size:10px; font-family:arial; text-transform:uppercase ">CONSTRUÇÃO:</p>
-	            	<img src="L3.png" border="0" style="width:75%;" class="img-responsive" >
+	            	<img src="img/L3.png" border="0" style="width:75%;" class="img-responsive" alt="Quattro Construtora">
 	            </a>
 			</div>
 	        
 	        <div class="wow animated fadeInUp slower polinkkkkk" style="float:left; padding:5px 40px; width:25%; ">
 				<a href="https://www.quattroinc.com.br/" target="_blank" title="Conheça..." >
 	            	<p style="font-size:10px; font-family:arial; text-transform:uppercase ">INCORPORAÇÃO:</p>
-	            	<img src="L4.png" border="0" style="width:75%;" class="img-responsive" >
+	            	<img src="img/L4.png" border="0" style="width:75%;" class="img-responsive" alt="Quattro Inc">
 	            </a>
 			</div>
 	        
 		</div>
 	      
 
-	<!--mobile-->   
+	<!--mobile-->    
 		<div align="center" class="desktop-hide" style="width:80%; display:inline-block; ">
 	        
 			<div class="wow animated fadeInUp polinkkkkk" style="padding:5px 10px; width:80%; ">
 				<a href="https://www.direcoesconsultoria.com.br/" target="_blank" title="Conheça..." >
 					<p style="font-size:10px; font-family:arial; ">INTERMEDIAÇÃO FUTURA:</p>
-		            <img src="L1mobile.png" border="0" style="width:100%;" class="img-responsive" >
+	            	<img src="img/L1mobile.png" border="0" style="width:100%;" class="img-responsive" alt="Direções">
 	            </a>
 			</div>
 	        
@@ -1409,7 +1150,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	        <div class="wow animated fadeInUp polinkkkkk" style="padding:5px 10px; width:80%; ">
 				<a href="https://www.caixa.gov.br/voce/habitacao/minha-casa-minha-vida/faixa-I/consulta-MCMV/Paginas/default.aspx" target="_blank" title="Conheça..." >
 		            <p style="font-size:10px; font-family:arial; ">FINANCIAMENTO FUTURO:</p>
-		            <img src="L2mobile.png" border="0" style="width:100%;" class="img-responsive" >
+		            <img src="img/L2mobile.png" border="0" style="width:100%;" class="img-responsive" alt="Caixa">
 	            </a>
 			</div>
 
@@ -1420,7 +1161,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	        <div class="wow animated fadeInUp polinkkkkk" style="padding:5px 10px; width:80%; ">
 				<a href="https://www.quattroconstrutora.com.br/" target="_blank" title="Conheça..." >
 	    	        <p style="font-size:10px; font-family:arial; ">CONSTRUÇÃO FUTURA:</p>
-	        	    <img src="L3.png" border="0" style="width:100%;" class="img-responsive" >
+	        	    <img src="img/L3.png" border="0" style="width:100%;" class="img-responsive" alt="Quattro Construtora">
 	            </a>
 			</div>
 
@@ -1431,7 +1172,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	        <div class="wow animated fadeInUp polinkkkkk" style="padding:5px 10px; width:80%; ">
 				<a href="https://www.direcoesconsultoria.com.br/" target="_blank" title="Conheça..." >
 	    	        <p style="font-size:10px; font-family:arial; ">INCORPORAÇÃO FUTURA:</p>
-	        	    <img src="L4mobile.png" border="0" style="width:100%;" class="img-responsive" >
+	        	    <img src="img/L4mobile.png" border="0" style="width:100%;" class="img-responsive" alt="Direções">
 	            </a>
 			</div>
 	<br>
@@ -1469,8 +1210,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	                © <script type="text/javascript">data = new Date();ano = data.getFullYear();document.write (ano);</script> | Ocean Park <span class="mobile-hide">|</span> <span class="desktop-hide"><br></span>
 	                <a href="cool/politicadeprivacidade.html" target="_blank" style="color:#FFFFFF">Política de Privacidade</a>
 	            </div>
-	          	<a class="assin" href="http://www.caiocom.com.br/" target="_blank" alt="CaioCom" title="CaioCom">
-	               	<img src="LOGOCAIO.jpg" width="130" height="33">
+	          	<a class="assin" href="http://www.caiocom.com.br/" target="_blank" title="CaioCom">
+	                	<img src="img/LOGOCAIO.jpg" width="130" height="33" alt="CaioCom">
 	            </a>
 			</div>
 		</div> <span class="desktop-hide"><br><br></span>
@@ -1481,17 +1222,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- RODAPÉ FIXO MOBILE -->
 <div class="rodapebarra desktop-hide" style="width: 100%;">
 	<div class="content-1440">
-		<div id="my-div" style="width:50%; float:left; font-size:15px; line-height:15px; " title="Home">
-	    	<a href="#Home" class="fill-One-div scroll" style="padding-top:5px">
-	        <i class="fa fa-home" aria-hidden="true"></i> HOME</a>
+		<div id="my-div" style="width:33.33%; float:left;" title="Home">
+	    	<a href="#Home" class="fill-One-div scroll">
+	        <i class="fa fa-home" aria-hidden="true"></i>&nbsp;HOME</a>
 		</div>
-	    <div id="my-div" style="width:50%; float:left; font-size:15px; line-height:15px; " title="E-mail">
-	    	<a href="#Contato" class="fill-Two-div scroll" style="padding-top:5px">
-	        <i class="fa fa-envelope" aria-hidden="true"></i> E-MAIL</a>
+	    <div id="my-div" style="width:33.33%; float:left;" title="E-mail">
+	    	<a href="#Contato" class="fill-Two-div scroll">
+	        <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;E-MAIL</a>
 		</div>
-	    <div id="my-div" style="width:100%; float:left; font-size:15px; line-height:15px; " title="Whatsapp">
-	    	<a class="fill-Three-div open-button" onclick="openForm()" target="_blank" style="padding-top:5px; cursor:pointer;">
-	        <i class="fa fa-whatsapp" aria-hidden="true"></i> ATENDIMENTO WHATSAPP</a>
+	    <div id="my-div" style="width:33.33%; float:left;" title="Whatsapp">
+	    	<a class="fill-Three-div" onclick="openForm()" target="_blank" style="cursor:pointer;">
+	        <i class="fa fa-whatsapp" aria-hidden="true"></i>&nbsp;WHATSAPP</a>
 		</div>
 	</div>
 </div>
@@ -1509,10 +1250,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- SCRIPTS -->
 <script src="js/fastclick.js"></script>
 <script src="js/scroll.js"></script>
-<script src="js/fixed-responsive-nav.js"></script>
+
+<!-- MENU HAMBURGER E NAVEGAÇÃO MOBILE SCRIPT -->
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#btnNavToggle').on('click', function(e) {
+        e.preventDefault();
+        $('#mainNavCollapse').toggleClass('opened');
+    });
+
+    $('#mainNavCollapse a').on('click', function() {
+        $('#mainNavCollapse').removeClass('opened');
+    });
+});
+</script>
 
 <!--SLICK-->
-<script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>  
 <script src="./slick/slick.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
     $(document).on('ready', function() {
