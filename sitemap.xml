@@ -1,0 +1,18 @@
+<!-- EXEMPLO -->
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+<url>
+  <loc>http://www.oceanosasco.com.br</loc>
+  <lastmod>2026-01-01</lastmod>
+  <changefreq>daily</changefreq> <!-- never/yearly/monthly/weekly/daily/hourly/always -->
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>http://www.oceanosasco.com.br/index.html</loc>
+  <lastmod>2026-01-01</lastmod>
+  <changefreq>daily</changefreq> <!-- never/yearly/monthly/weekly/daily/hourly/always -->
+  <priority>1.00</priority>
+</url>
+
+</urlset>
