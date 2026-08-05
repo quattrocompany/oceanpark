@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Reset e Suporte a Scroll Suave */
+html,
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  background-color: #ffffff;
+  color: #333333;
+}
+
+/* Transição das Opções de Menu: Medium (500) -> Bold (800) no Hover */
+.nav-menu-item {
+  font-weight: 500;
+  color: #4b5563;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.2s ease-in-out;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.nav-menu-item:hover,
+.nav-menu-item.active {
+  font-weight: 800;
+  color: #FFBA00;
+  text-shadow: 0 0 0.5px #FFBA00;
+}
+
+/* Sombreamento da Barra Cápsula Flutuante */
+.pill-header-shadow {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.15);
+}
