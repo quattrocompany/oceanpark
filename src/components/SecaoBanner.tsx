@@ -4,90 +4,66 @@ import Image from "next/image";
 
 export default function SecaoBanner() {
   return (
-    <section id="Home" className="w-full pt-28 pb-0 relative overflow-hidden">
+    /* Adicionadas as classes sm:h-screen, sm:flex, sm:items-center e sm:justify-center */
+    <section id="Home" className="w-full relative overflow-hidden bg-[#80C3EC] sm:flex sm:items-center sm:justify-center">
       
-      {/* Título Principal */}
-      <div className="w-full px-6 text-center pt-4 pb-4 relative z-10">
-        <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[#DD6810] font-josefinSans tracking-widest uppercase">
-          LANÇAMENTO • PADROEIRA / OSASCO
-        </h1>
+      {/* 1. DESKTOP: FUNDO FULL WIDTH COM BLUR (Ocupa os 100vh) */}
+      <div className="hidden sm:block absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
+        <Image
+          src="/img/Hero/hero_novo2.jpg"
+          alt="Fundo Desfocado"
+          fill
+          quality={20}
+          className="object-cover object-center blur-2xl scale-100 opacity-80"
+        />
       </div>
 
-      {/* Área do Banner */}
-      <div className="relative w-full flex items-center justify-center overflow-hidden">
+      {/* 2. MOBILE: ESTRUTURA DEDICADA SEM SOBREPOSIÇÃO */}
+      <div className="block sm:hidden w-full relative pt-28 pb-4">
+        {/* Frase posicionada com folga abaixo do Header */}
+        <div className="w-full px-4 text-center my-4 z-20 relative">
+          <h1 className="text-base font-bold text-[#DD6810] font-josefinSans tracking-wider uppercase drop-shadow-sm">
+            OPORTUNIDADE EM PADROEIRA / OSASCO
+          </h1>
+        </div>
+
+        {/* Imagem Hero Mobile posicionada abaixo da frase */}
+        <div className="w-full relative mt-3">
+          <Image
+            src="/img/Hero/01mobile.jpg"
+            alt="Banner Ocean Park Osasco Mobile"
+            width={800}
+            height={1000}
+            sizes="100vw"
+            quality={100}
+            className="w-full h-auto block object-cover"
+            priority
+          />
+        </div>
+      </div>
+
+      {/* 3. DESKTOP: BANNER CENTRALIZADO (Máx 1440px) */}
+      <div className="hidden sm:block relative z-10 w-full max-w-[1440px] mx-auto overflow-hidden">
         
-        {/* Fundo Full Width com Blur para telas maiores que 1440px */}
-        <div className="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
-          <div className="hidden sm:block absolute inset-0 w-full h-full">
-            <Image
-              src="/img/Hero/01.jpg"
-              alt="Fundo Desfocado"
-              fill
-              quality={20}
-              className="object-cover object-center blur-2xl scale-110 opacity-50"
-            />
-          </div>
-          <div className="block sm:hidden absolute inset-0 w-full h-full">
-            <Image
-              src="/img/Hero/01mobile.jpg"
-              alt="Fundo Desfocado Mobile"
-              fill
-              quality={20}
-              className="object-cover object-center blur-2xl scale-110 opacity-50"
-            />
-          </div>
+        {/* Título travado proporcionalmente na barra marrom da imagem */}
+        <div className="absolute top-[21%] left-0 w-full px-6 text-center z-30 pointer-events-none -translate-y-1/2">
+          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[#ff7b00] font-josefinSans tracking-widest uppercase drop-shadow-md">
+            OPORTUNIDADE EM PADROEIRA / OSASCO
+          </h1>
         </div>
 
-        {/* Container Principal Limitado a 1440px com Altura Expandida */}
-        <div className="relative z-10 w-full max-w-[1440px] mx-auto h-[450px] sm:h-[600px] md:h-[720px] lg:h-[820px] xl:h-[880px]">
-          
-          {/* Placa Lançamento Sobreposta */}
-          <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20 w-48 sm:w-64 md:w-72 h-20 sm:h-28">
-            <Image 
-              src="/img/Hero/placa1.png" 
-              alt="Placa Lançamento" 
-              fill 
-              className="object-contain drop-shadow-xl" 
-            />
-          </div>
-
-          {/* Imagem Desktop Expandida até 1440px */}
-          <div className="hidden sm:block w-full h-full relative">
-            <Image
-              src="/img/Hero/hero_novo.jpg"
-              alt="Banner Ocean Park Osasco"
-              fill
-              quality={100}
-              className="object-contain object-center rounded-none"
-              priority
-            />
-          </div>
-
-          {/* Imagem Mobile */}
-          <div className="block sm:hidden w-full h-full relative">
-            <Image
-              src="/img/Hero/01mobile.jpg"
-              alt="Banner Ocean Park Osasco Mobile"
-              fill
-              quality={100}
-              className="object-cover object-center rounded-none"
-              priority
-            />
-          </div>
-
-          {/* Badge Minha Casa Minha Vida Sobreposta */}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 w-44 sm:w-56 h-16 sm:h-20">
-            <Image 
-              src="/img/Hero/mcmv.png" 
-              alt="Programa Minha Casa Minha Vida" 
-              fill 
-              className="object-contain drop-shadow-lg" 
-            />
-          </div>
-
-        </div>
-
+        {/* Imagem Banner Desktop (Max 1440px) */}
+        <Image
+          src="/img/Hero/hero_novo2.png"
+          alt="Banner Ocean Park Osasco"
+          width={1920}
+          height={850}
+          quality={100}
+          className="w-full h-auto block object-contain relative z-10"
+          priority
+        />
       </div>
+
     </section>
   );
 }

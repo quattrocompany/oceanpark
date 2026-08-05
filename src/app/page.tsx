@@ -101,39 +101,39 @@ export default function Home() {
   return (
     <main className={`min-h-screen text-[#333333] bg-[url('/img/25800315_7135105.jpg')] bg-cover bg-center bg-fixed overflow-x-hidden ${montserrat.className}`}>
       
-      {/* HEADER FLUTUANTE */}
+      {/* HEADER TRANSPARENTE NO TOPO / AZUL NO SCROLL */}
       <header 
-        className={`fixed left-0 right-0 w-full z-50 transition-all duration-500 ease-in-out pointer-events-none ${
-          isScrolled ? "top-4 md:top-6" : "top-6 md:top-8"
+        className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-500 ease-in-out ${
+          isScrolled || isMobileMenuOpen 
+            ? "bg-[#0C82A0]/90 backdrop-blur-md border-b border-white/20 py-3 shadow-lg" 
+            : "bg-transparent py-4 md:py-6"
         }`}
       >
-        <div className="max-w-[1440px] mx-auto px-6 md:px-12 flex items-center relative pointer-events-auto">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-12 flex items-center justify-between">
           
+          {/* LOGO MAIOR ANTES DO SCROLL (/img/Hero/logo.png) */}
           <div 
             onClick={(e) => scrollToSection(e as any, 'home')}
-            className={`absolute left-2 sm:left-6 md:left-12 top-1/2 -translate-y-1/2 z-20 cursor-pointer transition-all duration-500 hover:scale-105 ${
-              isScrolled ? "scale-90" : "scale-100"
-            }`}
+            className="cursor-pointer transition-all duration-300 hover:scale-105 flex-shrink-0"
             aria-label="Voltar ao início"
           >
             <Image 
-              src="/img/logo2.png" 
+              src={isScrolled ? "/img/header/logo_white.png" : "/img/Hero/logo.png"} 
               alt="Logo Ocean Park" 
-              width={160} 
-              height={160} 
-              className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 object-contain drop-shadow-xl"
+              width={320} 
+              height={120} 
+              className={`w-auto object-contain drop-shadow-lg transition-all duration-300 ${
+                isScrolled
+                  ? "h-10 sm:h-12 md:h-14 lg:h-16"
+                  : "h-16 sm:h-20 md:h-24 lg:h-28"
+              }`}
               priority
             />
           </div>
 
-          <div 
-            className={`w-full rounded-full flex items-center justify-between pl-28 sm:pl-32 md:pl-40 pr-6 md:pr-10 border transition-all duration-500 ${
-              isScrolled
-                ? "h-11 md:h-14 bg-gradient-to-r from-white/90 via-white/95 to-white/90 backdrop-blur-md border-white/60 shadow-2xl pointer-events-auto"
-                : "h-12 md:h-16 bg-white border-gray-100 pointer-events-auto shadow-md"
-            }`}
-          >
-            <nav className="hidden md:flex items-center justify-end w-full gap-2 lg:gap-4 xl:gap-6 text-xs lg:text-sm pointer-events-auto">
+          {/* MENU DENTRO DA PÍLULA BRANCA */}
+          <div className="bg-white rounded-full px-5 md:px-8 py-2 md:py-2.5 shadow-md border border-gray-100/80 flex items-center">
+            <nav className="hidden md:flex items-center gap-3 lg:gap-5 xl:gap-6 text-xs lg:text-sm font-bold">
               <a href="#Home" onClick={(e) => scrollToSection(e, 'home')} className={`transition-all cursor-pointer ${activeSection === 'home' ? 'font-black text-[#DD6810]' : 'font-medium text-gray-600 hover:text-[#DD6810]'}`}>HOME</a>
               <span className="text-gray-300 select-none">|</span>
               
@@ -156,7 +156,7 @@ export default function Home() {
             </nav>
 
             <button 
-              className="md:hidden ml-auto p-1 text-[#0C82A0] focus:outline-none pointer-events-auto"
+              className="md:hidden p-1 text-[#0C82A0] focus:outline-none"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Abrir Menu de Navegação"
             >
@@ -169,19 +169,23 @@ export default function Home() {
               </svg>
             </button>
           </div>
+
         </div>
 
+        {/* DROPDOWN MOBILE */}
         {isMobileMenuOpen && (
-          <div className="md:hidden max-w-[1440px] mx-auto mt-2 px-6 bg-white/95 backdrop-blur-lg rounded-2xl shadow-2xl p-5 border border-gray-100 pointer-events-auto">
-            <nav className="flex flex-col gap-2.5 text-center text-xs font-medium text-gray-800 uppercase tracking-wider">
-              <a href="#Home" onClick={(e) => scrollToSection(e, 'home')} className="py-2 hover:font-bold hover:text-[#DD6810] border-b border-gray-100">HOME</a>
-              <a href="#Produto" onClick={(e) => scrollToSection(e, 'produto')} className="py-2 hover:font-bold hover:text-[#DD6810] border-b border-gray-100">PRODUTO</a>
-              <a href="#Lazer" onClick={(e) => scrollToSection(e, 'lazer')} className="py-2 hover:font-bold hover:text-[#DD6810] border-b border-gray-100">LAZER</a>
-              <a href="#Planta" onClick={(e) => scrollToSection(e, 'plantas')} className="py-2 hover:font-bold hover:text-[#DD6810] border-b border-gray-100">PLANTAS</a>
-              <a href="#Localizacao" onClick={(e) => scrollToSection(e, 'localizacao')} className="py-2 hover:font-bold hover:text-[#DD6810] border-b border-gray-100">LOCALIZAÇÃO</a>
-              <a href="#Realizacao" onClick={(e) => scrollToSection(e, 'realizacao')} className="py-2 hover:font-bold hover:text-[#DD6810] border-b border-gray-100">REALIZAÇÃO</a>
-              <a href="#Contato" onClick={(e) => scrollToSection(e, 'contato')} className="py-2 hover:font-bold hover:text-[#DD6810]">CONTATO</a>
-            </nav>
+          <div className="md:hidden max-w-[1440px] mx-auto mt-3 px-6">
+            <div className="bg-[#0C82A0]/90 backdrop-blur-xl rounded-2xl shadow-2xl p-5 border border-white/30">
+              <nav className="flex flex-col gap-3 text-center text-xs font-bold text-white uppercase tracking-wider">
+                <a href="#Home" onClick={(e) => scrollToSection(e, 'home')} className="py-2 hover:text-[#DD6810] border-b border-white/20">HOME</a>
+                <a href="#Produto" onClick={(e) => scrollToSection(e, 'produto')} className="py-2 hover:text-[#DD6810] border-b border-white/20">PRODUTO</a>
+                <a href="#Lazer" onClick={(e) => scrollToSection(e, 'lazer')} className="py-2 hover:text-[#DD6810] border-b border-white/20">LAZER</a>
+                <a href="#Planta" onClick={(e) => scrollToSection(e, 'plantas')} className="py-2 hover:text-[#DD6810] border-b border-white/20">PLANTAS</a>
+                <a href="#Localizacao" onClick={(e) => scrollToSection(e, 'localizacao')} className="py-2 hover:text-[#DD6810] border-b border-white/20">LOCALIZAÇÃO</a>
+                <a href="#Realizacao" onClick={(e) => scrollToSection(e, 'realizacao')} className="py-2 hover:text-[#DD6810] border-b border-white/20">REALIZAÇÃO</a>
+                <a href="#Contato" onClick={(e) => scrollToSection(e, 'contato')} className="py-2 hover:text-[#DD6810]">CONTATO</a>
+              </nav>
+            </div>
           </div>
         )}
       </header>
@@ -251,7 +255,7 @@ export default function Home() {
               <>
                 <h2 className="text-2xl font-black text-[#0C82A0] uppercase mb-6">POLÍTICA DE DADOS LGPD</h2>
                 <p className="text-gray-600 leading-relaxed text-justify mb-4 font-medium text-sm">
-                  Nos comprometemos a nunca compartilhar seus dados com terceiros. Os dados aqui captados (Nome, E-mail e Telefone) serão utilizados única e exclusivamente pela incorporadora responsável por esse empreendimento para que seja possível o contato com el cliente e apresentação dos produtos vinculados à marca da Incorporadora ou pertencentes ao mesmo grupo econômico da Vendedora.
+                  Nos comprometemos a nunca compartilhar seus dados com terceiros. Os dados aqui captados (Nome, E-mail e Telefone) serão utilizados única e exclusivamente pela incorporadora responsável por esse empreendimento para que seja possível o contato com o cliente e apresentação dos produtos vinculados à marca da Incorporadora ou pertencentes ao mesmo grupo econômico da Vendedora.
                 </p>
               </>
             )}
