@@ -113,7 +113,7 @@ export default function SecaoImplantacao() {
               alt="Ocean Park Logo" 
               width={220} 
               height={80} 
-              className="w-auto h-12 md:h-16 object-contain mx-auto" 
+              className="w-auto h-24 md:h-32 object-contain mx-auto" 
             />
           </div>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#0C82A0] font-[family-name:var(--font-josefin-slab)] uppercase leading-tight">

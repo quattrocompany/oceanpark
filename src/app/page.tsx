@@ -11,7 +11,8 @@ import SecaoConfortoAbsoluto from "@/components/SecaoConfortoAbsoluto";
 import SecaoCarrossel from "@/components/SecaoCarrossel";
 import SecaoImplantacao from "@/components/SecaoImplantacao";
 import SecaoPlantas from "@/components/SecaoPlantas";
-import SecaoMobilidadeUrbana from "@/components/SecaoMobilidadeUrbana";
+import SecaoMobilidadePraticidade from "@/components/SecaoMobilidadePraticidade";
+import SecaoLocalizacao from "@/components/SecaoLocalizacao";
 import Footer from "@/components/Footer";
 import CookieBanner from "@/components/CookieBanner";
 
@@ -210,13 +211,18 @@ export default function Home() {
         <SecaoImplantacao />
       </div>
 
+      <div id="nav-localizacao">
+        <SecaoMobilidadePraticidade />
+      </div>
+      
       <div id="nav-plantas">
         <SecaoPlantas />
       </div>
 
-      <div id="nav-localizacao">
-        <SecaoMobilidadeUrbana />
+            <div id="nav-localizacao">
+        <SecaoLocalizacao />
       </div>
+
 
       <div id="nav-realizacao">
         <Footer onOpenWhatsapp={() => openModal("whatsapp")} />

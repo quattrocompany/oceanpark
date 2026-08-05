@@ -85,7 +85,7 @@ export default function SecaoConfortoAbsoluto() {
                 alt="Logo Ocean Park"
                 width={180}
                 height={70}
-                className="w-auto h-12 md:h-16 object-contain"
+                className="w-auto h-24 md:h-32 object-contain"
               />
             </div>
 

@@ -45,6 +45,21 @@ export default function SecaoContato() {
 
       if (response.ok) {
         setStatus("success");
+        
+        // ---------------------------------------------------------
+        // NOVO: Disparo de GTM para o formulário de Contato Direto
+        // ---------------------------------------------------------
+        if (typeof window !== "undefined" && (window as any).dataLayer) {
+          (window as any).dataLayer.push({ 
+            event: "form_contato", 
+            lead_data: {
+              nome: data.nome,
+              email: data.email,
+              telefone: data.telefone
+            }
+          });
+        }
+
         e.currentTarget.reset();
         recaptchaRef.current?.reset();
         setCaptchaToken(null);
