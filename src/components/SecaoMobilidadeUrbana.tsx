@@ -1,35 +1,104 @@
 "use client";
 
 import Image from "next/image";
+import { useState, useEffect } from "react";
 
 export default function SecaoMobilidadeUrbana() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  // Mapeia as 22 imagens de 01.jpg até 22.jpg
+  const carouselImages = Array.from({ length: 22 }, (_, i) => {
+    const num = String(i + 1).padStart(2, "0");
+    return `/img/Mobilidade e Praticidade/${num}.jpg`;
+  });
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev === 0 ? carouselImages.length - 1 : prev - 1));
+  };
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev === carouselImages.length - 1 ? 0 : prev + 1));
+  };
+
+  // Troca automática a cada 4 segundos
+  useEffect(() => {
+    const timer = setInterval(() => {
+      nextSlide();
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [currentSlide]);
+
   return (
-    <section id="localizacao" className="w-full bg-[#0A81A1] text-white py-16 relative">
-      <div className="max-w-[1440px] mx-auto px-6 md:px-12 text-center mb-12">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold font-josefinSlab uppercase leading-tight tracking-wide">
+    <section id="localizacao" className="w-full bg-[#0A81A1] text-white py-16 relative overflow-hidden">
+      
+      {/* 1. Elemento Decorativo Lazer Teto no Cabeçalho */}
+      <div className="absolute top-0 right-0 z-20 w-36 sm:w-52 md:w-72 lg:w-96 pointer-events-none">
+        <Image 
+          src="/img/Mobilidade e Praticidade/lazer-teto.png" 
+          alt="Elemento Lazer Teto" 
+          width={500} 
+          height={300} 
+          className="w-full h-auto object-contain object-top-right" 
+        />
+      </div>
+
+      {/* 2. Cabeçalho da Seção */}
+      <div className="max-w-[1440px] mx-auto px-6 md:px-12 text-center mb-10 relative z-10">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold font-[family-name:var(--font-josefin-slab)] uppercase leading-tight tracking-wide">
           A EXCELENTE LOCALIZAÇÃO DO OCEAN PARK É UM CONVITE <br className="hidden sm:inline" />
           PARA UMA VIDA LEVE, PRÁTICA E CHEIA DE POSSIBILIDADES.
         </h2>
       </div>
 
-      {/* Imagem Ilustrativa de Localização */}
-      <div className="max-w-[1440px] mx-auto px-6 mb-12">
-        <div className="relative w-full h-[300px] sm:h-[450px] rounded-3xl overflow-hidden shadow-2xl">
+      {/* 3. Carrossel de Fotos (01.jpg a 22.jpg) */}
+      <div className="max-w-[1440px] mx-auto px-6 mb-12 relative z-10">
+        <div className="relative w-full h-[320px] sm:h-[480px] md:h-[600px] rounded-3xl overflow-hidden shadow-2xl bg-black/20 group">
+          
           <Image 
-            src="/img/polvopraia.jpg" 
-            alt="Localização Ocean Park" 
+            src={carouselImages[currentSlide]} 
+            alt={`Mobilidade e Praticidade ${currentSlide + 1}`} 
             fill 
-            className="object-cover" 
+            quality={100}
+            className="object-cover object-center transition-all duration-500" 
+            priority
           />
+
+          {/* Seta Esquerda */}
+          <button
+            onClick={prevSlide}
+            aria-label="Imagem Anterior"
+            className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white p-3 rounded-full transition-all backdrop-blur-sm z-20 shadow-md focus:outline-none"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+
+          {/* Seta Direita */}
+          <button
+            onClick={nextSlide}
+            aria-label="Próxima Imagem"
+            className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white p-3 rounded-full transition-all backdrop-blur-sm z-20 shadow-md focus:outline-none"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+
+          {/* Indicador de Foto Atual */}
+          <div className="absolute bottom-4 right-4 bg-black/60 backdrop-blur-md px-4 py-1.5 rounded-full text-white text-xs font-bold z-20 border border-white/20">
+            {currentSlide + 1} / {carouselImages.length}
+          </div>
+
         </div>
       </div>
 
-      {/* Faixa / Banners de Plantão e Visita aos Decorados */}
-      <div className="w-full bg-[#DE6810] py-10 px-6 my-8">
+      {/* 4. Faixa de Visita aos Decorados */}
+      <div className="w-full bg-[#DE6810] py-10 px-6 my-8 relative z-10">
         <div className="max-w-[1440px] mx-auto flex flex-col lg:flex-row items-center justify-between gap-8 text-center lg:text-left">
           
           <div className="flex-1 space-y-4">
-            <h3 className="text-3xl sm:text-4xl lg:text-5xl font-black font-josefinSans text-white uppercase tracking-tight">
+            <h3 className="text-3xl sm:text-4xl lg:text-5xl font-black font-[family-name:var(--font-josefin-slab)] text-white uppercase tracking-tight">
               VISITE DECORADOS
             </h3>
             
@@ -68,8 +137,8 @@ export default function SecaoMobilidadeUrbana() {
         </div>
       </div>
 
-      {/* Google Maps Embed */}
-      <div className="w-full h-[400px] relative shadow-inner my-8">
+      {/* 5. Google Maps Embed */}
+      <div className="w-full h-[400px] relative shadow-inner my-8 z-10">
         <iframe 
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3547.512782712201!2d-46.79176892470415!3d-23.567247061808462!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce557edec747bf%3A0xb3ce498eed915209!2sAv.%20Novo%20Osasco%2C%201010%20-%20Bussocaba%2C%20Osasco%20-%20SP%2C%2006056-000!5e1!3m2!1spt-BR!2sbr!4v1769616169975!5m2!1spt-BR!2sbr" 
           width="100%" 
@@ -82,8 +151,8 @@ export default function SecaoMobilidadeUrbana() {
         />
       </div>
 
-      {/* Botões de Acesso Rápido ao Mapa */}
-      <div className="max-w-[1440px] mx-auto px-6 flex flex-col sm:flex-row justify-center items-center gap-4 -mt-12 relative z-10">
+      {/* 6. Botões de Acesso Rápido ao Mapa */}
+      <div className="max-w-[1440px] mx-auto px-6 flex flex-col sm:flex-row justify-center items-center gap-4 -mt-12 relative z-20">
         <a 
           href="https://www.waze.com/pt-BR/live-map/directions/br/sp/av.-novo-osasco,-1010?to=place.ChIJv0fH3n5VzpQRCVKR7Y5JzrM" 
           target="_blank" 

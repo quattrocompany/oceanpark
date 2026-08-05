@@ -7,9 +7,8 @@ import { Montserrat } from "next/font/google";
 import SecaoBanner from "@/components/SecaoBanner";
 import SecaoAerea from "@/components/SecaoAerea";
 import SecaoContato from "@/components/SecaoContato";
-import SecaoProduto from "@/components/QualidadeDeVida"; 
-import SecaoSegurancaComodidade from "@/components/SecaoSegurancaComodidade";
-import SecaoLazer from "@/components/SecaoLazer";
+import SecaoConfortoAbsoluto from "@/components/SecaoConfortoAbsoluto"; 
+import SecaoCarrossel from "@/components/SecaoCarrossel";
 import SecaoImplantacao from "@/components/SecaoImplantacao";
 import SecaoPlantas from "@/components/SecaoPlantas";
 import SecaoMobilidadeUrbana from "@/components/SecaoMobilidadeUrbana";
@@ -34,7 +33,7 @@ export default function Home() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 30);
 
-      const domOrder = ["home", "produto", "lazer", "plantas", "localizacao", "realizacao", "contato"];
+      const domOrder = ["home", "produto", "implantacao", "plantas", "localizacao", "realizacao", "contato"];
       let currentSection = "home";
 
       for (const name of domOrder) {
@@ -111,7 +110,7 @@ export default function Home() {
       >
         <div className="max-w-[1440px] mx-auto px-6 md:px-12 flex items-center justify-between">
           
-          {/* LOGO MAIOR ANTES DO SCROLL (/img/Hero/logo.png) */}
+          {/* LOGO MAIOR ANTES DO SCROLL */}
           <div 
             onClick={(e) => scrollToSection(e as any, 'home')}
             className="cursor-pointer transition-all duration-300 hover:scale-105 flex-shrink-0"
@@ -140,7 +139,7 @@ export default function Home() {
               <a href="#Produto" onClick={(e) => scrollToSection(e, 'produto')} className={`transition-all cursor-pointer ${activeSection === 'produto' ? 'font-black text-[#DD6810]' : 'font-medium text-gray-600 hover:text-[#DD6810]'}`}>PRODUTO</a>
               <span className="text-gray-300 select-none">|</span>
               
-              <a href="#Lazer" onClick={(e) => scrollToSection(e, 'lazer')} className={`transition-all cursor-pointer ${activeSection === 'lazer' ? 'font-black text-[#DD6810]' : 'font-medium text-gray-600 hover:text-[#DD6810]'}`}>LAZER</a>
+              <a href="#Implantacao" onClick={(e) => scrollToSection(e, 'implantacao')} className={`transition-all cursor-pointer ${activeSection === 'implantacao' ? 'font-black text-[#DD6810]' : 'font-medium text-gray-600 hover:text-[#DD6810]'}`}>IMPLANTAÇÃO</a>
               <span className="text-gray-300 select-none">|</span>
               
               <a href="#Planta" onClick={(e) => scrollToSection(e, 'plantas')} className={`transition-all cursor-pointer ${activeSection === 'plantas' ? 'font-black text-[#DD6810]' : 'font-medium text-gray-600 hover:text-[#DD6810]'}`}>PLANTAS</a>
@@ -179,7 +178,7 @@ export default function Home() {
               <nav className="flex flex-col gap-3 text-center text-xs font-bold text-white uppercase tracking-wider">
                 <a href="#Home" onClick={(e) => scrollToSection(e, 'home')} className="py-2 hover:text-[#DD6810] border-b border-white/20">HOME</a>
                 <a href="#Produto" onClick={(e) => scrollToSection(e, 'produto')} className="py-2 hover:text-[#DD6810] border-b border-white/20">PRODUTO</a>
-                <a href="#Lazer" onClick={(e) => scrollToSection(e, 'lazer')} className="py-2 hover:text-[#DD6810] border-b border-white/20">LAZER</a>
+                <a href="#Implantacao" onClick={(e) => scrollToSection(e, 'implantacao')} className="py-2 hover:text-[#DD6810] border-b border-white/20">IMPLANTAÇÃO</a>
                 <a href="#Planta" onClick={(e) => scrollToSection(e, 'plantas')} className="py-2 hover:text-[#DD6810] border-b border-white/20">PLANTAS</a>
                 <a href="#Localizacao" onClick={(e) => scrollToSection(e, 'localizacao')} className="py-2 hover:text-[#DD6810] border-b border-white/20">LOCALIZAÇÃO</a>
                 <a href="#Realizacao" onClick={(e) => scrollToSection(e, 'realizacao')} className="py-2 hover:text-[#DD6810] border-b border-white/20">REALIZAÇÃO</a>
@@ -202,13 +201,12 @@ export default function Home() {
       </div>
       
       <div id="nav-produto">
-        <SecaoProduto />
+        <SecaoConfortoAbsoluto />
       </div>
 
-      <SecaoSegurancaComodidade />
+      <SecaoCarrossel />
 
-      <div id="nav-lazer">
-        <SecaoLazer />
+      <div id="nav-implantacao">
         <SecaoImplantacao />
       </div>
 

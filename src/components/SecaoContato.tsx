@@ -14,7 +14,6 @@ export default function SecaoContato() {
     setIsMounted(true);
   }, []);
 
-  // Chave pública reCAPTCHA oficial do Ocean Park (com fallback da variável de ambiente)
   const SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "6Lfd8pQrAAAAAGVj_aDG9H9VGq5H3Gi-iAMlpeX5";
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -58,21 +57,34 @@ export default function SecaoContato() {
   };
 
   return (
-    <section id="contato" className="py-8 md:py-16 bg-white relative z-10 overflow-visible">
-      <div className="max-w-[1440px] mx-auto px-6 md:px-12 overflow-visible">
+    <section id="contato" className="pt-0 pb-12 md:pb-20 bg-white relative z-10 overflow-visible">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12 overflow-visible">
         
-        {/* Card Principal com Fundo Laranja Oficial Ocean Park (#DD6810) */}
-        <div className="relative bg-[#DD6810] rounded-[2.5rem] shadow-2xl flex flex-col lg:flex-row items-stretch justify-between overflow-visible">
+        {/* Card Principal */}
+        <div className="relative bg-[#DD6810] rounded-b-[2.5rem] shadow-2xl flex flex-col lg:flex-row items-stretch justify-between overflow-hidden min-h-[600px] lg:min-h-[680px]">
           
+          {/* Lado Esquerdo / Imagem Ilustrativa Fachada */}
+          <div className="relative w-full lg:w-1/2 flex flex-col justify-end overflow-hidden order-2 lg:order-1 min-h-[400px] sm:min-h-[500px] lg:min-h-[650px]">
+            <Image 
+              src="/img/Mobilidade e Praticidade/01.jpg" 
+              alt="Ocean Park Osasco - Condomínio Clube" 
+              fill
+              quality={100}
+              className="object-cover object-center"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+          </div>
+
           {/* Lado Direito / Formulário */}
-          <div className="w-full lg:w-6/12 flex flex-col justify-center p-6 sm:p-10 lg:p-12 xl:pr-16 xl:pl-8 z-10 order-1 lg:order-2">
+          <div className="w-full lg:w-1/2 flex flex-col justify-center px-6 sm:px-12 lg:px-14 xl:px-16 py-10 sm:py-12 lg:py-16 xl:py-20 z-10 order-1 lg:order-2">
             
-            <h3 className="font-bold text-white text-xl sm:text-2xl lg:text-3xl uppercase leading-snug mb-6 drop-shadow-sm text-left font-josefinSans tracking-wide">
+            <h3 className="font-bold text-white text-xl sm:text-2xl lg:text-[28px] uppercase leading-tight mb-8 drop-shadow-sm text-left font-[family-name:var(--font-josefin-slab)] tracking-wide">
               CADASTRE-SE E RECEBA EM 1ª MÃO TODAS AS INFORMAÇÕES:
             </h3>
 
             {status === "success" ? (
-              <div className="bg-white p-8 rounded-3xl text-center shadow-md">
+              <div className="bg-white p-10 rounded-3xl text-center shadow-md my-auto">
                 <svg className="w-16 h-16 text-green-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                 </svg>
@@ -131,8 +143,8 @@ export default function SecaoContato() {
                   />
                 </div>
 
-                <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
-                  <div className="w-full sm:w-auto flex justify-center min-h-[78px] min-w-[304px]">
+                <div className="flex flex-col xl:flex-row items-center justify-between gap-4 pt-2">
+                  <div className="w-full xl:w-auto flex justify-center min-h-[78px] min-w-[304px]">
                     {isMounted && (
                       <ReCAPTCHA
                         ref={recaptchaRef}
@@ -146,7 +158,7 @@ export default function SecaoContato() {
                   <button 
                     type="submit" 
                     disabled={status === "loading"}
-                    className="w-full sm:w-auto bg-[#0C82A0] hover:bg-[#096a83] disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-black text-base uppercase tracking-widest px-12 py-4 rounded-full transition-all duration-300 shadow-xl hover:shadow-2xl active:scale-95 h-[78px]"
+                    className="w-full xl:w-auto bg-[#0C82A0] hover:bg-[#096a83] disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-black text-base uppercase tracking-widest px-12 py-4 rounded-full transition-all duration-300 shadow-xl hover:shadow-2xl active:scale-95 h-[78px]"
                   >
                     {status === "loading" ? "ENVIANDO..." : "ENVIAR"}
                   </button>
@@ -159,19 +171,6 @@ export default function SecaoContato() {
                 )}
               </form>
             )}
-          </div>
-
-          {/* Lado Esquerdo / Imagem Ilustrativa Fachada */}
-          <div className="relative w-full lg:w-5/12 flex flex-col justify-end overflow-hidden rounded-b-[2.5rem] lg:rounded-bl-[2.5rem] lg:rounded-tr-none order-2 lg:order-1 min-h-[300px] sm:min-h-[400px] lg:min-h-[500px]">
-            <Image 
-              src="/img/Conforto absoluto/01.jpg" 
-              alt="Ocean Park Osasco - Condomínio Clube" 
-              fill
-              quality={100}
-              className="object-cover object-center"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
           </div>
 
         </div>

@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Montserrat, Josefin_Sans, Josefin_Slab } from "next/font/google";
 import Script from "next/script";
+// @ts-ignore: allow importing global CSS without type declarations
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -40,8 +41,8 @@ export const metadata: Metadata = {
   },
   verification: {
     other: {
-      'google-site-verification': ['H9PjxARWIJKw4osugNwlLTnGAFN4wzPxl254f4QPBW8'],
-      'facebook-domain-verification': ['44o5be08i1rdoijq0nigsqimonicx7'],
+      "google-site-verification": ["H9PjxARWIJKw4osugNwlLTnGAFN4wzPxl254f4QPBW8"],
+      "facebook-domain-verification": ["44o5be08i1rdoijq0nigsqimonicx7"],
     },
   },
 };
@@ -61,15 +62,19 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={`${montserrat.variable} ${josefinSans.variable} ${josefinSlab.variable} scroll-smooth`}>
       <head>
-        <Script id="gtm-script" strategy="afterInteractive">
-          {`
-            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','GTM-WRLQ2JWB');
-          `}
-        </Script>
+        <Script 
+          id="gtm-script" 
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','GTM-WRLQ2JWB');
+            `
+          }}
+        />
       </head>
       <body className="min-h-screen bg-white text-[#333333] antialiased selection:bg-[#DD6810] selection:text-white">
         <noscript>
