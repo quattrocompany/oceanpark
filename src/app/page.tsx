@@ -99,7 +99,7 @@ export default function Home() {
   };
 
   return (
-    <main className={`min-h-screen text-[#333333] bg-[url('/img/bg-blue.jpg')] bg-cover bg-center bg-no-repeat overflow-x-hidden ${montserrat.className}`}>
+    <main className={`min-h-screen text-[#333333] bg-[url('/img/bg-blue.jpg')] bg-cover bg-center bg-fixed overflow-x-hidden ${montserrat.className}`}>
       
       {/* HEADER FLUTUANTE */}
       <header 
@@ -251,7 +251,7 @@ export default function Home() {
               <>
                 <h2 className="text-2xl font-black text-[#0C82A0] uppercase mb-6">POLÍTICA DE DADOS LGPD</h2>
                 <p className="text-gray-600 leading-relaxed text-justify mb-4 font-medium text-sm">
-                  Nos comprometemos a nunca compartilhar seus dados com terceiros. Os dados aqui captados (Nome, E-mail e Telefone) serão utilizados única e exclusivamente pela incorporadora responsável por esse empreendimento para que seja possível o contato com o cliente e apresentação dos produtos vinculados à marca da Incorporadora ou pertencentes ao mesmo grupo econômico da Vendedora.
+                  Nos comprometemos a nunca compartilhar seus dados com terceiros. Os dados aqui captados (Nome, E-mail e Telefone) serão utilizados única e exclusivamente pela incorporadora responsável por esse empreendimento para que seja possível o contato com el cliente e apresentação dos produtos vinculados à marca da Incorporadora ou pertencentes ao mesmo grupo econômico da Vendedora.
                 </p>
               </>
             )}
