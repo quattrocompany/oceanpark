@@ -99,7 +99,7 @@ export default function Home() {
   };
 
   return (
-    <main className={`min-h-screen text-[#333333] bg-[url('/img/bg-blue.jpg')] bg-cover bg-center bg-fixed overflow-x-hidden ${montserrat.className}`}>
+    <main className={`min-h-screen text-[#333333] bg-[url('/img/25800315_7135105.jpg')] bg-cover bg-center bg-fixed overflow-x-hidden ${montserrat.className}`}>
       
       {/* HEADER FLUTUANTE */}
       <header 
