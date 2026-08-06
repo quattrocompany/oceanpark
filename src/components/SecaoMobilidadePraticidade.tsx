@@ -49,16 +49,11 @@ export default function SecaoMobilidadePraticidade() {
   return (
     <section id="lazer-mobilidade" className="w-full bg-white relative flex flex-col">
       
-      {/* Título invisível exclusivo para leitores de tela e SEO do Google */}
-      <h2 className="sr-only">
-        Mobilidade e praticidade que transformam o seu dia a dia.
-      </h2>
-
-      {/* 1. CABEÇALHO BANNER FULL WIDTH */}
-      <div className="relative w-full z-20 pointer-events-none flex flex-col justify-center">
+      {/* 1. CABEÇALHO BANNER FULL WIDTH COM TEXTO */}
+      <div className="relative w-full z-20 flex flex-col justify-center">
         
         {/* Imagem Desktop Full Width */}
-        <div className="hidden sm:flex w-full">
+        <div className="hidden sm:flex w-full relative">
           <Image
             src="/img/Mobilidade e Praticidade/lazer-teto.png"
             alt="Mobilidade e praticidade que transformam o seu dia a dia - Ocean Park"
@@ -71,7 +66,7 @@ export default function SecaoMobilidadePraticidade() {
         </div>
 
         {/* Imagem Mobile Full Width */}
-        <div className="flex sm:hidden w-full">
+        <div className="flex sm:hidden w-full relative">
           <Image
             src="/img/Mobilidade e Praticidade/lazer-teto-mobile2.png"
             alt="Mobilidade e praticidade que transformam o seu dia a dia - Ocean Park Mobile"
@@ -81,6 +76,14 @@ export default function SecaoMobilidadePraticidade() {
             className="w-full h-auto block object-cover"
             priority
           />
+        </div>
+
+        {/* FRASE DE SOBREPOSIÇÃO NO BANNER */}
+        <div className="absolute inset-0 z-30 flex items-center justify-center sm:justify-start px-6 sm:px-12 md:pl-16 lg:pl-24 pr-6 md:pr-72 lg:pr-96 text-center sm:text-left pointer-events-none">
+          <h2 className="text-white text-base sm:text-2xl md:text-3xl lg:text-4xl font-bold font-[family-name:var(--font-josefin-slab)] leading-snug sm:leading-tight drop-shadow-md">
+            Mobilidade e praticidade <br className="hidden sm:inline" />
+            que transformam o seu dia a dia.
+          </h2>
         </div>
 
       </div>
