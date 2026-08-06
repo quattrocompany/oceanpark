@@ -8,13 +8,38 @@ export default function SecaoContato() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const [isMounted, setIsMounted] = useState(false);
+  
+  const [formData, setFormData] = useState({
+    nome: "",
+    email: "",
+    telefone: "",
+    mensagem: "",
+  });
+
   const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
-const SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "";
+  const SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "";
+
+  // Máscara dinâmica de telefone: (11) 4164-4000 ou (11) 9 9999-9999
+  const maskPhone = (value: string) => {
+    const digits = value.replace(/\D/g, "").slice(0, 11);
+    if (!digits) return "";
+    if (digits.length <= 2) return `(${digits}`;
+    if (digits.length <= 6) return `(${digits.slice(0, 2)}) ${digits.slice(2)}`;
+    if (digits.length <= 10) {
+      return `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(6)}`;
+    }
+    return `(${digits.slice(0, 2)}) ${digits.slice(2, 3)} ${digits.slice(3, 7)}-${digits.slice(7)}`;
+  };
+
+  // Limpeza de e-mail (remove espaços, minusculas e troca vírgula por ponto)
+  const sanitizeEmail = (email: string) => {
+    return email.trim().toLowerCase().replace(/,/g, ".");
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -25,15 +50,17 @@ const SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "";
     }
 
     setStatus("loading");
-    const formData = new FormData(e.currentTarget);
+    const emailLimpo = sanitizeEmail(formData.email);
+
     const data = {
-      nome: formData.get("nome"),
-      email: formData.get("email"),
-      telefone: formData.get("telefone"),
-      mensagem: formData.get("mensagem"),
+      nome: formData.nome,
+      email: emailLimpo,
+      telefone: formData.telefone,
+      mensagem: formData.mensagem,
       captcha: captchaToken,
       config: "ocean_park_osasco",
       token: "NTZmQzZGY5NDY2Mjg0ODRhYjNiZjNhZG",
+      via: "formulario",
     };
 
     try {
@@ -46,9 +73,7 @@ const SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "";
       if (response.ok) {
         setStatus("success");
         
-        // ---------------------------------------------------------
-        // NOVO: Disparo de GTM para o formulário de Contato Direto
-        // ---------------------------------------------------------
+        // Disparo do GTM
         if (typeof window !== "undefined" && (window as any).dataLayer) {
           (window as any).dataLayer.push({ 
             event: "form_contato", 
@@ -60,7 +85,7 @@ const SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "";
           });
         }
 
-        e.currentTarget.reset();
+        setFormData({ nome: "", email: "", telefone: "", mensagem: "" });
         recaptchaRef.current?.reset();
         setCaptchaToken(null);
       } else {
@@ -105,7 +130,10 @@ const SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "";
                 </svg>
                 <h4 className="text-xl font-bold text-[#0C82A0] mb-2 uppercase">Mensagem enviada!</h4>
                 <p className="text-gray-600 font-medium text-sm">Em breve entraremos em contato com você.</p>
-                <button onClick={() => setStatus("idle")} className="mt-6 text-[#DD6810] font-bold hover:underline">
+                <button 
+                  onClick={() => setStatus("idle")} 
+                  className="mt-6 text-[#DD6810] font-bold hover:underline cursor-pointer"
+                >
                   Enviar nova mensagem
                 </button>
               </div>
@@ -119,6 +147,8 @@ const SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "";
                     type="text" 
                     placeholder="NOME (*):" 
                     required 
+                    value={formData.nome}
+                    onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
                     className="w-full bg-white border-none rounded-full px-6 py-4 text-sm outline-none focus:ring-4 focus:ring-[#0C82A0]/50 transition-all font-medium text-gray-800 placeholder-gray-400 shadow-sm"
                   />
                 </div>
@@ -131,6 +161,9 @@ const SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "";
                     type="email" 
                     placeholder="E-MAIL (*):" 
                     required 
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    onBlur={(e) => setFormData({ ...formData, email: sanitizeEmail(e.target.value) })}
                     className="w-full bg-white border-none rounded-full px-6 py-4 text-sm outline-none focus:ring-4 focus:ring-[#0C82A0]/50 transition-all font-medium text-gray-800 placeholder-gray-400 shadow-sm"
                   />
                 </div>
@@ -143,6 +176,8 @@ const SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "";
                     type="tel" 
                     placeholder="TELEFONE (*):" 
                     required 
+                    value={formData.telefone}
+                    onChange={(e) => setFormData({ ...formData, telefone: maskPhone(e.target.value) })}
                     className="w-full bg-white border-none rounded-full px-6 py-4 text-sm outline-none focus:ring-4 focus:ring-[#0C82A0]/50 transition-all font-medium text-gray-800 placeholder-gray-400 shadow-sm"
                   />
                 </div>
@@ -154,6 +189,8 @@ const SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "";
                     name="mensagem"
                     rows={4}
                     placeholder="INFORMAÇÕES:" 
+                    value={formData.mensagem}
+                    onChange={(e) => setFormData({ ...formData, mensagem: e.target.value })}
                     className="w-full bg-white border-none rounded-3xl px-6 py-4 text-sm outline-none focus:ring-4 focus:ring-[#0C82A0]/50 transition-all font-medium text-gray-800 placeholder-gray-400 shadow-sm resize-none"
                   />
                 </div>
