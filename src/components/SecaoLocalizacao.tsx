@@ -214,9 +214,6 @@ export default function SecaoLocalizacao() {
             </p>
 
           </div>
-
-
-
         </div>
       </div>
 
