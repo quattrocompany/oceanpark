@@ -215,22 +215,12 @@ export default function SecaoLocalizacao() {
 
           </div>
 
-          {/* MCMV: Oculto no Mobile (hidden sm:flex), visível no desktop à direita */}
-          <div className="hidden sm:flex absolute right-0 bottom-0 top-0 items-center justify-end w-48 sm:w-64 lg:w-80 z-10 pointer-events-none">
-            <div className="relative w-full h-[80%] lg:h-[90%]">
-              <Image 
-                src="/img/Visite/mcmv-plantas.png" 
-                alt="Minha Casa Minha Vida" 
-                fill 
-                className="object-contain object-right" 
-              />
-            </div>
-          </div>
+
 
         </div>
       </div>
 
-      {/* 5. GOOGLE MAPS EMBED (Abaixo da faixa de decorados) */}
+      {/* 5. GOOGLE MAPS EMBED */}
       <div className="w-full h-[350px] sm:h-[400px] relative shadow-inner bg-gray-200 z-10">
         <iframe 
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3547.512782712201!2d-46.79176892470415!3d-23.567247061808462!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce557edec747bf%3A0xb3ce498eed915209!2sAv.%20Novo%20Osasco%2C%201010%20-%20Bussocaba%2C%20Osasco%20-%20SP%2C%2006056-000!5e1!3m2!1spt-BR!2sbr!4v1769616169975!5m2!1spt-BR!2sbr" 
@@ -254,7 +244,7 @@ export default function SecaoLocalizacao() {
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12.029 20.308c-1.528 0-3.003-.393-4.298-1.127l-5.467 1.48a1.002 1.002 0 0 1-1.242-1.229l1.458-5.263A9.972 9.972 0 0 1 1.25 9.914c0-5.474 4.836-9.914 10.779-9.914 5.942 0 10.779 4.44 10.779 9.914 0 5.475-4.837 9.914-10.779 9.914v.48h0z" fill="#FFF"/>
-            <path d="M7.742 11.23a1.455 1.455 0 1 0 0-2.909 1.455 1.455 0 0 0 0 2.91zm8.574 0a1.455 1.455 0 1 0 0-2.909 1.455 1.455 0 0 0 0 2.91zM8.36 14.18c.95 1.157 2.404 1.874 4 1.874 1.597 0 3.05-.717 4-1.874a.885.885 0 0 0-1.378-1.118c-.628.765-1.59 1.238-2.622 1.238s-1.993-.473-2.622-1.238A.885.885 0 0 0 8.36 14.18z" fill="#0099FF"/>
+            <path d="M7.742 11.23a1.455 1.455 0 1 0 0-2.909 1.455 1.455 0 0 0 0 2.91zm8.574 0a1.455 1.455 0 0 0 0 2.91zM8.36 14.18c.95 1.157 2.404 1.874 4 1.874 1.597 0 3.05-.717 4-1.874a.885.885 0 0 0-1.378-1.118c-.628.765-1.59 1.238-2.622 1.238s-1.993-.473-2.622-1.238A.885.885 0 0 0 8.36 14.18z" fill="#0099FF"/>
           </svg>
           <span>Veja pelo Waze</span>
         </a>
