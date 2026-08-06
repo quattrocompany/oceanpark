@@ -28,8 +28,6 @@ export default function Home() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("home");
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
-  
-  const [formData, setFormData] = useState({ name: '', email: '', whatsapp: '' });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -56,10 +54,19 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const handleOpenWhatsappModal = () => openModal("whatsapp");
-    window.addEventListener("openWhatsAppModal", handleOpenWhatsappModal);
-    
-    return () => window.removeEventListener("openWhatsAppModal", handleOpenWhatsappModal);
+    const handleOpenWhatsapp = () => openModal("whatsapp");
+    const handleOpenPrivacidade = () => openModal("privacidade");
+    const handleOpenLgpd = () => openModal("lgpd");
+
+    window.addEventListener("openWhatsAppModal", handleOpenWhatsapp);
+    window.addEventListener("openPrivacidadeModal", handleOpenPrivacidade);
+    window.addEventListener("openLgpdModal", handleOpenLgpd);
+
+    return () => {
+      window.removeEventListener("openWhatsAppModal", handleOpenWhatsapp);
+      window.removeEventListener("openPrivacidadeModal", handleOpenPrivacidade);
+      window.removeEventListener("openLgpdModal", handleOpenLgpd);
+    };
   }, []);
 
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
@@ -84,21 +91,6 @@ export default function Home() {
     if (typeof window !== "undefined") document.body.style.overflow = "auto";
   };
 
-  const handleWhatsAppSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (typeof window !== "undefined" && (window as any).dataLayer) {
-      (window as any).dataLayer.push({ 
-        event: "clique_whatsapp",
-        lead_data: formData 
-      });
-    }
-
-    window.open("https://api.whatsapp.com/send?phone=5511988568852", "_blank");
-    closeModal();
-    setFormData({ name: '', email: '', whatsapp: '' });
-  };
-
   return (
     <main className={`min-h-screen text-[#333333] bg-[url('/img/25800315_7135105.jpg')] bg-cover bg-center bg-fixed overflow-x-hidden ${montserrat.className}`}>
       
@@ -112,7 +104,6 @@ export default function Home() {
       >
         <div className="max-w-[1440px] mx-auto px-6 md:px-12 flex items-center justify-between">
           
-          {/* LOGO MAIOR ANTES DO SCROLL */}
           <div 
             onClick={(e) => scrollToSection(e as any, 'home')}
             className="cursor-pointer transition-all duration-300 hover:scale-105 flex-shrink-0"
@@ -132,7 +123,6 @@ export default function Home() {
             />
           </div>
 
-          {/* MENU DENTRO DA PÍLULA BRANCA */}
           <div className="bg-white rounded-full px-5 md:px-8 py-2 md:py-2.5 shadow-md border border-gray-100/80 flex items-center">
             <nav className="hidden md:flex items-center gap-3 lg:gap-5 xl:gap-6 text-xs lg:text-sm font-bold">
               <a href="#Home" onClick={(e) => scrollToSection(e, 'home')} className={`transition-all cursor-pointer ${activeSection === 'home' ? 'font-black text-[#DD6810]' : 'font-medium text-gray-600 hover:text-[#DD6810]'}`}>HOME</a>
@@ -212,25 +202,29 @@ export default function Home() {
         <SecaoImplantacao />
       </div>
 
-      <div id="nav-localizacao">
-        <SecaoMobilidadePraticidade />
-      </div>
+      <SecaoMobilidadePraticidade />
       
       <div id="nav-plantas">
         <SecaoPlantas />
       </div>
 
-            <div id="nav-localizacao">
+      <div id="nav-localizacao">
         <SecaoLocalizacao />
       </div>
 
-
       <div id="nav-realizacao">
-        <Footer onOpenWhatsapp={() => openModal("whatsapp")} />
+        <Footer 
+          onOpenWhatsapp={() => openModal("whatsapp")} 
+          onOpenPrivacidade={() => openModal("privacidade")} 
+          onOpenLgpd={() => openModal("lgpd")} 
+        />
       </div>
 
-      {/* MODAL WHATSAPP / PRIVACIDADE */}
-      {activeModal && (
+      {/* MODAL WHATSAPP COMPONENTIZADO */}
+      <ModalWhatsapp isOpen={activeModal === "whatsapp"} onClose={closeModal} />
+
+      {/* MODAIS LEGAIS */}
+      {(activeModal === 'privacidade' || activeModal === 'lgpd') && (
         <div 
           className="fixed inset-0 bg-[#0C82A0]/90 z-[9999] flex justify-center items-center p-4 animate-in fade-in duration-300 backdrop-blur-sm"
           onClick={closeModal}
@@ -262,82 +256,6 @@ export default function Home() {
                 <p className="text-gray-600 leading-relaxed text-justify mb-4 font-medium text-sm">
                   Nos comprometemos a nunca compartilhar seus dados com terceiros. Os dados aqui captados (Nome, E-mail e Telefone) serão utilizados única e exclusivamente pela incorporadora responsável por esse empreendimento para que seja possível o contato com o cliente e apresentação dos produtos vinculados à marca da Incorporadora ou pertencentes ao mesmo grupo econômico da Vendedora.
                 </p>
-              </>
-            )}
-
-            {activeModal === 'whatsapp' && (
-              <>
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-black text-[#0C82A0] uppercase tracking-wide">
-                    Atendimento
-                    <br />
-                    WhatsApp
-                  </h3>
-                  <p className="text-sm text-gray-500 mt-2">
-                    Preencha seus dados para iniciarmos o atendimento.
-                  </p>
-                </div>
-
-                <form onSubmit={handleWhatsAppSubmit} className="space-y-4 max-w-md mx-auto">
-                  <div>
-                    <label className="block text-sm font-bold text-gray-700 mb-1">Nome *</label>
-                    <input 
-                      type="text" 
-                      required
-                      placeholder="Seu nome"
-                      value={formData.name}
-                      onChange={(e) => setFormData({...formData, name: e.target.value})}
-                      className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#DD6810]/50 transition-all text-gray-800 placeholder-gray-400"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-bold text-gray-700 mb-1">Email *</label>
-                    <input 
-                      type="email" 
-                      required
-                      placeholder="Seu e-mail"
-                      value={formData.email}
-                      onChange={(e) => setFormData({...formData, email: e.target.value})}
-                      className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#DD6810]/50 transition-all text-gray-800 placeholder-gray-400"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-bold text-gray-700 mb-1">WhatsApp *</label>
-                    <input 
-                      type="tel" 
-                      required
-                      placeholder="Seu whatsapp"
-                      value={formData.whatsapp}
-                      onChange={(e) => setFormData({...formData, whatsapp: e.target.value})}
-                      className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#DD6810]/50 transition-all text-gray-800 placeholder-gray-400"
-                    />
-                  </div>
-
-                  <p className="text-[11px] text-gray-400 italic pt-2">
-                    * Dados obrigatórios
-                  </p>
-
-                  <div className="pt-4 flex flex-col gap-3">
-                    <button 
-                      type="submit" 
-                      className="w-full bg-[#25D366] hover:bg-[#1DA851] text-white font-bold py-3.5 px-6 rounded-full transition-colors uppercase tracking-wider text-sm shadow-md flex items-center justify-center gap-2"
-                    >
-                      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12.031 2C6.496 2 2 6.496 2 12.031c0 1.931.547 3.743 1.516 5.334L2 22l4.781-1.469a10.02 10.02 0 005.25 1.485c5.535 0 10.031-4.496 10.031-10.031S17.566 2 12.031 2zm0 18.375c-1.634 0-3.188-.415-4.571-1.2l-.328-.188-3.398 1.047 1.062-3.328-.219-.344a8.381 8.381 0 01-1.328-4.516c0-4.634 3.772-8.406 8.406-8.406 4.635 0 8.407 3.772 8.407 8.406s-3.772 8.406-8.407 8.406zm4.61-6.313c-.25-.125-1.484-.734-1.719-.812-.234-.078-.406-.125-.578.125-.172.25-.656.812-.812.984-.156.172-.312.188-.562.063-.25-.125-1.059-.39-2.019-1.246-.747-.669-1.254-1.494-1.406-1.744-.153-.25-.016-.385.109-.509.112-.112.25-.297.375-.447.125-.15.172-.25.25-.422.078-.172.039-.328-.023-.453-.063-.125-.578-1.391-.797-1.906-.211-.502-.422-.434-.578-.442l-.485-.008c-.172 0-.453.063-.688.313-.234.25-.891.875-.891 2.125s.914 2.453 1.047 2.625c.125.172 1.781 2.719 4.313 3.813.601.258 1.07.412 1.437.528.604.192 1.156.164 1.593.1.487-.072 1.484-.606 1.688-1.194.203-.588.203-1.094.14-1.194-.062-.1-.234-.156-.484-.281z"/>
-                      </svg>
-                      Ir para WhatsApp
-                    </button>
-                    <button 
-                      type="button" 
-                      onClick={closeModal}
-                      className="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-3.5 px-6 rounded-full transition-colors uppercase tracking-wider text-sm shadow-md"
-                    >
-                      Fechar
-                    </button>
-                  </div>
-                </form>
               </>
             )}
           </div>
