@@ -120,7 +120,7 @@ const data = {
           <div className="w-full lg:w-1/2 flex flex-col justify-center px-6 sm:px-12 lg:px-14 xl:px-16 py-10 sm:py-12 lg:py-16 xl:py-20 z-10 order-1 lg:order-2">
             
             <h3 className="font-bold text-white text-xl sm:text-2xl lg:text-[28px] uppercase leading-tight mb-8 drop-shadow-sm text-left font-[family-name:var(--font-josefin-slab)] tracking-wide">
-              CADASTRE-SE E RECEBA EM 1ª MÃO TODAS AS INFORMAÇÕES:
+              CADASTRE-SE E RECEBA EM PRIMEIRA MÃO TODAS AS INFORMAÇÕES:
             </h3>
 
             {status === "success" ? (

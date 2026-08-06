@@ -56,10 +56,10 @@ export default function SecaoLocalizacao() {
     <section id="localizacao" className="w-full bg-[#0C82A0] text-white pt-12 md:pt-16 relative overflow-hidden">
       
       {/* 1. TÍTULO OFICIAL DA SEÇÃO */}
-      <div className="max-w-[1440px] mx-auto px-6 md:px-12 text-center mb-8 sm:mb-12">
-        <h2 className="text-xl sm:text-3xl lg:text-4xl font-bold font-[family-name:var(--font-josefin-slab)] leading-tight tracking-wide">
-          A EXCELENTE LOCALIZAÇÃO DO OCEAN PARK É UM CONVITE <br className="hidden sm:inline" />
-          PARA UMA VIDA LEVE, PRÁTICA E CHEIA DE POSSIBILIDADES.
+      <div className="max-w-[1440px] mx-auto px-6 sm:px-12 text-center mb-8 sm:mb-12">
+        <h2 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold font-[family-name:var(--font-josefin-slab)] leading-snug sm:leading-tight">
+          A excelente localização do Ocean Park é um convite <br className="hidden sm:inline" />
+          para uma vida leve, prática e cheia de possibilidades.
         </h2>
       </div>
 
@@ -182,16 +182,16 @@ export default function SecaoLocalizacao() {
       </div>
 
       {/* 4. FAIXA DE VISITA AOS DECORADOS E PLANTÃO */}
-      <div className="w-full bg-[#DE6810] relative z-10 text-white min-h-[200px]">
-        <div className="max-w-[1440px] mx-auto flex flex-col items-center justify-center relative py-12 px-6 lg:px-12">
+      <div className="w-full bg-[#DE6810] relative z-10 text-white py-8 sm:py-12 px-6 lg:px-12">
+        <div className="max-w-[1440px] mx-auto flex flex-col items-center justify-center relative">
           
-          <div className="flex flex-col items-center justify-center text-center space-y-4 md:space-y-6 z-20 w-full md:px-64">
+          <div className="flex flex-col items-center justify-center text-center space-y-3 sm:space-y-4 md:space-y-6 z-20 w-full sm:px-12 md:px-64">
             
-            <h3 className="text-5xl sm:text-6xl lg:text-7xl font-black font-[family-name:var(--font-josefin-slab)] uppercase tracking-tight">
+            <h3 className="text-3xl sm:text-5xl lg:text-7xl font-black font-[family-name:var(--font-josefin-slab)] uppercase tracking-tight">
               Visite Decorados
             </h3>
             
-            <p className="text-2xl sm:text-3xl lg:text-4xl font-bold">
+            <p className="text-base sm:text-2xl lg:text-4xl font-bold">
               <a 
                 href="https://www.google.com.br/maps/dir//Av.+Novo+Osasco,+1010+-+Bussocaba,+Osasco+-+SP" 
                 target="_blank" 
@@ -202,7 +202,7 @@ export default function SecaoLocalizacao() {
               </a>
             </p>
 
-            <p className="text-base sm:text-lg lg:text-xl font-medium opacity-95">
+            <p className="text-xs sm:text-base lg:text-xl font-medium opacity-95">
               <a 
                 href="https://www.google.com.br/maps/dir//R.+Achiles+Beline,+616+-+Padroeira,+Osasco+-+SP" 
                 target="_blank" 
@@ -215,13 +215,14 @@ export default function SecaoLocalizacao() {
 
           </div>
 
-          <div className="mt-8 md:mt-0 md:absolute md:right-4 lg:right-12 md:top-0 md:bottom-0 flex items-center justify-center w-56 sm:w-64 lg:w-72 h-28 md:h-full z-10 pointer-events-none">
-            <div className="relative w-full h-full md:h-[80%] lg:h-[90%]">
+          {/* MCMV: Oculto no Mobile (hidden sm:flex), visível no desktop à direita */}
+          <div className="hidden sm:flex absolute right-0 bottom-0 top-0 items-center justify-end w-48 sm:w-64 lg:w-80 z-10 pointer-events-none">
+            <div className="relative w-full h-[80%] lg:h-[90%]">
               <Image 
                 src="/img/Visite/mcmv-plantas.png" 
                 alt="Minha Casa Minha Vida" 
                 fill 
-                className="object-contain md:object-right" 
+                className="object-contain object-right" 
               />
             </div>
           </div>
@@ -229,8 +230,8 @@ export default function SecaoLocalizacao() {
         </div>
       </div>
 
-      {/* 5. GOOGLE MAPS EMBED */}
-      <div className="w-full h-[400px] relative shadow-inner bg-gray-200 z-10">
+      {/* 5. GOOGLE MAPS EMBED (Abaixo da faixa de decorados) */}
+      <div className="w-full h-[350px] sm:h-[400px] relative shadow-inner bg-gray-200 z-10">
         <iframe 
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3547.512782712201!2d-46.79176892470415!3d-23.567247061808462!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce557edec747bf%3A0xb3ce498eed915209!2sAv.%20Novo%20Osasco%2C%201010%20-%20Bussocaba%2C%20Osasco%20-%20SP%2C%2006056-000!5e1!3m2!1spt-BR!2sbr!4v1769616169975!5m2!1spt-BR!2sbr" 
           width="100%" 
@@ -243,7 +244,7 @@ export default function SecaoLocalizacao() {
         />
       </div>
 
-      {/* 6. BOTÕES WAZE E MAPA COM ICONES INLINE (SVG) */}
+      {/* 6. BOTÕES WAZE E MAPA */}
       <div className="max-w-[1440px] mx-auto px-6 flex flex-col sm:flex-row justify-center items-center gap-4 -mt-12 pb-10 relative z-20">
         <a 
           href="https://www.waze.com/pt-BR/live-map/directions/br/sp/av.-novo-osasco,-1010?to=place.ChIJv0fH3n5VzpQRCVKR7Y5JzrM" 
@@ -272,7 +273,7 @@ export default function SecaoLocalizacao() {
         </a>
       </div>
 
-      {/* 7. CONTATO WHATSAPP GRANDÃO ABAIXO DO MAPA */}
+      {/* 7. CONTATO WHATSAPP */}
       <div className="w-full bg-white py-10 md:py-14 flex items-center justify-center relative z-20 border-b border-gray-100">
         <button
           onClick={handleOpenWhatsapp}

@@ -49,53 +49,43 @@ export default function SecaoMobilidadePraticidade() {
   return (
     <section id="lazer-mobilidade" className="w-full bg-white relative flex flex-col">
       
-      {/* 1. CABEÇALHO COM IMAGENS RESPONSIVAS E TEXTO */}
+      {/* Título invisível exclusivo para leitores de tela e SEO do Google */}
+      <h2 className="sr-only">
+        Mobilidade e praticidade que transformam o seu dia a dia.
+      </h2>
+
+      {/* 1. CABEÇALHO BANNER FULL WIDTH */}
       <div className="relative w-full z-20 pointer-events-none flex flex-col justify-center">
         
-        {/* Imagem Desktop (Oculta no Mobile) */}
+        {/* Imagem Desktop Full Width */}
         <div className="hidden sm:flex w-full">
           <Image
             src="/img/Mobilidade e Praticidade/lazer-teto.png"
-            alt="Mobilidade e Praticidade Header Desktop"
+            alt="Mobilidade e praticidade que transformam o seu dia a dia - Ocean Park"
             width={1920}
             height={350}
             quality={100}
-            className="w-full h-auto block"
+            className="w-full h-auto block object-cover"
             priority
           />
         </div>
 
-        {/* Imagem Mobile (Oculta no Desktop) */}
+        {/* Imagem Mobile Full Width */}
         <div className="flex sm:hidden w-full">
           <Image
             src="/img/Mobilidade e Praticidade/lazer-teto-mobile2.png"
-            alt="Mobilidade e Praticidade Header Mobile"
+            alt="Mobilidade e praticidade que transformam o seu dia a dia - Ocean Park Mobile"
             width={768}
             height={300}
             quality={100}
-            className="w-full h-auto block"
+            className="w-full h-auto block object-cover"
             priority
           />
-        </div>
-
-        {/* TEXTO SOBREPOSTO (Ajustado para não vazar no mobile) */}
-        <div className="absolute inset-0 flex items-center">
-          <div className="w-full max-w-[1440px] mx-auto px-5 md:px12 flex">
-            <div className="w-[85%] sm:max-w-[70%] text-white drop-shadow-xl -mt-4 sm:mt-0">
-              <p className="text-[13px] leading-tight sm:text-3xl lg:text-5xl font-[family-name:var(--font-josefin-slab)] ">
-                Mobilidade e praticidade
-              </p>
-              <h2 className="text-[16px] leading-tight sm:text-4xl lg:text-5xl font-extrabold font-[family-name:var(--font-josefin-slab)] uppercase tracking-wide mt-1">
-                QUE TRANSFORMAM O SEU DIA A DIA.
-              </h2>
-            </div>
-          </div>
         </div>
 
       </div>
 
       {/* 2. CARROSSEL DE FOTOS FULL WIDTH */}
-      {/* -mt-6 no mobile para sobrepor suavemente sem quebrar o layout, e margens maiores no desktop */}
       <div className="relative w-full h-[320px] sm:h-[600px] md:h-[720px] lg:h-[850px] bg-gray-100 group z-10 -mt-6 sm:-mt-20 md:-mt-28 lg:-mt-36 xl:-mt-44">
         
         <Image
@@ -111,7 +101,7 @@ export default function SecaoMobilidadePraticidade() {
         <button
           onClick={prevSlide}
           aria-label="Anterior"
-          className="absolute left-3 sm:left-8 top-1/2 -translate-y-1/2 text-[#DD6810] hover:scale-125 transition-transform p-2 z-30 focus:outline-none drop-shadow-2xl"
+          className="absolute left-3 sm:left-8 top-1/2 -translate-y-1/2 text-[#DD6810] hover:scale-125 transition-transform p-2 z-30 focus:outline-none drop-shadow-2xl cursor-pointer"
         >
           <svg className="w-8 h-8 sm:w-14 sm:h-14" fill="currentColor" viewBox="0 0 24 24">
             <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
@@ -122,7 +112,7 @@ export default function SecaoMobilidadePraticidade() {
         <button
           onClick={nextSlide}
           aria-label="Próximo"
-          className="absolute right-3 sm:right-8 top-1/2 -translate-y-1/2 text-[#DD6810] hover:scale-125 transition-transform p-2 z-30 focus:outline-none drop-shadow-2xl"
+          className="absolute right-3 sm:right-8 top-1/2 -translate-y-1/2 text-[#DD6810] hover:scale-125 transition-transform p-2 z-30 focus:outline-none drop-shadow-2xl cursor-pointer"
         >
           <svg className="w-8 h-8 sm:w-14 sm:h-14" fill="currentColor" viewBox="0 0 24 24">
             <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
@@ -135,7 +125,7 @@ export default function SecaoMobilidadePraticidade() {
             <button
               key={idx}
               onClick={() => setCurrentIndex(idx)}
-              className={`h-2 rounded-full transition-all ${
+              className={`h-2 rounded-full transition-all cursor-pointer ${
                 currentIndex === idx ? "bg-white w-5 sm:w-6 sm:h-2.5" : "bg-white/50 w-2 sm:w-2.5 sm:h-2.5 hover:bg-white/80"
               }`}
               aria-label={`Ir para a foto ${idx + 1}`}
