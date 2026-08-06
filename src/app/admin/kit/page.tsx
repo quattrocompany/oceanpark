@@ -1,18 +1,18 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import Image from "next/image";
 import UploadInterface from "./UploadInterface";
 
 export default function AdminKitPage() {
-  // Verifica se a agência fez o login através do cookie
   const session = cookies().get("admin_session");
   
   if (!session?.value) {
-    redirect("/admin"); // Expulsa de volta para o login se não tiver permissão
+    redirect("/admin");
   }
 
   return (
-    <main className="min-h-screen bg-gray-50 pt-28 pb-20">
-      <div className="max-w-[1000px] mx-auto px-6">
+    <main className="min-h-screen bg-gray-50 flex flex-col justify-between pt-28">
+      <div className="max-w-[1000px] mx-auto px-6 w-full flex-1 pb-16">
         <div className="flex justify-between items-end mb-8 border-b pb-4">
           <div>
             <h1 className="text-3xl font-black text-[#0C82A0]">Gestão do Kit Corretor</h1>
@@ -23,9 +23,19 @@ export default function AdminKitPage() {
           </span>
         </div>
         
-        {/* Chama o componente visual de Upload */}
         <UploadInterface />
+      </div>
 
+      {/* RODAPÉ ILUSTRATIVO POLVO E PRAIA */}
+      <div className="w-full relative leading-none bg-[#0C82A0]">
+        <Image
+          src="/img/kit/polvopraia.jpg"
+          alt="Ilustração Ocean Park Praia Admin"
+          width={1920}
+          height={300}
+          quality={100}
+          className="w-full h-auto block object-cover"
+        />
       </div>
     </main>
   );
