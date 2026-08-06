@@ -66,14 +66,19 @@ export default function Footer({ onOpenWhatsapp, onOpenPrivacidade, onOpenLgpd }
                 <span className="text-[9px] sm:text-[10px] text-gray-500 font-semibold uppercase tracking-wider mb-3">
                   INCORPORAÇÃO:
                 </span>
-                <div className="relative w-full max-w-[140px] sm:max-w-[180px] h-16 sm:h-24">
+                <a 
+                  href="https://www.quattroinc.com.br" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="relative w-full max-w-[140px] sm:max-w-[180px] h-16 sm:h-24 transition-opacity hover:opacity-80 block"
+                >
                   <Image 
                     src="/img/logo-quattro-inc.png" 
                     alt="Quattro Inc" 
                     fill 
                     className="object-contain" 
                   />
-                </div>
+                </a>
               </div>
 
               {/* 2. CONSTRUÇÃO (Quattro Construtora) */}
@@ -81,14 +86,19 @@ export default function Footer({ onOpenWhatsapp, onOpenPrivacidade, onOpenLgpd }
                 <span className="text-[9px] sm:text-[10px] text-gray-500 font-semibold uppercase tracking-wider mb-3">
                   CONSTRUÇÃO:
                 </span>
-                <div className="relative w-full max-w-[110px] sm:max-w-[130px] h-16 sm:h-24">
+                <a 
+                  href="https://www.quattroconstrutora.com.br" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="relative w-full max-w-[110px] sm:max-w-[130px] h-16 sm:h-24 transition-opacity hover:opacity-80 block"
+                >
                   <Image 
                     src="/img/logo-quattro-construtora.png" 
                     alt="Quattro Construtora" 
                     fill 
                     className="object-contain" 
                   />
-                </div>
+                </a>
               </div>
 
               {/* 3. INTERMEDIAÇÃO (Direções) */}
