@@ -57,7 +57,7 @@ export default function SecaoLocalizacao() {
       
       {/* 1. TÍTULO OFICIAL DA SEÇÃO */}
       <div className="max-w-[1440px] mx-auto px-6 md:px-12 text-center mb-8 sm:mb-12">
-        <h2 className="text-xl sm:text-3xl lg:text-4xl font-bold font-[family-name:var(--font-josefin-slab)]  leading-tight tracking-wide">
+        <h2 className="text-xl sm:text-3xl lg:text-4xl font-bold font-[family-name:var(--font-josefin-slab)] leading-tight tracking-wide">
           A EXCELENTE LOCALIZAÇÃO DO OCEAN PARK É UM CONVITE <br className="hidden sm:inline" />
           PARA UMA VIDA LEVE, PRÁTICA E CHEIA DE POSSIBILIDADES.
         </h2>
@@ -243,7 +243,7 @@ export default function SecaoLocalizacao() {
         />
       </div>
 
-      {/* 6. BOTÕES WAZE E MAPA */}
+      {/* 6. BOTÕES WAZE E MAPA COM ICONES INLINE (SVG) */}
       <div className="max-w-[1440px] mx-auto px-6 flex flex-col sm:flex-row justify-center items-center gap-4 -mt-12 pb-10 relative z-20">
         <a 
           href="https://www.waze.com/pt-BR/live-map/directions/br/sp/av.-novo-osasco,-1010?to=place.ChIJv0fH3n5VzpQRCVKR7Y5JzrM" 
@@ -251,7 +251,10 @@ export default function SecaoLocalizacao() {
           rel="noopener noreferrer" 
           className="bg-[#0099FF] text-white hover:bg-[#0088EE] font-bold px-8 py-3.5 rounded-full border-2 border-white shadow-xl flex items-center gap-3 transition-all transform hover:scale-105 text-sm"
         >
-          <Image src="/img/Localizacao/ico-waze.gif" alt="Waze" width={24} height={24} />
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.029 20.308c-1.528 0-3.003-.393-4.298-1.127l-5.467 1.48a1.002 1.002 0 0 1-1.242-1.229l1.458-5.263A9.972 9.972 0 0 1 1.25 9.914c0-5.474 4.836-9.914 10.779-9.914 5.942 0 10.779 4.44 10.779 9.914 0 5.475-4.837 9.914-10.779 9.914v.48h0z" fill="#FFF"/>
+            <path d="M7.742 11.23a1.455 1.455 0 1 0 0-2.909 1.455 1.455 0 0 0 0 2.91zm8.574 0a1.455 1.455 0 1 0 0-2.909 1.455 1.455 0 0 0 0 2.91zM8.36 14.18c.95 1.157 2.404 1.874 4 1.874 1.597 0 3.05-.717 4-1.874a.885.885 0 0 0-1.378-1.118c-.628.765-1.59 1.238-2.622 1.238s-1.993-.473-2.622-1.238A.885.885 0 0 0 8.36 14.18z" fill="#0099FF"/>
+          </svg>
           <span>Veja pelo Waze</span>
         </a>
 
@@ -261,7 +264,10 @@ export default function SecaoLocalizacao() {
           rel="noopener noreferrer" 
           className="bg-white text-gray-900 hover:bg-gray-100 font-bold px-8 py-3.5 rounded-full border-2 border-[#0099FF] shadow-xl flex items-center gap-3 transition-all transform hover:scale-105 text-sm"
         >
-          <Image src="/img/Localizacao/ico-mapa.gif" alt="Mapa" width={24} height={24} />
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z" fill="#EA4335"/>
+            <path d="M12 11.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" fill="#B31412"/>
+          </svg>
           <span>Ver mapa ampliado</span>
         </a>
       </div>

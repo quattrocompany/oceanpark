@@ -78,7 +78,7 @@ export default function SecaoImplantacao() {
   };
 
   return (
-    <section id="implantacao" className="w-full relative overflow-hidden pt-12 lg:pt-20 pb-0">
+    <section id="implantacao" className="w-full relative overflow-hidden pt-12 lg:pt-20 pb-24 sm:pb-32 lg:pb-40">
       
       {/* 1. Imagem de Fundo da Seção */}
       <div className="absolute inset-0 w-full h-full z-0">
@@ -91,13 +91,13 @@ export default function SecaoImplantacao() {
         />
       </div>
 
-      {/* 2. ELEMENTO LAZER (Encostado no Canto Inferior Direito) */}
-      <div className="absolute bottom-0 right-0 z-20 w-32 sm:w-44 md:w-60 lg:w-72 xl:w-80 pointer-events-none">
+      {/* 2. ELEMENTO LAZER (Ancorado no canto inferior direito e ampliado) */}
+      <div className="absolute bottom-0 right-0 z-20 w-36 sm:w-48 md:w-64 lg:w-80 xl:w-96 pointer-events-none">
         <Image
           src="/img/Implantacao/lazer.png"
           alt="Elemento Lazer Decorativo"
-          width={400}
-          height={300}
+          width={500}
+          height={380}
           className="w-full h-auto object-contain object-bottom-right block"
         />
       </div>
@@ -205,8 +205,8 @@ export default function SecaoImplantacao() {
           </div>
 
           {/* Coluna Direita: Legendas das Plantas */}
-          <div className="lg:col-span-5 bg-white/85 backdrop-blur-md p-6 sm:p-8 rounded-3xl shadow-xl border border-white/40 z-20">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 text-[11px] sm:text-[12px] font-semibold text-gray-800">
+          <div className="lg:col-span-5 bg-white/85 backdrop-blur-md p-5 sm:p-7 md:p-8 rounded-3xl shadow-xl border border-white/40 z-20">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-6 text-[11px] sm:text-[12px] font-semibold text-gray-800">
               
               {/* Pavimento Térreo */}
               <div>
@@ -278,7 +278,7 @@ export default function SecaoImplantacao() {
               priority
             />
 
-            {/* Titulo no Modal */}
+            {/* Título no Modal */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 bg-black/70 backdrop-blur-md text-white text-xs sm:text-sm font-bold uppercase px-6 py-2 rounded-full border border-white/20 shadow-lg">
               {plantSlides[currentSlide].title}
             </div>

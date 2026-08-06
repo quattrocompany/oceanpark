@@ -52,16 +52,16 @@ export default function SecaoContato() {
     setStatus("loading");
     const emailLimpo = sanitizeEmail(formData.email);
 
-    const data = {
-      nome: formData.nome,
-      email: emailLimpo,
-      telefone: formData.telefone,
-      mensagem: formData.mensagem,
-      captcha: captchaToken,
-      config: "ocean_park_osasco",
-      token: "NTZmQzZGY5NDY2Mjg0ODRhYjNiZjNhZG",
-      via: "formulario",
-    };
+const data = {
+  nome: formData.nome,
+  email: emailLimpo,
+  telefone: formData.telefone,
+  mensagem: formData.mensagem,
+  captcha: captchaToken,
+  config: "ocean_park_osasco",
+  // REMOVIDO: token: "NTZmQzZGY5NDY2Mjg0ODRhYjNiZjNhZG", 
+  via: "formulario",
+};
 
     try {
       const response = await fetch("/api/contato", {
