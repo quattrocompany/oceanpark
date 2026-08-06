@@ -57,7 +57,7 @@ export default function SecaoLocalizacao() {
       
       {/* 1. TÍTULO OFICIAL DA SEÇÃO */}
       <div className="max-w-[1440px] mx-auto px-6 md:px-12 text-center mb-8 sm:mb-12">
-        <h2 className="text-xl sm:text-3xl lg:text-4xl font-bold font-[family-name:var(--font-josefin-slab)] uppercase leading-tight tracking-wide">
+        <h2 className="text-xl sm:text-3xl lg:text-4xl font-bold font-[family-name:var(--font-josefin-slab)]  leading-tight tracking-wide">
           A EXCELENTE LOCALIZAÇÃO DO OCEAN PARK É UM CONVITE <br className="hidden sm:inline" />
           PARA UMA VIDA LEVE, PRÁTICA E CHEIA DE POSSIBILIDADES.
         </h2>

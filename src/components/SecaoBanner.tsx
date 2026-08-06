@@ -46,7 +46,7 @@ export default function SecaoBanner() {
       <div className="hidden sm:block relative z-10 w-full max-w-[1440px] mx-auto overflow-hidden">
         
         {/* Título travado proporcionalmente na barra marrom da imagem */}
-        <div className="absolute top-[21%] left-0 w-full px-6 text-center z-30 pointer-events-none -translate-y-1/2">
+        <div className="absolute top-[20%] left-0 w-full px-6 text-center z-30 pointer-events-none -translate-y-1/2">
           <h1 className="text-xl sm:text-1xl md:text-2xl lg:text-3xl font-bold text-[#ff7b00] font-josefinSans tracking-widest uppercase drop-shadow-md">
             OPORTUNIDADE EM PADROEIRA / OSASCO
           </h1>

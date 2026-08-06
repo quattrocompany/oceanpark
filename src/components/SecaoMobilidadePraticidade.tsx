@@ -80,9 +80,9 @@ export default function SecaoMobilidadePraticidade() {
 
         {/* TEXTO SOBREPOSTO (Ajustado para não vazar no mobile) */}
         <div className="absolute inset-0 flex items-center">
-          <div className="w-full max-w-[1440px] mx-auto px-5 md:px-12 flex">
+          <div className="w-full max-w-[1440px] mx-auto px-5 md:px12 flex">
             <div className="w-[85%] sm:max-w-[70%] text-white drop-shadow-xl -mt-4 sm:mt-0">
-              <p className="text-[13px] leading-tight sm:text-3xl lg:text-6xl font-[family-name:var(--font-josefin-slab)] ">
+              <p className="text-[13px] leading-tight sm:text-3xl lg:text-5xl font-[family-name:var(--font-josefin-slab)] ">
                 Mobilidade e praticidade
               </p>
               <h2 className="text-[16px] leading-tight sm:text-4xl lg:text-5xl font-extrabold font-[family-name:var(--font-josefin-slab)] uppercase tracking-wide mt-1">

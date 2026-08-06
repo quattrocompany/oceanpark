@@ -13,7 +13,7 @@ export async function POST(request: Request) {
 
     const isWhatsapp = via === "whatsapp" || mensagem === "Contato via modal WhatsApp";
 
-    // 1. Tentar validar reCAPTCHA (Ignora se for via WhatsApp)
+    // 1. Validar reCAPTCHA no Google (Ignora se for via WhatsApp)
     if (!isWhatsapp && captcha && process.env.RECAPTCHA_SECRET_KEY) {
       try {
         const params = new URLSearchParams({
@@ -29,6 +29,14 @@ export async function POST(request: Request) {
 
         const recaptchaJson = await recaptchaRes.json();
         console.log(">>> RECAPTCHA GOOGLE:", recaptchaJson);
+
+        if (!recaptchaJson.success) {
+          console.error(">>> ERRO: reCAPTCHA inválido.", recaptchaJson["error-codes"]);
+          return NextResponse.json(
+            { error: "Falha na verificação do reCAPTCHA." },
+            { status: 400 }
+          );
+        }
       } catch (captchaErr) {
         console.error(">>> ERRO CONSULTA RECAPTCHA:", captchaErr);
       }
@@ -39,7 +47,7 @@ export async function POST(request: Request) {
     const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
 
     if (!supabaseUrl || !supabaseKey) {
-      console.error(">>> ERRO: Variáveis do Supabase não configuradas.");
+      console.error(">>> ERRO: Variáveis do Supabase não configuradas no .env.local");
       return NextResponse.json({ error: "Configuração do banco ausente." }, { status: 500 });
     }
 
@@ -63,9 +71,9 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: dbError.message }, { status: 500 });
     }
 
-    console.log(">>> LEAD OCEAN PARK SALVO NO SUPABASE:", dbData);
+    console.log(">>> LEAD OCEAN PARK SALVO NO SUPABASE COM SUCESSO:", dbData);
 
-    // 3. Enviar E-mail em segundo plano (Não trava o envio do WhatsApp)
+    // 3. Enviar E-mail em segundo plano
     if (process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS) {
       (async () => {
         try {

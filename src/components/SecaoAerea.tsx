@@ -33,9 +33,9 @@ export default function SecaoAerea() {
         
         {/* Título Aumentado no Mobile com Quebra de Linha em "transformam" */}
         <div className="text-center mb-6 md:mb-8 px-2">
-          <h2 className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#DD6810] font-[family-name:var(--font-josefin-slab)] leading-tight">
-            Mobilidade e praticidade que transformam 
-            o seu dia a dia.
+          <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold uppercase  text-[#DD6810] font-[family-name:var(--font-josefin-slab)] leading-tight">
+            Um verdadeiro clube à sua disposição <br />
+            com localização excelente!
           </h2>
         </div>
 
