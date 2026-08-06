@@ -2,100 +2,110 @@ import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { createClient } from "@supabase/supabase-js";
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
-const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
-const supabase = createClient(supabaseUrl, supabaseKey);
+export const dynamic = "force-dynamic";
 
 export async function POST(request: Request) {
   try {
-    const { nome, email, telefone, mensagem, captcha, via } = await request.json();
+    const body = await request.json();
+    const { nome, email, telefone, mensagem, captcha, via } = body;
 
-    console.log("--- INÍCIO DO PROCESSAMENTO DE LEAD ---");
-    console.log("Lead:", { nome, email, telefone, via });
+    console.log(">>> NOVO LEAD OCEAN PARK RECEBIDO:", { nome, email, telefone, via });
 
-    // 1. Validar reCAPTCHA no Google (Formato application/x-www-form-urlencoded)
-    if (captcha && process.env.RECAPTCHA_SECRET_KEY) {
-      const params = new URLSearchParams({
-        secret: process.env.RECAPTCHA_SECRET_KEY,
-        response: captcha,
-      });
+    const isWhatsapp = via === "whatsapp" || mensagem === "Contato via modal WhatsApp";
 
-      const recaptchaRes = await fetch("https://www.google.com/recaptcha/api/siteverify", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: params.toString(),
-      });
+    // 1. Tentar validar reCAPTCHA (Ignora se for via WhatsApp)
+    if (!isWhatsapp && captcha && process.env.RECAPTCHA_SECRET_KEY) {
+      try {
+        const params = new URLSearchParams({
+          secret: process.env.RECAPTCHA_SECRET_KEY,
+          response: captcha,
+        });
 
-      const recaptchaJson = await recaptchaRes.json();
-      console.log("Resposta do reCAPTCHA:", recaptchaJson);
+        const recaptchaRes = await fetch("https://www.google.com/recaptcha/api/siteverify", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: params.toString(),
+        });
 
-      if (!recaptchaJson.success) {
-        console.error("Erro no reCAPTCHA:", recaptchaJson["error-codes"]);
-        return NextResponse.json(
-          { error: "Falha na verificação do reCAPTCHA." },
-          { status: 400 }
-        );
+        const recaptchaJson = await recaptchaRes.json();
+        console.log(">>> RECAPTCHA GOOGLE:", recaptchaJson);
+      } catch (captchaErr) {
+        console.error(">>> ERRO CONSULTA RECAPTCHA:", captchaErr);
       }
     }
 
     // 2. Gravar Lead no Supabase
-    const { error: dbError } = await supabase.from("leads").insert([
-      {
-        nome,
-        email,
-        telefone,
-        mensagem: mensagem || "Contato via site",
-        origem: via === "whatsapp" ? "WhatsApp Modal" : "Formulário de Contato",
-      },
-    ]);
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
+    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
+
+    if (!supabaseUrl || !supabaseKey) {
+      console.error(">>> ERRO: Variáveis do Supabase não configuradas.");
+      return NextResponse.json({ error: "Configuração do banco ausente." }, { status: 500 });
+    }
+
+    const supabase = createClient(supabaseUrl, supabaseKey);
+
+    const { data: dbData, error: dbError } = await supabase
+      .from("leads")
+      .insert([
+        {
+          nome: nome || "Não informado",
+          email: email || "Não informado",
+          telefone: telefone || "Não informado",
+          mensagem: mensagem || (isWhatsapp ? "Contato via modal WhatsApp" : "Contato via site Ocean Park"),
+          origem: isWhatsapp ? "WhatsApp Modal - Ocean Park" : "Formulário de Contato - Ocean Park",
+        },
+      ])
+      .select();
 
     if (dbError) {
-      console.error("Erro ao salvar no Supabase:", dbError);
-    } else {
-      console.log("Lead gravado com sucesso no Supabase!");
+      console.error(">>> ERRO BANCO SUPABASE:", dbError);
+      return NextResponse.json({ error: dbError.message }, { status: 500 });
     }
 
-    // 3. Tentar enviar e-mail por Nodemailer (se configurado)
-    if (process.env.SMTP_HOST && process.env.SMTP_USER) {
-      try {
-        const transporter = nodemailer.createTransport({
-          host: process.env.SMTP_HOST,
-          port: Number(process.env.SMTP_PORT) || 465,
-          secure: true,
-          auth: {
-            user: process.env.SMTP_USER,
-            pass: process.env.SMTP_PASS,
-          },
-        });
+    console.log(">>> LEAD OCEAN PARK SALVO NO SUPABASE:", dbData);
 
-        await transporter.sendMail({
-          from: `"Site Ocean Park" <${process.env.SMTP_USER}>`,
-          to: process.env.SMTP_USER,
-          replyTo: email,
-          subject: `Novo Lead - Ocean Park: ${nome}`,
-          html: `
-            <h2>Novo contato recebido pelo site Ocean Park</h2>
-            <p><strong>Nome:</strong> ${nome}</p>
-            <p><strong>E-mail:</strong> ${email}</p>
-            <p><strong>Telefone:</strong> ${telefone}</p>
-            <p><strong>Origem:</strong> ${via === "whatsapp" ? "Atendimento WhatsApp" : "Formulário de Contato"}</p>
-            <br/>
-            <p><strong>Mensagem:</strong></p>
-            <p>${(mensagem || "").replace(/\n/g, '<br/>')}</p>
-          `,
-        });
-        console.log("E-mail de notificação enviado!");
-      } catch (emailErr) {
-        console.error("Erro no e-mail (Lead salvo no banco):", emailErr);
-      }
+    // 3. Enviar E-mail em segundo plano (Não trava o envio do WhatsApp)
+    if (process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS) {
+      (async () => {
+        try {
+          const transporter = nodemailer.createTransport({
+            host: process.env.SMTP_HOST,
+            port: Number(process.env.SMTP_PORT) || 465,
+            secure: true,
+            auth: {
+              user: process.env.SMTP_USER,
+              pass: process.env.SMTP_PASS,
+            },
+            connectionTimeout: 5000,
+          });
+
+          await transporter.sendMail({
+            from: `"Site Ocean Park" <${process.env.SMTP_USER}>`,
+            to: process.env.SMTP_USER,
+            replyTo: email,
+            subject: `Novo Lead - Ocean Park (${isWhatsapp ? "WhatsApp" : "Formulário"}): ${nome}`,
+            html: `
+              <h2>Novo contato recebido pelo site Ocean Park</h2>
+              <p><strong>Nome:</strong> ${nome}</p>
+              <p><strong>E-mail:</strong> ${email}</p>
+              <p><strong>Telefone:</strong> ${telefone}</p>
+              <p><strong>Origem:</strong> ${isWhatsapp ? "Atendimento WhatsApp" : "Formulário de Contato"}</p>
+              <br/>
+              <p><strong>Mensagem:</strong></p>
+              <p>${(mensagem || "").replace(/\n/g, "<br/>")}</p>
+            `,
+          });
+          console.log(">>> E-MAIL OCEAN PARK ENVIADO COM SUCESSO");
+        } catch (emailErr) {
+          console.error(">>> AVISO ENVIO DE EMAIL (SMTP):", emailErr);
+        }
+      })();
     }
 
-    return NextResponse.json({ success: true, message: "Lead processado com sucesso!" }, { status: 200 });
-
-  } catch (error) {
-    console.error("Erro interno no servidor:", error);
-    return NextResponse.json({ error: "Erro interno ao processar o envio." }, { status: 500 });
+    return NextResponse.json({ success: true, message: "Lead processado com sucesso!", data: dbData }, { status: 200 });
+  } catch (error: any) {
+    console.error(">>> ERRO GERAL API:", error);
+    return NextResponse.json({ error: error?.message || "Erro interno." }, { status: 500 });
   }
 }

@@ -3,7 +3,13 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
-export default function Footer({ onOpenWhatsapp }: { onOpenWhatsapp?: () => void }) {
+interface FooterProps {
+  onOpenWhatsapp?: () => void;
+  onOpenPrivacidade?: () => void;
+  onOpenLgpd?: () => void;
+}
+
+export default function Footer({ onOpenWhatsapp, onOpenPrivacidade, onOpenLgpd }: FooterProps) {
   const [showStickyBar, setShowStickyBar] = useState(false);
 
   useEffect(() => {
@@ -28,12 +34,30 @@ export default function Footer({ onOpenWhatsapp }: { onOpenWhatsapp?: () => void
     }
   };
 
+  const handlePrivacidadeClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (onOpenPrivacidade) {
+      onOpenPrivacidade();
+    } else {
+      window.dispatchEvent(new CustomEvent("openPrivacidadeModal"));
+    }
+  };
+
+  const handleLgpdClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (onOpenLgpd) {
+      onOpenLgpd();
+    } else {
+      window.dispatchEvent(new CustomEvent("openLgpdModal"));
+    }
+  };
+
   return (
     <>
       <footer className="bg-white pt-12 pb-32 md:pb-40 relative z-10 w-full overflow-hidden">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
           
-          {/* Logos de Parcerias - Ordem Padrão Lumini 3 */}
+          {/* Logos de Parcerias */}
           <div className="border-t border-gray-200 border-b py-10 mb-8">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-6 items-start justify-items-center text-center">
               
@@ -110,7 +134,14 @@ export default function Footer({ onOpenWhatsapp }: { onOpenWhatsapp?: () => void
           {/* Copyright e Links */}
           <div className="border-t border-gray-200 pt-6 text-center">
             <p className="text-[11px] sm:text-xs text-gray-400 font-medium">
-              © 2026 | Ocean Park Osasco | <a href="#termos" className="font-bold hover:text-[#0C82A0] transition-colors">Termos de Uso</a> e <a href="#privacidade" className="font-bold hover:text-[#0C82A0] transition-colors">Política de Privacidade</a>
+              © 2026 | Ocean Park Osasco |{" "}
+              <button onClick={handleLgpdClick} className="font-bold hover:text-[#0C82A0] transition-colors cursor-pointer">
+                Termos de Uso
+              </button>{" "}
+              e{" "}
+              <button onClick={handlePrivacidadeClick} className="font-bold hover:text-[#0C82A0] transition-colors cursor-pointer">
+                Política de Privacidade
+              </button>
             </p>
           </div>
 
@@ -140,7 +171,7 @@ export default function Footer({ onOpenWhatsapp }: { onOpenWhatsapp?: () => void
         <div className="max-w-[1440px] mx-auto flex flex-row items-stretch justify-center h-auto md:h-20 divide-x divide-white/20">
           
           <a 
-            href="tel:+551141644000" 
+            href="tel:+5511988568852" 
             className="md:hidden flex-1 flex items-center justify-center gap-3 text-white hover:bg-white/10 transition-colors py-4 md:py-0 group px-2"
           >
             <svg className="w-6 h-6 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">

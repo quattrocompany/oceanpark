@@ -6,7 +6,6 @@ import { useState, useEffect } from "react";
 export default function SecaoLocalizacao() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Lista de locais mapeados da pasta /img/Localizacao/
   const locais = [
     { name: "PRONTO SOCORRO DR. CONRRADO C. NUVOLINI", src: "/img/Localizacao/PRONTO SOCORRO DR. CONRRADO C. NUVOLINI.jpg" },
     { name: "PONTE METÁLICA", src: "/img/Localizacao/ponte-metalica.jpg" },
@@ -71,7 +70,7 @@ export default function SecaoLocalizacao() {
         <button
           onClick={prevSlide}
           aria-label="Anterior"
-          className="absolute left-1 sm:left-4 top-[38%] -translate-y-1/2 bg-[#DD6810] hover:bg-[#c45a0d] text-white p-2.5 sm:p-3 rounded-full shadow-lg transition-all z-20 focus:outline-none"
+          className="absolute left-1 sm:left-4 top-[38%] -translate-y-1/2 bg-[#DD6810] hover:bg-[#c45a0d] text-white p-2.5 sm:p-3 rounded-full shadow-lg transition-all z-20 focus:outline-none cursor-pointer"
         >
           <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M15 19l-7-7 7-7" />
@@ -135,7 +134,7 @@ export default function SecaoLocalizacao() {
         <button
           onClick={nextSlide}
           aria-label="Próximo"
-          className="absolute right-1 sm:right-4 top-[38%] -translate-y-1/2 bg-[#DD6810] hover:bg-[#c45a0d] text-white p-2.5 sm:p-3 rounded-full shadow-lg transition-all z-20 focus:outline-none"
+          className="absolute right-1 sm:right-4 top-[38%] -translate-y-1/2 bg-[#DD6810] hover:bg-[#c45a0d] text-white p-2.5 sm:p-3 rounded-full shadow-lg transition-all z-20 focus:outline-none cursor-pointer"
         >
           <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M9 5l7 7-7 7" />
@@ -148,7 +147,7 @@ export default function SecaoLocalizacao() {
             <button
               key={idx}
               onClick={() => setCurrentIndex(idx)}
-              className={`h-2.5 rounded-full transition-all duration-300 ${
+              className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
                 currentIndex === idx ? "w-6 bg-[#DD6810]" : "w-2.5 bg-white/40 hover:bg-white/70"
               }`}
               aria-label={`Ir para a foto ${idx + 1}`}
@@ -186,7 +185,6 @@ export default function SecaoLocalizacao() {
       <div className="w-full bg-[#DE6810] relative z-10 text-white min-h-[200px]">
         <div className="max-w-[1440px] mx-auto flex flex-col items-center justify-center relative py-12 px-6 lg:px-12">
           
-          {/* Textos Centralizados e Maiores */}
           <div className="flex flex-col items-center justify-center text-center space-y-4 md:space-y-6 z-20 w-full md:px-64">
             
             <h3 className="text-5xl sm:text-6xl lg:text-7xl font-black font-[family-name:var(--font-josefin-slab)] uppercase tracking-tight">
@@ -217,7 +215,6 @@ export default function SecaoLocalizacao() {
 
           </div>
 
-          {/* Selo MCMV - Altura da faixa (Desktop) e canto direito */}
           <div className="mt-8 md:mt-0 md:absolute md:right-4 lg:right-12 md:top-0 md:bottom-0 flex items-center justify-center w-56 sm:w-64 lg:w-72 h-28 md:h-full z-10 pointer-events-none">
             <div className="relative w-full h-full md:h-[80%] lg:h-[90%]">
               <Image 
@@ -276,7 +273,6 @@ export default function SecaoLocalizacao() {
           className="flex items-center justify-center gap-3 sm:gap-5 group cursor-pointer hover:scale-105 transition-transform focus:outline-none"
           aria-label="Abrir Atendimento WhatsApp"
         >
-          {/* Ícone Verde do WhatsApp */}
           <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 shrink-0">
             <svg viewBox="0 0 24 24" fill="none" className="w-full h-full text-[#25D366] drop-shadow-sm">
               <path
@@ -286,7 +282,6 @@ export default function SecaoLocalizacao() {
             </svg>
           </div>
 
-          {/* Número do Telefone no tom Azul da Marca */}
           <span className="text-4xl sm:text-6xl md:text-7xl font-extrabold text-[#0C82A0] tracking-tight group-hover:text-[#DD6810] transition-colors">
             98856.8852
           </span>

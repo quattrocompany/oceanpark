@@ -15,6 +15,7 @@ import SecaoMobilidadePraticidade from "@/components/SecaoMobilidadePraticidade"
 import SecaoLocalizacao from "@/components/SecaoLocalizacao";
 import Footer from "@/components/Footer";
 import CookieBanner from "@/components/CookieBanner";
+import ModalWhatsapp from "@/components/ModalWhatsapp";
 
 const montserrat = Montserrat({ 
   subsets: ["latin"], 
