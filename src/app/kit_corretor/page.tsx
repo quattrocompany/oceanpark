@@ -31,7 +31,7 @@ export default function KitCorretorPage() {
         <div className="w-full relative z-10 pt-20 sm:pt-24 bg-[#0C82A0]">
           <div className="relative w-full max-w-[1920px] mx-auto">
             <Image
-              src="/img/kit/testeira.jpg"
+              src="/img/kit/hero_novo3.png"
               alt="Kit Corretor Ocean Park"
               width={1920}
               height={350}
