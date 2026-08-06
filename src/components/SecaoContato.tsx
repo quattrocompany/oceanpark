@@ -14,7 +14,7 @@ export default function SecaoContato() {
     setIsMounted(true);
   }, []);
 
-  const SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "6Lfd8pQrAAAAAGVj_aDG9H9VGq5H3Gi-iAMlpeX5";
+const SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "";
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
