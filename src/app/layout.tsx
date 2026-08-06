@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Montserrat, Josefin_Sans, Josefin_Slab } from "next/font/google";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 import ScrollToTop from "@/components/ScrollToTop";
 // @ts-ignore: allow importing global CSS without type declarations
 import "./globals.css";
@@ -88,6 +89,7 @@ export default function RootLayout({
           />
         </noscript>
         {children}
+        <Analytics />
       </body>
     </html>
   );
