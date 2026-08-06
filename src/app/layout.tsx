@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Montserrat, Josefin_Sans, Josefin_Slab } from "next/font/google";
 import Script from "next/script";
+import ScrollToTop from "@/components/ScrollToTop";
 // @ts-ignore: allow importing global CSS without type declarations
 import "./globals.css";
 
@@ -77,6 +78,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen bg-white text-[#333333] antialiased selection:bg-[#DD6810] selection:text-white">
+        <ScrollToTop />
         <noscript>
           <iframe 
             src="https://www.googletagmanager.com/ns.html?id=GTM-WRLQ2JWB"
