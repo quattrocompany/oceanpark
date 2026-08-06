@@ -78,7 +78,7 @@ export default function SecaoImplantacao() {
   };
 
   return (
-    <section id="implantacao" className="w-full relative overflow-hidden py-12 lg:py-20">
+    <section id="implantacao" className="w-full relative overflow-hidden pt-12 lg:pt-20 pb-0">
       
       {/* 1. Imagem de Fundo da Seção */}
       <div className="absolute inset-0 w-full h-full z-0">
@@ -91,14 +91,14 @@ export default function SecaoImplantacao() {
         />
       </div>
 
-      {/* 2. ELEMENTO LAZER (Canto Inferior Direito) */}
-      <div className="absolute bottom-5 right-0 z-20 w-32 sm:w-44 md:w-60 lg:w-72 xl:w-80 pointer-events-none">
+      {/* 2. ELEMENTO LAZER (Encostado no Canto Inferior Direito) */}
+      <div className="absolute bottom-0 right-0 z-20 w-32 sm:w-44 md:w-60 lg:w-72 xl:w-80 pointer-events-none">
         <Image
           src="/img/Implantacao/lazer.png"
           alt="Elemento Lazer Decorativo"
           width={400}
           height={300}
-          className="w-full h-auto object-contain object-bottom-right"
+          className="w-full h-auto object-contain object-bottom-right block"
         />
       </div>
 
