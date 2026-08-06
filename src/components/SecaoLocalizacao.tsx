@@ -215,17 +215,7 @@ export default function SecaoLocalizacao() {
 
           </div>
 
-          {/* MCMV: Oculto no Mobile (hidden), exibido apenas no Desktop (sm:flex) */}
-          <div className="hidden sm:flex absolute right-0 bottom-0 top-0 items-center justify-end w-48 sm:w-64 lg:w-80 z-10 pointer-events-none">
-            <div className="relative w-full h-[80%] lg:h-[90%]">
-              <Image 
-                src="/img/Visite/mcmv-plantas.png" 
-                alt="Minha Casa Minha Vida" 
-                fill 
-                className="object-contain object-right" 
-              />
-            </div>
-          </div>
+
 
         </div>
       </div>
