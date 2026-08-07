@@ -4,16 +4,20 @@ import { NextResponse } from "next/server";
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { username, password } = body;
+    const username = body.username?.toString().trim();
+    const password = body.password?.toString().trim();
 
-    // Credenciais exclusivas da agência
     if (username === "vendrix" && password === "GAuys87H98*71ts") {
-      cookies().set("admin_session", "autenticado", {
+      const cookieStore = await cookies();
+
+      cookieStore.set("admin_session", "autenticado", {
         path: "/",
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        maxAge: 60 * 60 * 24 * 7, // Fica logado por 7 dias
+        secure: false, 
+        sameSite: "lax",
+        maxAge: 60 * 60 * 24 * 7,
       });
+
       return NextResponse.json({ success: true });
     }
 
@@ -22,6 +26,10 @@ export async function POST(request: Request) {
       { status: 401 }
     );
   } catch (error) {
-    return NextResponse.json({ success: false }, { status: 500 });
+    console.error("Erro no servidor de login:", error);
+    return NextResponse.json(
+      { success: false, message: "Erro interno no servidor." },
+      { status: 500 }
+    );
   }
 }
