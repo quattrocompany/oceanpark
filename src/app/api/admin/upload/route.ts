@@ -1,43 +1,41 @@
-import { put } from "@vercel/blob";
+import { handleUpload, type HandleUploadBody } from "@vercel/blob/client";
 import { NextResponse } from "next/server";
 
-export async function POST(request: Request) {
+export async function POST(request: Request): Promise<NextResponse> {
+  const body = (await request.json()) as HandleUploadBody;
+
   try {
-    const token = process.env.BLOB_READ_WRITE_TOKEN;
-
-    if (!token) {
-      return NextResponse.json(
-        { error: "Token do Vercel Blob não encontrado (.env.local)." },
-        { status: 500 }
-      );
-    }
-
-    const formData = await request.formData();
-    const file = formData.get("file") as File;
-    const categoria = formData.get("categoria") as string;
-    const dataUpload = formData.get("dataUpload") as string;
-
-    if (!file || !categoria || !dataUpload) {
-      return NextResponse.json(
-        { error: "Arquivo ou informações pendentes na requisição." },
-        { status: 400 }
-      );
-    }
-
-    const pathname = `kit/${dataUpload}/${categoria}/${file.name}`;
-    
-    const blob = await put(pathname, file, {
-      access: "public",
-      addRandomSuffix: false,
-      token: token, 
+    const jsonResponse = await handleUpload({
+      body,
+      request,
+      onBeforeGenerateToken: async () => {
+        return {
+          allowedContentTypes: [
+            "image/jpeg",
+            "image/png",
+            "image/webp",
+            "application/pdf",
+            "application/zip",
+            "application/x-zip-compressed",
+            "application/x-rar-compressed",
+            "video/mp4",
+            "video/quicktime",
+          ],
+          addRandomSuffix: false,
+          tokenPayload: JSON.stringify({}),
+        };
+      },
+      onUploadCompleted: async ({ blob }) => {
+        console.log("Upload do Vercel Blob concluído com sucesso:", blob.url);
+      },
     });
 
-    return NextResponse.json(blob);
+    return NextResponse.json(jsonResponse);
   } catch (error: any) {
-    console.error("Erro no upload do Vercel Blob:", error);
+    console.error("Erro na geração do token de upload:", error);
     return NextResponse.json(
       { error: error?.message || "Erro interno no servidor de upload." },
-      { status: 500 }
+      { status: 400 }
     );
   }
 }

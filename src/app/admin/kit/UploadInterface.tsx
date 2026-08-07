@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { upload } from "@vercel/blob/client";
 
 interface ItemKit {
   id: string;
@@ -66,26 +67,13 @@ export default function UploadInterface() {
 
     try {
       for (const item of novosArquivos) {
-        const formData = new FormData();
-        formData.append("file", item.file);
-        formData.append("categoria", item.categoria);
-        formData.append("dataUpload", dataSelecao);
+        const pathname = `kit/${dataSelecao}/${item.categoria}/${item.file.name}`;
 
-        const res = await fetch("/api/admin/upload", {
-          method: "POST",
-          body: formData,
+        // Realiza o envio direto do navegador para o Vercel Blob sem passar pelo limite de 4.5MB da Vercel
+        await upload(pathname, item.file, {
+          access: "public",
+          handleUploadUrl: "/api/admin/upload",
         });
-
-        const contentType = res.headers.get("content-type");
-        if (!contentType || !contentType.includes("application/json")) {
-          throw new Error(`Erro ${res.status} no servidor. O Token pode estar ausente.`);
-        }
-
-        const data = await res.json();
-
-        if (!res.ok) {
-          throw new Error(data.error || "Erro ao salvar arquivo.");
-        }
       }
 
       alert("Arquivos publicados e salvos com sucesso!");
