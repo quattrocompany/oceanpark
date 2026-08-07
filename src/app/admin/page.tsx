@@ -53,7 +53,7 @@ export default function AdminLoginPage() {
         <div className="w-full relative z-10 pt-16 sm:pt-20 bg-[#1E293B] pb-8 flex items-center justify-center shadow-md">
           <div className="relative w-64 sm:w-80 md:w-96 h-24 sm:h-32">
             <Image
-              src="/img/logowhite.png"
+              src="/img/logo2.png"
               alt="Logo"
               fill
               className="object-contain"

@@ -17,7 +17,7 @@ export default function AdminKitPage() {
         <div className="w-full relative z-10 pt-16 sm:pt-20 bg-[#0C82A0] pb-8 flex items-center justify-center shadow-md">
           <div className="relative w-64 sm:w-80 md:w-96 h-24 sm:h-32">
             <Image
-              src="/img/header/logo_white.png"
+              src="/img/logo2.png"
               alt="Ocean Park Osasco"
               fill
               className="object-contain"
