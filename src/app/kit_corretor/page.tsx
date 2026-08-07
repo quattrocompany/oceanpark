@@ -132,7 +132,7 @@ export default function KitCorretorPage() {
                 <h2 className="text-2xl md:text-3xl font-bold text-[#0C82A0] font-[family-name:var(--font-josefin-slab)] uppercase tracking-wide">
                   Imagens Avulsas
                 </h2>
-                <p className="text-gray-500 text-sm">Baixe perspectivas individuais diretamente para o seu dispositivo.</p>
+                <p className="text-gray-500 text-sm">Faça o download dos arquivos individuais diretamente para o seu dispositivo.</p>
               </div>
 
               {/* Filtro de Histórico de Semanas */}
