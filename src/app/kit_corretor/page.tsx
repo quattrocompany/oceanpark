@@ -44,7 +44,16 @@ export default function KitCorretorPage() {
         {/* CONTEÚDO PRINCIPAL */}
         <div className="max-w-[1200px] mx-auto px-6 py-12">
           
-          {/* BOTÃO DE DOWNLOAD TOTAL DE DESTAQUE NO TOPO */}
+  
+          <div className="mb-12 text-center">
+            <h1 className="text-3xl md:text-5xl font-black text-[#0C82A0] font-[family-name:var(--font-josefin-slab)] uppercase tracking-tight mb-4">
+              Kit do Corretor
+            </h1>
+            <p className="text-gray-600 text-base max-w-2xl mx-auto">
+              Reunimos todo o conteúdo de apoio em um só lugar para você ter sempre à mão. Use sem moderação!
+            </p>
+          </div>
+        {/* BOTÃO DE DOWNLOAD TOTAL DE DESTAQUE NO TOPO */}
           <div className="mb-10 text-center bg-white p-8 rounded-2xl shadow-sm border border-gray-200 max-w-3xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
             <div className="text-center sm:text-left">
               <span className="bg-[#0C82A0]/10 text-[#0C82A0] text-xs font-bold uppercase px-3 py-1 rounded-full">
@@ -66,15 +75,6 @@ export default function KitCorretorPage() {
               </svg>
               Baixar Kit Completo (.ZIP)
             </a>
-          </div>
-
-          <div className="mb-12 text-center">
-            <h1 className="text-3xl md:text-5xl font-black text-[#0C82A0] font-[family-name:var(--font-josefin-slab)] uppercase tracking-tight mb-4">
-              Materiais por Categoria
-            </h1>
-            <p className="text-gray-600 text-base max-w-2xl mx-auto">
-              Ou escolha abaixo o tipo de material que prefere baixar individualmente.
-            </p>
           </div>
 
           {/* 1. BOXES DE DOWNLOADS SEPARADOS */}
