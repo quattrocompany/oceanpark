@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 interface ModalWhatsappProps {
@@ -13,6 +13,20 @@ export default function ModalWhatsapp({ isOpen, onClose }: ModalWhatsappProps) {
   const [formData, setFormData] = useState({ name: "", email: "", whatsapp: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [emailError, setEmailError] = useState("");
+  const [utms, setUtms] = useState({ source: "", medium: "", campaign: "", content: "", term: "" });
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      setUtms({
+        source: params.get("utm_source") || "",
+        medium: params.get("utm_medium") || "",
+        campaign: params.get("utm_campaign") || "",
+        content: params.get("utm_content") || "",
+        term: params.get("utm_term") || "",
+      });
+    }
+  }, []);
 
   if (!isOpen) return null;
 
@@ -21,10 +35,8 @@ export default function ModalWhatsapp({ isOpen, onClose }: ModalWhatsappProps) {
     if (!digits) return "";
     if (digits.length <= 2) return `(${digits}`;
     if (digits.length <= 6) return `(${digits.slice(0, 2)}) ${digits.slice(2)}`;
-    if (digits.length <= 10) {
-      return `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(6)}`;
-    }
-    return `(${digits.slice(0, 2)}) ${digits.slice(2, 3)} ${digits.slice(3, 7)}-${digits.slice(7)}`;
+    if (digits.length <= 10) return `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(6)}`;
+    return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`;
   };
 
   const sanitizeEmail = (email: string) => {
@@ -59,6 +71,7 @@ export default function ModalWhatsapp({ isOpen, onClose }: ModalWhatsappProps) {
           telefone: formData.whatsapp,
           mensagem: "Contato via modal WhatsApp",
           via: "whatsapp",
+          utms: utms,
         }),
       });
     } catch (err) {

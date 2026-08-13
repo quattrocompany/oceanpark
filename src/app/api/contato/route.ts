@@ -9,9 +9,9 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { nome, email, telefone, mensagem, captcha, via } = body;
+    const { nome, email, telefone, mensagem, captcha, via, utms } = body;
 
-    console.log(">>> NOVO LEAD OCEAN PARK RECEBIDO:", { nome, email, telefone, via });
+    console.log(">>> NOVO LEAD OCEAN PARK RECEBIDO:", { nome, email, telefone, via, utms });
 
     const isWhatsapp = via === "whatsapp" || via === "modal_whatsapp" || mensagem === "Contato via modal WhatsApp";
 
@@ -112,9 +112,7 @@ export async function POST(request: Request) {
       console.warn(">>> AVISO: RESEND_API_KEY ausente nas variáveis de ambiente.");
     }
 
-    // ==========================================
-    // 4. ENVIO PARA O WEBHOOK DA EXENT (OCEAN PARK)
-    // ==========================================
+    // 4. Enviar Lead para o Webhook da Exent (Ocean Park com UTMs)
     try {
       const webhookUrl = "https://hub.exent.com.br/api/webhook/inbound/166d8947e4cc553970bd";
       
@@ -124,7 +122,12 @@ export async function POST(request: Request) {
         telefone: telefone || "Não informado",
         mensagem: mensagemTexto,
         origem: origemTexto,
-        data_cadastro: new Date().toISOString()
+        data_cadastro: new Date().toISOString(),
+        utm_source: utms?.source || "",
+        utm_medium: utms?.medium || "",
+        utm_campaign: utms?.campaign || "",
+        utm_content: utms?.content || "",
+        utm_term: utms?.term || ""
       };
 
       const webhookRes = await fetch(webhookUrl, {
@@ -141,7 +144,6 @@ export async function POST(request: Request) {
     } catch (webhookErr) {
       console.error(">>> ERRO DE EXCEÇÃO NO WEBHOOK EXENT (OCEAN):", webhookErr);
     }
-    // ==========================================
 
     return NextResponse.json({ success: true, message: "Lead processado com sucesso!", data: dbData }, { status: 200 });
   } catch (error: any) {
