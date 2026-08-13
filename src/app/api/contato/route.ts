@@ -44,6 +44,9 @@ export async function POST(request: Request) {
       }
     }
 
+    const origemTexto = isWhatsapp ? "WhatsApp Modal - Ocean Park" : "Formulário de Contato - Ocean Park";
+    const mensagemTexto = mensagem || (isWhatsapp ? "Contato via modal WhatsApp" : "Contato via site Ocean Park");
+
     // 2. Gravar Lead no Supabase
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
     const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
@@ -62,8 +65,8 @@ export async function POST(request: Request) {
           nome: nome || "Não informado",
           email: email || "Não informado",
           telefone: telefone || "Não informado",
-          mensagem: mensagem || (isWhatsapp ? "Contato via modal WhatsApp" : "Contato via site Ocean Park"),
-          origem: isWhatsapp ? "WhatsApp Modal - Ocean Park" : "Formulário de Contato - Ocean Park",
+          mensagem: mensagemTexto,
+          origem: origemTexto,
         },
       ])
       .select();
@@ -78,8 +81,7 @@ export async function POST(request: Request) {
     // 3. Enviar E-mail via Resend API
     if (process.env.RESEND_API_KEY) {
       try {
-        // Altere para o e-mail de remetente com domínio verificado no Resend
-const sender = "Site Ocean Park <contato@oceanosasco.com.br>";
+        const sender = "Site Ocean Park <contato@oceanosasco.com.br>";
 
         const { data: emailData, error: emailErr } = await resend.emails.send({
           from: sender,
@@ -91,10 +93,10 @@ const sender = "Site Ocean Park <contato@oceanosasco.com.br>";
             <p><strong>Nome:</strong> ${nome}</p>
             <p><strong>E-mail:</strong> ${email}</p>
             <p><strong>Telefone:</strong> ${telefone}</p>
-            <p><strong>Origem:</strong> ${isWhatsapp ? "Atendimento WhatsApp" : "Formulário de Contato"}</p>
+            <p><strong>Origem:</strong> ${origemTexto}</p>
             <br/>
             <p><strong>Mensagem:</strong></p>
-            <p>${(mensagem || "").replace(/\n/g, "<br/>")}</p>
+            <p>${(mensagemTexto || "").replace(/\n/g, "<br/>")}</p>
           `,
         });
 
@@ -109,6 +111,37 @@ const sender = "Site Ocean Park <contato@oceanosasco.com.br>";
     } else {
       console.warn(">>> AVISO: RESEND_API_KEY ausente nas variáveis de ambiente.");
     }
+
+    // ==========================================
+    // 4. ENVIO PARA O WEBHOOK DA EXENT (OCEAN PARK)
+    // ==========================================
+    try {
+      const webhookUrl = "https://hub.exent.com.br/api/webhook/inbound/166d8947e4cc553970bd";
+      
+      const webhookPayload = {
+        nome: nome || "Não informado",
+        email: email || "Não informado",
+        telefone: telefone || "Não informado",
+        mensagem: mensagemTexto,
+        origem: origemTexto,
+        data_cadastro: new Date().toISOString()
+      };
+
+      const webhookRes = await fetch(webhookUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(webhookPayload),
+      });
+
+      if (webhookRes.ok) {
+        console.log(">>> WEBHOOK EXENT (OCEAN) DISPARADO COM SUCESSO");
+      } else {
+        console.error(">>> ERRO NO WEBHOOK EXENT (OCEAN). Status:", webhookRes.status);
+      }
+    } catch (webhookErr) {
+      console.error(">>> ERRO DE EXCEÇÃO NO WEBHOOK EXENT (OCEAN):", webhookErr);
+    }
+    // ==========================================
 
     return NextResponse.json({ success: true, message: "Lead processado com sucesso!", data: dbData }, { status: 200 });
   } catch (error: any) {
