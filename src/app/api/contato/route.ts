@@ -1,8 +1,10 @@
 import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
 import { createClient } from "@supabase/supabase-js";
 
 export const dynamic = "force-dynamic";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: Request) {
   try {
@@ -11,7 +13,7 @@ export async function POST(request: Request) {
 
     console.log(">>> NOVO LEAD OCEAN PARK RECEBIDO:", { nome, email, telefone, via });
 
-    const isWhatsapp = via === "whatsapp" || mensagem === "Contato via modal WhatsApp";
+    const isWhatsapp = via === "whatsapp" || via === "modal_whatsapp" || mensagem === "Contato via modal WhatsApp";
 
     // 1. Validar reCAPTCHA no Google (Ignora se for via WhatsApp)
     if (!isWhatsapp && captcha && process.env.RECAPTCHA_SECRET_KEY) {
@@ -47,7 +49,7 @@ export async function POST(request: Request) {
     const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
 
     if (!supabaseUrl || !supabaseKey) {
-      console.error(">>> ERRO: Variáveis do Supabase não configuradas no .env.local");
+      console.error(">>> ERRO: Variáveis do Supabase não configuradas.");
       return NextResponse.json({ error: "Configuração do banco ausente." }, { status: 500 });
     }
 
@@ -73,42 +75,39 @@ export async function POST(request: Request) {
 
     console.log(">>> LEAD OCEAN PARK SALVO NO SUPABASE COM SUCESSO:", dbData);
 
-    // 3. Enviar E-mail em segundo plano
-    if (process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS) {
-      (async () => {
-        try {
-          const transporter = nodemailer.createTransport({
-            host: process.env.SMTP_HOST,
-            port: Number(process.env.SMTP_PORT) || 465,
-            secure: true,
-            auth: {
-              user: process.env.SMTP_USER,
-              pass: process.env.SMTP_PASS,
-            },
-            connectionTimeout: 5000,
-          });
+    // 3. Enviar E-mail via Resend API
+    if (process.env.RESEND_API_KEY) {
+      try {
+        // Altere para o e-mail de remetente com domínio verificado no Resend
+        const sender = "Site Ocean Park <contato@novacalifornia.com.br>";
 
-          await transporter.sendMail({
-            from: `"Site Ocean Park" <${process.env.SMTP_USER}>`,
-            to: process.env.SMTP_USER,
-            replyTo: email,
-            subject: `Novo Lead - Ocean Park (${isWhatsapp ? "WhatsApp" : "Formulário"}): ${nome}`,
-            html: `
-              <h2>Novo contato recebido pelo site Ocean Park</h2>
-              <p><strong>Nome:</strong> ${nome}</p>
-              <p><strong>E-mail:</strong> ${email}</p>
-              <p><strong>Telefone:</strong> ${telefone}</p>
-              <p><strong>Origem:</strong> ${isWhatsapp ? "Atendimento WhatsApp" : "Formulário de Contato"}</p>
-              <br/>
-              <p><strong>Mensagem:</strong></p>
-              <p>${(mensagem || "").replace(/\n/g, "<br/>")}</p>
-            `,
-          });
-          console.log(">>> E-MAIL OCEAN PARK ENVIADO COM SUCESSO");
-        } catch (emailErr) {
-          console.error(">>> AVISO ENVIO DE EMAIL (SMTP):", emailErr);
+        const { data: emailData, error: emailErr } = await resend.emails.send({
+          from: sender,
+          to: ["estandeocean@gmail.com"],
+          replyTo: (email && email.includes("@")) ? email : undefined,
+          subject: `Novo Lead - Ocean Park (${isWhatsapp ? "WhatsApp" : "Formulário"}): ${nome}`,
+          html: `
+            <h2>Novo contato recebido pelo site Ocean Park</h2>
+            <p><strong>Nome:</strong> ${nome}</p>
+            <p><strong>E-mail:</strong> ${email}</p>
+            <p><strong>Telefone:</strong> ${telefone}</p>
+            <p><strong>Origem:</strong> ${isWhatsapp ? "Atendimento WhatsApp" : "Formulário de Contato"}</p>
+            <br/>
+            <p><strong>Mensagem:</strong></p>
+            <p>${(mensagem || "").replace(/\n/g, "<br/>")}</p>
+          `,
+        });
+
+        if (emailErr) {
+          console.error(">>> ERRO RESEND:", emailErr);
+        } else {
+          console.log(">>> E-MAIL OCEAN PARK DISPARADO COM SUCESSO VIA RESEND:", emailData);
         }
-      })();
+      } catch (resendError) {
+        console.error(">>> ERRO EXCEÇÃO RESEND:", resendError);
+      }
+    } else {
+      console.warn(">>> AVISO: RESEND_API_KEY ausente nas variáveis de ambiente.");
     }
 
     return NextResponse.json({ success: true, message: "Lead processado com sucesso!", data: dbData }, { status: 200 });

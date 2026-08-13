@@ -24,7 +24,6 @@ export default function SecaoContato() {
 
   const SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "";
 
-  // Máscara dinâmica de telefone: (11) 4164-4000 ou (11) 9 9999-9999
   const maskPhone = (value: string) => {
     const digits = value.replace(/\D/g, "").slice(0, 11);
     if (!digits) return "";
@@ -36,7 +35,6 @@ export default function SecaoContato() {
     return `(${digits.slice(0, 2)}) ${digits.slice(2, 3)} ${digits.slice(3, 7)}-${digits.slice(7)}`;
   };
 
-  // Limpeza de e-mail (remove espaços, minusculas e troca vírgula por ponto)
   const sanitizeEmail = (email: string) => {
     return email.trim().toLowerCase().replace(/,/g, ".");
   };
@@ -52,16 +50,15 @@ export default function SecaoContato() {
     setStatus("loading");
     const emailLimpo = sanitizeEmail(formData.email);
 
-const data = {
-  nome: formData.nome,
-  email: emailLimpo,
-  telefone: formData.telefone,
-  mensagem: formData.mensagem,
-  captcha: captchaToken,
-  config: "ocean_park_osasco",
-  // REMOVIDO: token: "NTZmQzZGY5NDY2Mjg0ODRhYjNiZjNhZG", 
-  via: "formulario",
-};
+    const data = {
+      nome: formData.nome,
+      email: emailLimpo,
+      telefone: formData.telefone,
+      mensagem: formData.mensagem,
+      captcha: captchaToken,
+      config: "ocean_park_osasco",
+      via: "formulario",
+    };
 
     try {
       const response = await fetch("/api/contato", {
@@ -73,7 +70,6 @@ const data = {
       if (response.ok) {
         setStatus("success");
         
-        // Disparo do GTM
         if (typeof window !== "undefined" && (window as any).dataLayer) {
           (window as any).dataLayer.push({ 
             event: "form_contato", 
@@ -99,11 +95,8 @@ const data = {
   return (
     <section id="contato" className="pt-0 pb-12 md:pb-20 bg-white relative z-10 overflow-visible">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12 overflow-visible">
-        
-        {/* Card Principal */}
         <div className="relative bg-[#DD6810] rounded-b-[2.5rem] shadow-2xl flex flex-col lg:flex-row items-stretch justify-between overflow-hidden min-h-[600px] lg:min-h-[680px]">
           
-          {/* Lado Esquerdo / Imagem Ilustrativa Fachada */}
           <div className="relative w-full lg:w-1/2 flex flex-col justify-end overflow-hidden order-2 lg:order-1 min-h-[400px] sm:min-h-[500px] lg:min-h-[650px]">
             <Image 
               src="/img/Mobilidade e Praticidade/01.jpg" 
@@ -116,9 +109,7 @@ const data = {
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
           </div>
 
-          {/* Lado Direito / Formulário */}
           <div className="w-full lg:w-1/2 flex flex-col justify-center px-6 sm:px-12 lg:px-14 xl:px-16 py-10 sm:py-12 lg:py-16 xl:py-20 z-10 order-1 lg:order-2">
-            
             <h3 className="font-bold text-white text-xl sm:text-2xl lg:text-[28px] uppercase leading-tight mb-8 drop-shadow-sm text-left font-[family-name:var(--font-josefin-slab)] tracking-wide">
               CADASTRE-SE E RECEBA EM PRIMEIRA MÃO TODAS AS INFORMAÇÕES:
             </h3>
@@ -210,7 +201,7 @@ const data = {
                   <button 
                     type="submit" 
                     disabled={status === "loading"}
-                    className="w-full xl:w-auto bg-[#0C82A0] hover:bg-[#096a83] disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-black text-base uppercase tracking-widest px-12 py-4 rounded-full transition-all duration-300 shadow-xl hover:shadow-2xl active:scale-95 h-[78px]"
+                    className="w-full xl:w-auto bg-[#0C82A0] hover:bg-[#096a83] disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-black text-base uppercase tracking-widest px-12 py-4 rounded-full transition-all duration-300 shadow-xl hover:shadow-2xl active:scale-95 h-[78px] cursor-pointer"
                   >
                     {status === "loading" ? "ENVIANDO..." : "ENVIAR"}
                   </button>

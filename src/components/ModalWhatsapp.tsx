@@ -70,7 +70,16 @@ export default function ModalWhatsapp({ isOpen, onClose }: ModalWhatsappProps) {
       });
     }
 
-    const mensagemTexto = encodeURIComponent(`Olá! Meu nome é ${formData.name}. Gostaria de mais informações sobre o Ocean Park.`);
+    // MENSAGEM COM DADOS COMPLETOS PARA O WHATSAPP DO OCEAN PARK
+    const textoMensagem = 
+`Olá! Gostaria de mais informações sobre o Ocean Park.
+
+*Dados de contato:*
+• *Nome:* ${formData.name}
+• *E-mail:* ${emailLimpo}
+• *Telefone:* ${formData.whatsapp}`;
+
+    const mensagemTexto = encodeURIComponent(textoMensagem);
     const waUrl = `https://api.whatsapp.com/send?phone=5511988568852&text=${mensagemTexto}`;
 
     setFormData({ name: "", email: "", whatsapp: "" });
@@ -78,7 +87,7 @@ export default function ModalWhatsapp({ isOpen, onClose }: ModalWhatsappProps) {
     onClose();
 
     if (typeof window !== "undefined") {
-      window.location.href = waUrl;
+      window.open(waUrl, "_blank");
     }
   };
 
