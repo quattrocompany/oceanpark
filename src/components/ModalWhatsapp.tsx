@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 interface ModalWhatsappProps {
@@ -13,20 +13,6 @@ export default function ModalWhatsapp({ isOpen, onClose }: ModalWhatsappProps) {
   const [formData, setFormData] = useState({ name: "", email: "", whatsapp: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [emailError, setEmailError] = useState("");
-  const [utms, setUtms] = useState({ source: "", medium: "", campaign: "", content: "", term: "" });
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const params = new URLSearchParams(window.location.search);
-      setUtms({
-        source: params.get("utm_source") || "",
-        medium: params.get("utm_medium") || "",
-        campaign: params.get("utm_campaign") || "",
-        content: params.get("utm_content") || "",
-        term: params.get("utm_term") || "",
-      });
-    }
-  }, []);
 
   if (!isOpen) return null;
 
@@ -35,8 +21,10 @@ export default function ModalWhatsapp({ isOpen, onClose }: ModalWhatsappProps) {
     if (!digits) return "";
     if (digits.length <= 2) return `(${digits}`;
     if (digits.length <= 6) return `(${digits.slice(0, 2)}) ${digits.slice(2)}`;
-    if (digits.length <= 10) return `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(6)}`;
-    return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`;
+    if (digits.length <= 10) {
+      return `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(6)}`;
+    }
+    return `(${digits.slice(0, 2)}) ${digits.slice(2, 3)} ${digits.slice(3, 7)}-${digits.slice(7)}`;
   };
 
   const sanitizeEmail = (email: string) => {
@@ -71,7 +59,6 @@ export default function ModalWhatsapp({ isOpen, onClose }: ModalWhatsappProps) {
           telefone: formData.whatsapp,
           mensagem: "Contato via modal WhatsApp",
           via: "whatsapp",
-          utms: utms,
         }),
       });
     } catch (err) {
@@ -85,8 +72,9 @@ export default function ModalWhatsapp({ isOpen, onClose }: ModalWhatsappProps) {
       });
     }
 
+    // MENSAGEM COM DADOS COMPLETOS PARA O WHATSAPP DO OCEAN PARK
     const textoMensagem = 
-`Olá! Gostaria de mais informações sobre o Lumini 3.
+`Olá! Gostaria de mais informações sobre o Ocean Park.
 
 *Dados de contato:*
 • *Nome:* ${formData.name}
@@ -94,19 +82,19 @@ export default function ModalWhatsapp({ isOpen, onClose }: ModalWhatsappProps) {
 • *Telefone:* ${formData.whatsapp}`;
 
     const mensagemTexto = encodeURIComponent(textoMensagem);
-    const waUrl = `https://api.whatsapp.com/send?phone=551141644000&text=${mensagemTexto}`;
+    const waUrl = `https://api.whatsapp.com/send?phone=5511988568852&text=${mensagemTexto}`;
 
     setFormData({ name: "", email: "", whatsapp: "" });
     setIsSubmitting(false);
     onClose();
 
-    // Redireciona para a página intermediária passando a URL do WhatsApp
+    // Redireciona para a página intermediária com a URL codificada
     router.push(`/confirmacao-whatsapp?waUrl=${encodeURIComponent(waUrl)}`);
   };
 
   return (
     <div 
-      className="fixed inset-0 bg-[#4A137B]/90 z-[9999] flex justify-center items-center p-4 animate-in fade-in duration-300 backdrop-blur-sm"
+      className="fixed inset-0 bg-[#0C82A0]/90 z-[9999] flex justify-center items-center p-4 animate-in fade-in duration-300 backdrop-blur-sm"
       onClick={onClose}
     >
       <div 
@@ -115,14 +103,14 @@ export default function ModalWhatsapp({ isOpen, onClose }: ModalWhatsappProps) {
       >
         <button 
           onClick={onClose} 
-          className="absolute top-4 right-5 text-3xl text-gray-400 hover:text-[#4A137B] transition-colors focus:outline-none"
+          className="absolute top-4 right-5 text-3xl text-gray-400 hover:text-[#DD6810] transition-colors focus:outline-none cursor-pointer"
           aria-label="Fechar Modal"
         >
           &times;
         </button>
 
         <div className="text-center mb-6">
-          <h3 className="text-2xl font-black text-[#4A137B] uppercase tracking-wide">
+          <h3 className="text-2xl font-black text-[#0C82A0] uppercase tracking-wide">
             Atendimento
             <br />
             WhatsApp
@@ -141,7 +129,7 @@ export default function ModalWhatsapp({ isOpen, onClose }: ModalWhatsappProps) {
               placeholder="Seu nome"
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#7629BB]/50 transition-all text-gray-800 placeholder-gray-400"
+              className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#DD6810]/50 transition-all text-gray-800 placeholder-gray-400"
             />
           </div>
 
@@ -157,7 +145,7 @@ export default function ModalWhatsapp({ isOpen, onClose }: ModalWhatsappProps) {
                 setFormData({ ...formData, email: sanitizeEmail(e.target.value) });
               }}
               onBlur={(e) => setFormData({ ...formData, email: sanitizeEmail(e.target.value) })}
-              className={`w-full bg-gray-50 border ${emailError ? "border-red-500" : "border-gray-200"} rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#7629BB]/50 transition-all text-gray-800 placeholder-gray-400`}
+              className={`w-full bg-gray-50 border ${emailError ? "border-red-500" : "border-gray-200"} rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#DD6810]/50 transition-all text-gray-800 placeholder-gray-400`}
             />
             {emailError && <p className="text-red-500 text-xs font-semibold mt-1">{emailError}</p>}
           </div>
@@ -170,7 +158,7 @@ export default function ModalWhatsapp({ isOpen, onClose }: ModalWhatsappProps) {
               placeholder="(11) 9 9999-9999"
               value={formData.whatsapp}
               onChange={(e) => setFormData({ ...formData, whatsapp: maskPhone(e.target.value) })}
-              className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#7629BB]/50 transition-all text-gray-800 placeholder-gray-400"
+              className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#DD6810]/50 transition-all text-gray-800 placeholder-gray-400"
             />
           </div>
 
