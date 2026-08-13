@@ -79,7 +79,7 @@ export async function POST(request: Request) {
     if (process.env.RESEND_API_KEY) {
       try {
         // Altere para o e-mail de remetente com domínio verificado no Resend
-        const sender = "Site Ocean Park <contato@novacalifornia.com.br>";
+const sender = "Site Ocean Park <contato@oceanosasco.com.br>";
 
         const { data: emailData, error: emailErr } = await resend.emails.send({
           from: sender,
