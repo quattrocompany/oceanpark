@@ -9,9 +9,9 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { nome, email, telefone, mensagem, captcha, via } = body;
+    const { nome, email, telefone, mensagem, captcha, via, utms } = body;
 
-    console.log(">>> NOVO LEAD OCEAN PARK RECEBIDO:", { nome, email, telefone, via });
+    console.log(">>> NOVO LEAD LUMINI 3 RECEBIDO:", { nome, email, telefone, via, utms });
 
     const isWhatsapp = via === "whatsapp" || via === "modal_whatsapp" || mensagem === "Contato via modal WhatsApp";
 
@@ -33,7 +33,6 @@ export async function POST(request: Request) {
         console.log(">>> RECAPTCHA GOOGLE:", recaptchaJson);
 
         if (!recaptchaJson.success) {
-          console.error(">>> ERRO: reCAPTCHA inválido.", recaptchaJson["error-codes"]);
           return NextResponse.json(
             { error: "Falha na verificação do reCAPTCHA." },
             { status: 400 }
@@ -44,8 +43,8 @@ export async function POST(request: Request) {
       }
     }
 
-    const origemTexto = isWhatsapp ? "WhatsApp Modal - Ocean Park" : "Formulário de Contato - Ocean Park";
-    const mensagemTexto = mensagem || (isWhatsapp ? "Contato via modal WhatsApp" : "Contato via site Ocean Park");
+    const origemTexto = isWhatsapp ? "WhatsApp Modal - Lumini 3" : "Formulário de Contato - Lumini 3";
+    const mensagemTexto = mensagem || (isWhatsapp ? "Contato via modal WhatsApp" : "Contato via site Lumini 3");
 
     // 2. Gravar Lead no Supabase
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
@@ -76,20 +75,19 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: dbError.message }, { status: 500 });
     }
 
-    console.log(">>> LEAD OCEAN PARK SALVO NO SUPABASE COM SUCESSO:", dbData);
+    console.log(">>> LEAD SALVO NO SUPABASE COM SUCESSO:", dbData);
 
     // 3. Enviar E-mail via Resend API
     if (process.env.RESEND_API_KEY) {
       try {
-        const sender = "Site Ocean Park <contato@oceanosasco.com.br>";
-
+        const sender = "Site Lumini 3 <contato@lumini3.com.br>";
         const { data: emailData, error: emailErr } = await resend.emails.send({
           from: sender,
-          to: ["estandeocean@gmail.com"],
+          to: ["estandelumini@gmail.com"],
           replyTo: (email && email.includes("@")) ? email : undefined,
-          subject: `Novo Lead - Ocean Park (${isWhatsapp ? "WhatsApp" : "Formulário"}): ${nome}`,
+          subject: `Novo Lead - Lumini 3 (${isWhatsapp ? "WhatsApp" : "Formulário"}): ${nome}`,
           html: `
-            <h2>Novo contato recebido pelo site Ocean Park</h2>
+            <h2>Novo contato recebido pelo site Lumini 3</h2>
             <p><strong>Nome:</strong> ${nome}</p>
             <p><strong>E-mail:</strong> ${email}</p>
             <p><strong>Telefone:</strong> ${telefone}</p>
@@ -103,7 +101,7 @@ export async function POST(request: Request) {
         if (emailErr) {
           console.error(">>> ERRO RESEND:", emailErr);
         } else {
-          console.log(">>> E-MAIL OCEAN PARK DISPARADO COM SUCESSO VIA RESEND:", emailData);
+          console.log(">>> E-MAIL DISPARADO VIA RESEND COM SUCESSO:", emailData);
         }
       } catch (resendError) {
         console.error(">>> ERRO EXCEÇÃO RESEND:", resendError);
@@ -112,19 +110,22 @@ export async function POST(request: Request) {
       console.warn(">>> AVISO: RESEND_API_KEY ausente nas variáveis de ambiente.");
     }
 
-    // ==========================================
-    // 4. ENVIO PARA O WEBHOOK DA EXENT (OCEAN PARK)
-    // ==========================================
+    // 4. Enviar Lead para o Webhook da Exent (com UTMs)
     try {
-      const webhookUrl = "https://hub.exent.com.br/api/webhook/inbound/166d8947e4cc553970bd";
-      
+      const webhookUrl = "https://hub.exent.com.br/api/webhook/inbound/2f3589584fd671a0cc24";
+
       const webhookPayload = {
         nome: nome || "Não informado",
         email: email || "Não informado",
         telefone: telefone || "Não informado",
         mensagem: mensagemTexto,
         origem: origemTexto,
-        data_cadastro: new Date().toISOString()
+        data_cadastro: new Date().toISOString(),
+        utm_source: utms?.source || "",
+        utm_medium: utms?.medium || "",
+        utm_campaign: utms?.campaign || "",
+        utm_content: utms?.content || "",
+        utm_term: utms?.term || ""
       };
 
       const webhookRes = await fetch(webhookUrl, {
@@ -134,14 +135,13 @@ export async function POST(request: Request) {
       });
 
       if (webhookRes.ok) {
-        console.log(">>> WEBHOOK EXENT (OCEAN) DISPARADO COM SUCESSO");
+        console.log(">>> WEBHOOK EXENT DISPARADO COM SUCESSO");
       } else {
-        console.error(">>> ERRO NO WEBHOOK EXENT (OCEAN). Status:", webhookRes.status);
+        console.error(">>> ERRO NO WEBHOOK EXENT. Status:", webhookRes.status);
       }
     } catch (webhookErr) {
-      console.error(">>> ERRO DE EXCEÇÃO NO WEBHOOK EXENT (OCEAN):", webhookErr);
+      console.error(">>> ERRO DE EXCEÇÃO NO WEBHOOK EXENT:", webhookErr);
     }
-    // ==========================================
 
     return NextResponse.json({ success: true, message: "Lead processado com sucesso!", data: dbData }, { status: 200 });
   } catch (error: any) {
