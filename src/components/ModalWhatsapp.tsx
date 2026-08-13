@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 interface ModalWhatsappProps {
   isOpen: boolean;
@@ -8,6 +9,7 @@ interface ModalWhatsappProps {
 }
 
 export default function ModalWhatsapp({ isOpen, onClose }: ModalWhatsappProps) {
+  const router = useRouter();
   const [formData, setFormData] = useState({ name: "", email: "", whatsapp: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [emailError, setEmailError] = useState("");
@@ -86,9 +88,8 @@ export default function ModalWhatsapp({ isOpen, onClose }: ModalWhatsappProps) {
     setIsSubmitting(false);
     onClose();
 
-    if (typeof window !== "undefined") {
-      window.open(waUrl, "_blank");
-    }
+    // Redireciona para a página intermediária com a URL codificada
+    router.push(`/confirmacao-whatsapp?waUrl=${encodeURIComponent(waUrl)}`);
   };
 
   return (

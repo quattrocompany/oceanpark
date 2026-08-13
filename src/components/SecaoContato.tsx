@@ -3,8 +3,10 @@
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
+import { useRouter } from "next/navigation";
 
 export default function SecaoContato() {
+  const router = useRouter();
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const [isMounted, setIsMounted] = useState(false);
@@ -68,8 +70,6 @@ export default function SecaoContato() {
       });
 
       if (response.ok) {
-        setStatus("success");
-        
         if (typeof window !== "undefined" && (window as any).dataLayer) {
           (window as any).dataLayer.push({ 
             event: "form_contato", 
@@ -84,6 +84,9 @@ export default function SecaoContato() {
         setFormData({ nome: "", email: "", telefone: "", mensagem: "" });
         recaptchaRef.current?.reset();
         setCaptchaToken(null);
+
+        // Redireciona para a página de confirmação
+        router.push("/confirmacao-contato");
       } else {
         setStatus("error");
       }
@@ -114,106 +117,90 @@ export default function SecaoContato() {
               CADASTRE-SE E RECEBA EM PRIMEIRA MÃO TODAS AS INFORMAÇÕES:
             </h3>
 
-            {status === "success" ? (
-              <div className="bg-white p-10 rounded-3xl text-center shadow-md my-auto">
-                <svg className="w-16 h-16 text-green-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                </svg>
-                <h4 className="text-xl font-bold text-[#0C82A0] mb-2 uppercase">Mensagem enviada!</h4>
-                <p className="text-gray-600 font-medium text-sm">Em breve entraremos em contato com você.</p>
+            <form onSubmit={handleSubmit} className="space-y-4 w-full">
+              <div>
+                <label htmlFor="lead-nome" className="sr-only">NOME (*):</label>
+                <input 
+                  id="lead-nome"
+                  name="nome"
+                  type="text" 
+                  placeholder="NOME (*):" 
+                  required 
+                  value={formData.nome}
+                  onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
+                  className="w-full bg-white border-none rounded-full px-6 py-4 text-sm outline-none focus:ring-4 focus:ring-[#0C82A0]/50 transition-all font-medium text-gray-800 placeholder-gray-400 shadow-sm"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="lead-email" className="sr-only">E-MAIL (*):</label>
+                <input 
+                  id="lead-email"
+                  name="email"
+                  type="email" 
+                  placeholder="E-MAIL (*):" 
+                  required 
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  onBlur={(e) => setFormData({ ...formData, email: sanitizeEmail(e.target.value) })}
+                  className="w-full bg-white border-none rounded-full px-6 py-4 text-sm outline-none focus:ring-4 focus:ring-[#0C82A0]/50 transition-all font-medium text-gray-800 placeholder-gray-400 shadow-sm"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="lead-tel" className="sr-only">TELEFONE (*):</label>
+                <input 
+                  id="lead-tel"
+                  name="telefone"
+                  type="tel" 
+                  placeholder="TELEFONE (*):" 
+                  required 
+                  value={formData.telefone}
+                  onChange={(e) => setFormData({ ...formData, telefone: maskPhone(e.target.value) })}
+                  className="w-full bg-white border-none rounded-full px-6 py-4 text-sm outline-none focus:ring-4 focus:ring-[#0C82A0]/50 transition-all font-medium text-gray-800 placeholder-gray-400 shadow-sm"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="lead-msg" className="sr-only">INFORMAÇÕES:</label>
+                <textarea 
+                  id="lead-msg"
+                  name="mensagem"
+                  rows={4}
+                  placeholder="INFORMAÇÕES:" 
+                  value={formData.mensagem}
+                  onChange={(e) => setFormData({ ...formData, mensagem: e.target.value })}
+                  className="w-full bg-white border-none rounded-3xl px-6 py-4 text-sm outline-none focus:ring-4 focus:ring-[#0C82A0]/50 transition-all font-medium text-gray-800 placeholder-gray-400 shadow-sm resize-none"
+                />
+              </div>
+
+              <div className="flex flex-col xl:flex-row items-center justify-between gap-4 pt-2">
+                <div className="w-full xl:w-auto flex justify-center min-h-[78px] min-w-[304px]">
+                  {isMounted && (
+                    <ReCAPTCHA
+                      ref={recaptchaRef}
+                      sitekey={SITE_KEY}
+                      onChange={(token) => setCaptchaToken(token)}
+                      hl="pt-BR"
+                    />
+                  )}
+                </div>
+
                 <button 
-                  onClick={() => setStatus("idle")} 
-                  className="mt-6 text-[#DD6810] font-bold hover:underline cursor-pointer"
+                  type="submit" 
+                  disabled={status === "loading"}
+                  className="w-full xl:w-auto bg-[#0C82A0] hover:bg-[#096a83] disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-black text-base uppercase tracking-widest px-12 py-4 rounded-full transition-all duration-300 shadow-xl hover:shadow-2xl active:scale-95 h-[78px] cursor-pointer"
                 >
-                  Enviar nova mensagem
+                  {status === "loading" ? "ENVIANDO..." : "ENVIAR"}
                 </button>
               </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-4 w-full">
-                <div>
-                  <label htmlFor="lead-nome" className="sr-only">NOME (*):</label>
-                  <input 
-                    id="lead-nome"
-                    name="nome"
-                    type="text" 
-                    placeholder="NOME (*):" 
-                    required 
-                    value={formData.nome}
-                    onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
-                    className="w-full bg-white border-none rounded-full px-6 py-4 text-sm outline-none focus:ring-4 focus:ring-[#0C82A0]/50 transition-all font-medium text-gray-800 placeholder-gray-400 shadow-sm"
-                  />
-                </div>
 
-                <div>
-                  <label htmlFor="lead-email" className="sr-only">E-MAIL (*):</label>
-                  <input 
-                    id="lead-email"
-                    name="email"
-                    type="email" 
-                    placeholder="E-MAIL (*):" 
-                    required 
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    onBlur={(e) => setFormData({ ...formData, email: sanitizeEmail(e.target.value) })}
-                    className="w-full bg-white border-none rounded-full px-6 py-4 text-sm outline-none focus:ring-4 focus:ring-[#0C82A0]/50 transition-all font-medium text-gray-800 placeholder-gray-400 shadow-sm"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="lead-tel" className="sr-only">TELEFONE (*):</label>
-                  <input 
-                    id="lead-tel"
-                    name="telefone"
-                    type="tel" 
-                    placeholder="TELEFONE (*):" 
-                    required 
-                    value={formData.telefone}
-                    onChange={(e) => setFormData({ ...formData, telefone: maskPhone(e.target.value) })}
-                    className="w-full bg-white border-none rounded-full px-6 py-4 text-sm outline-none focus:ring-4 focus:ring-[#0C82A0]/50 transition-all font-medium text-gray-800 placeholder-gray-400 shadow-sm"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="lead-msg" className="sr-only">INFORMAÇÕES:</label>
-                  <textarea 
-                    id="lead-msg"
-                    name="mensagem"
-                    rows={4}
-                    placeholder="INFORMAÇÕES:" 
-                    value={formData.mensagem}
-                    onChange={(e) => setFormData({ ...formData, mensagem: e.target.value })}
-                    className="w-full bg-white border-none rounded-3xl px-6 py-4 text-sm outline-none focus:ring-4 focus:ring-[#0C82A0]/50 transition-all font-medium text-gray-800 placeholder-gray-400 shadow-sm resize-none"
-                  />
-                </div>
-
-                <div className="flex flex-col xl:flex-row items-center justify-between gap-4 pt-2">
-                  <div className="w-full xl:w-auto flex justify-center min-h-[78px] min-w-[304px]">
-                    {isMounted && (
-                      <ReCAPTCHA
-                        ref={recaptchaRef}
-                        sitekey={SITE_KEY}
-                        onChange={(token) => setCaptchaToken(token)}
-                        hl="pt-BR"
-                      />
-                    )}
-                  </div>
-
-                  <button 
-                    type="submit" 
-                    disabled={status === "loading"}
-                    className="w-full xl:w-auto bg-[#0C82A0] hover:bg-[#096a83] disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-black text-base uppercase tracking-widest px-12 py-4 rounded-full transition-all duration-300 shadow-xl hover:shadow-2xl active:scale-95 h-[78px] cursor-pointer"
-                  >
-                    {status === "loading" ? "ENVIANDO..." : "ENVIAR"}
-                  </button>
-                </div>
-
-                {status === "error" && (
-                  <p className="text-white bg-red-600/90 py-2 px-4 rounded-xl text-sm font-bold text-center mt-2">
-                    Ocorreu um erro ao enviar. Tente novamente.
-                  </p>
-                )}
-              </form>
-            )}
+              {status === "error" && (
+                <p className="text-white bg-red-600/90 py-2 px-4 rounded-xl text-sm font-bold text-center mt-2">
+                  Ocorreu um erro ao enviar. Tente novamente.
+                </p>
+              )}
+            </form>
           </div>
 
         </div>
