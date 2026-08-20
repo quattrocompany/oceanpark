@@ -6,14 +6,14 @@ export default function SecaoBanner() {
   return (
     <section id="Home" className="w-full relative flex flex-col items-center">
       
-      {/* 1. FAIXA SUPERIOR AZUL (Subposição do Header + Frase) */}
-      <div className="w-full bg-[#89c8ea] pt-28 sm:pt-32 pb-4 sm:pb-26 relative z-20 text-center shadow-md">
-        <div className="max-w-[1440px] mx-auto px-4">
-          <h1 className="text-base sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#10365c] font-[family-name:var(--font-josefin-slab)] tracking-widest uppercase drop-shadow-sm">
-            OPORTUNIDADE EM PADROEIRA / OSASCO
-          </h1>
-        </div>
-      </div>
+{/* 1. FAIXA SUPERIOR AZUL (Subposição do Header + Frase) */}
+<div className="w-full bg-[#89c8ea] pt-28 sm:pt-32 pb-4 sm:pb-26 relative z-20 text-center shadow-md">
+  <div className="max-w-[1440px] mx-auto px-12 sm:px-16">
+    <h1 className="text-base sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#10365c] font-[family-name:var(--font-josefin-slab)] tracking-widest uppercase drop-shadow-sm">
+      OPORTUNIDADE EM PADROEIRA / OSASCO
+    </h1>
+  </div>
+</div>
 
       {/* 2. ÁREA DOS BANNERS (Abaixo da faixa azul) */}
       <div className="w-full relative flex flex-col items-center justify-center">

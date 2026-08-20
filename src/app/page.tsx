@@ -102,22 +102,23 @@ export default function Home() {
             : "bg-transparent py-4 md:py-6"
         }`}
       >
-        <div className="max-w-[1440px] mx-auto px-6 md:px-12 flex items-center justify-between">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-12 flex items-center justify-between gap-4">
           
+          {/* LOGO */}
           <div 
             onClick={(e) => scrollToSection(e as any, 'home')}
-            className="cursor-pointer transition-all duration-300 hover:scale-105 flex-shrink-0"
+            className="cursor-pointer transition-all duration-300 hover:scale-105 shrink-0 flex items-center"
             aria-label="Voltar ao início"
           >
             <Image 
               src={isScrolled ? "/img/header/logo_white.png" : "/img/Hero/logo.png"} 
               alt="Logo Ocean Park" 
-              width={320} 
-              height={120} 
+              width={360} 
+              height={140} 
               className={`w-auto object-contain drop-shadow-lg transition-all duration-300 ${
                 isScrolled
-                  ? "h-10 sm:h-12 md:h-14 lg:h-16"
-                  : "h-16 sm:h-20 md:h-24 lg:h-28"
+                  ? "!h-14 sm:!h-16 md:!h-18 lg:!h-22"
+                  : "!h-20 sm:!h-24 md:!h-28 lg:!h-32"
               }`}
               priority
             />
@@ -254,7 +255,7 @@ export default function Home() {
               <>
                 <h2 className="text-2xl font-black text-[#0C82A0] uppercase mb-6">POLÍTICA DE DADOS LGPD</h2>
                 <p className="text-gray-600 leading-relaxed text-justify mb-4 font-medium text-sm">
-                  Nos comprometemos a nunca compartilhar seus dados com terceiros. Os dados aqui captados (Nome, E-mail e Telefone) serão utilizados única e exclusivamente pela incorporadora responsável por esse empreendimento para que seja possível o contato com o cliente e apresentação dos produtos vinculados à marca da Incorporadora ou pertencentes ao mesmo grupo econômico da Vendedora.
+                  Nos comprometemos a nunca compartilhar seus dados com terceiros. Os dados aqui captados (Nome, E-mail e Telefone) serão utilizados única e exclusivamente pela incorporadora responsável por esse empreendimento para que seja possível o contato com el cliente e apresentação dos produtos vinculados à marca da Incorporadora ou pertencentes ao mesmo grupo econômico da Vendedora.
                 </p>
               </>
             )}
