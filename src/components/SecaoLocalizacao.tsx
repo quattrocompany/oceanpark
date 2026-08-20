@@ -191,25 +191,27 @@ export default function SecaoLocalizacao() {
               Visite Decorados
             </h3>
             
-            <p className="text-base sm:text-2xl lg:text-4xl font-bold">
+            <p className="text-lg sm:text-2xl lg:text-4xl font-bold leading-snug">
               <a 
                 href="https://www.google.com.br/maps/dir//Av.+Novo+Osasco,+1010+-+Bussocaba,+Osasco+-+SP" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="hover:underline transition-all"
+                className="hover:underline transition-all block"
               >
-                Plantão de vendas: Av. Novo Osasco, 1010
+                Plantão de vendas: <br className="block sm:hidden" />
+                Av. Novo Osasco, 1010
               </a>
             </p>
 
-            <p className="text-xs sm:text-base lg:text-xl font-medium opacity-95">
+            <p className="text-xs sm:text-base lg:text-xl font-medium opacity-95 max-w-xs sm:max-w-none mx-auto leading-normal">
               <a 
                 href="https://www.google.com.br/maps/dir//R.+Achiles+Beline,+616+-+Padroeira,+Osasco+-+SP" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="hover:underline transition-all"
+                className="hover:underline transition-all block"
               >
-                O empreendimento localiza-se na Rua Aquiles Beline, 616 - Padroeira / Osasco.
+                O empreendimento localiza-se na <br className="block sm:hidden" />
+                Rua Aquiles Beline, 616 - Padroeira / Osasco.
               </a>
             </p>
 
@@ -217,7 +219,7 @@ export default function SecaoLocalizacao() {
         </div>
       </div>
 
-      {/* 5. GOOGLE MAPS EMBED (Com ID para ancoragem do rodapé) */}
+      {/* 5. GOOGLE MAPS EMBED */}
       <div id="mapa" className="w-full h-[350px] sm:h-[400px] relative shadow-inner bg-gray-200 z-10">
         <iframe 
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3547.512782712201!2d-46.79176892470415!3d-23.567247061808462!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce557edec747bf%3A0xb3ce498eed915209!2sAv.%20Novo%20Osasco%2C%201010%20-%20Bussocaba%2C%20Osasco%20-%20SP%2C%2006056-000!5e1!3m2!1spt-BR!2sbr!4v1769616169975!5m2!1spt-BR!2sbr" 

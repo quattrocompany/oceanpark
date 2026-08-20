@@ -49,10 +49,10 @@ export default function SecaoMobilidadePraticidade() {
   return (
     <section id="lazer-mobilidade" className="w-full bg-white relative flex flex-col">
       
-      {/* 1. CABEÇALHO BANNER FULL WIDTH COM TEXTO */}
+      {/* 1. CABEÇALHO BANNER FULL WIDTH */}
       <div className="relative w-full z-20 flex flex-col justify-center">
         
-        {/* Imagem Desktop Full Width */}
+        {/* Imagem Desktop */}
         <div className="hidden sm:flex w-full relative">
           <Image
             src="/img/Mobilidade e Praticidade/lazer-teto.png"
@@ -65,7 +65,7 @@ export default function SecaoMobilidadePraticidade() {
           />
         </div>
 
-        {/* Imagem Mobile Full Width */}
+        {/* Imagem Mobile */}
         <div className="flex sm:hidden w-full relative">
           <Image
             src="/img/Mobilidade e Praticidade/lazer-teto-mobile2.png"
@@ -78,9 +78,9 @@ export default function SecaoMobilidadePraticidade() {
           />
         </div>
 
-        {/* FRASE DE SOBREPOSIÇÃO NO BANNER */}
-        <div className="absolute inset-0 z-30 flex items-center justify-center sm:justify-start px-6 sm:px-12 md:pl-16 lg:pl-24 pr-6 md:pr-72 lg:pr-96 text-center sm:text-left pointer-events-none">
-          <h2 className="text-white text-base sm:text-2xl md:text-3xl lg:text-4xl font-bold font-[family-name:var(--font-josefin-slab)] leading-snug sm:leading-tight drop-shadow-md">
+        {/* FRASE DE SOBREPOSIÇÃO NO BANNER (APENAS DESKTOP) */}
+        <div className="absolute inset-0 z-30 hidden sm:flex items-center justify-start px-6 sm:px-12 md:pl-16 lg:pl-24 pr-6 md:pr-72 lg:pr-96 text-left pointer-events-none">
+          <h2 className="text-white text-2xl md:text-3xl lg:text-4xl font-bold font-[family-name:var(--font-josefin-slab)] leading-tight drop-shadow-md">
             Mobilidade e praticidade <br className="hidden sm:inline" />
             que transformam o seu dia a dia.
           </h2>
@@ -88,7 +88,7 @@ export default function SecaoMobilidadePraticidade() {
 
       </div>
 
-      {/* 2. CARROSSEL DE FOTOS FULL WIDTH */}
+      {/* 2. CARROSSEL DE FOTOS */}
       <div className="relative w-full h-[320px] sm:h-[600px] md:h-[720px] lg:h-[850px] bg-gray-100 group z-10 -mt-6 sm:-mt-20 md:-mt-28 lg:-mt-36 xl:-mt-44">
         
         <Image
@@ -100,7 +100,7 @@ export default function SecaoMobilidadePraticidade() {
           priority
         />
 
-        {/* Seta Laranja Esquerda */}
+        {/* Seta Esquerda */}
         <button
           onClick={prevSlide}
           aria-label="Anterior"
@@ -111,7 +111,7 @@ export default function SecaoMobilidadePraticidade() {
           </svg>
         </button>
 
-        {/* Seta Laranja Direita */}
+        {/* Seta Direita */}
         <button
           onClick={nextSlide}
           aria-label="Próximo"
@@ -122,22 +122,30 @@ export default function SecaoMobilidadePraticidade() {
           </svg>
         </button>
 
-        {/* Dots de Navegação */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-30 bg-black/40 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg">
-          {slides.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setCurrentIndex(idx)}
-              className={`h-2 rounded-full transition-all cursor-pointer ${
-                currentIndex === idx ? "bg-white w-5 sm:w-6 sm:h-2.5" : "bg-white/50 w-2 sm:w-2.5 sm:h-2.5 hover:bg-white/80"
-              }`}
-              aria-label={`Ir para a foto ${idx + 1}`}
-            />
-          ))}
+        {/* PAGINAÇÃO: Contador no Mobile / Dots no Desktop */}
+        <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-30">
+          {/* Mobile (Contador compacto 1/22) */}
+          <div className="flex sm:hidden bg-black/60 backdrop-blur-md px-3.5 py-1 rounded-full text-white text-[11px] font-bold tracking-wider shadow-lg">
+            {currentIndex + 1} / {slides.length}
+          </div>
+
+          {/* Desktop (Bolinhas tradicionais) */}
+          <div className="hidden sm:flex items-center gap-1.5 bg-black/40 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg">
+            {slides.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrentIndex(idx)}
+                className={`h-2 rounded-full transition-all cursor-pointer ${
+                  currentIndex === idx ? "bg-white w-5 sm:w-6 sm:h-2.5" : "bg-white/50 w-2 sm:w-2.5 sm:h-2.5 hover:bg-white/80"
+                }`}
+                aria-label={`Ir para a foto ${idx + 1}`}
+              />
+            ))}
+          </div>
         </div>
 
-        {/* Tag Laranja com Legenda */}
-        <div className="absolute bottom-6 right-4 sm:right-6 z-30 bg-[#DD6810] text-white text-[9px] sm:text-xs font-black uppercase tracking-widest px-3 sm:px-4 py-1.5 rounded-sm shadow-xl">
+        {/* Tag Laranja com Legenda (Topo no mobile / Rodapé no desktop) */}
+        <div className="absolute top-4 right-4 sm:top-auto sm:bottom-6 sm:right-6 z-30 bg-[#DD6810] text-white text-[10px] sm:text-xs font-black uppercase tracking-widest px-3 sm:px-4 py-1.5 rounded-sm shadow-xl">
           {slides[currentIndex].caption}
         </div>
 
