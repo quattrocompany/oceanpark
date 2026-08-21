@@ -21,6 +21,9 @@ interface ItemKit {
   fullPath: string;
 }
 
+// Identificador único deste empreendimento no Firebase
+const EMPREENDIMENTO_ID = "ocean-park";
+
 export default function UploadInterface() {
   const [dataSelecao, setDataSelecao] = useState<string>(
     new Date().toISOString().split("T")[0]
@@ -36,7 +39,8 @@ export default function UploadInterface() {
   const carregarArquivos = async () => {
     setLoadingList(true);
     try {
-      const rootRef = ref(storage, "kit");
+      // Isola a busca na pasta específica do Ocean Park
+      const rootRef = ref(storage, `${EMPREENDIMENTO_ID}`);
       const listRecursive = async (folderRef: any): Promise<ItemKit[]> => {
         const res = await listAll(folderRef);
         let filesList: ItemKit[] = [];
@@ -106,13 +110,15 @@ export default function UploadInterface() {
       let concluidos = 0;
 
       for (const item of novosArquivos) {
-        const storagePath = `kit/${dataSelecao}/${item.categoria}/${item.file.name}`;
+        // Grava no caminho: ocean-park/2026-08-21/imagem_avulsa/foto.jpg
+        const storagePath = `${EMPREENDIMENTO_ID}/${dataSelecao}/${item.categoria}/${item.file.name}`;
         const fileRef = ref(storage, storagePath);
 
         const metadata = {
           customMetadata: {
             categoria: item.categoria,
             dataUpload: dataSelecao,
+            empreendimento: EMPREENDIMENTO_ID,
           },
         };
 
@@ -135,7 +141,7 @@ export default function UploadInterface() {
         });
       }
 
-      alert("Arquivos publicados com sucesso no Firebase!");
+      alert("Arquivos do Ocean Park publicados com sucesso!");
       setNovosArquivos([]);
       setProgresso(0);
       await carregarArquivos();
@@ -175,7 +181,7 @@ export default function UploadInterface() {
       <div className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-200">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6 pb-6 border-b border-gray-100">
           <div>
-            <h2 className="text-xl font-bold text-gray-800">1. Novo Upload em Lote</h2>
+            <h2 className="text-xl font-bold text-gray-800">1. Novo Upload em Lote (Ocean Park)</h2>
             <p className="text-sm text-gray-500">Selecione a data e envie os arquivos para o Firebase Storage.</p>
           </div>
           <div className="flex items-center gap-3">
@@ -262,7 +268,7 @@ export default function UploadInterface() {
         </div>
 
         {loadingList ? (
-          <p className="text-sm text-gray-500 text-center py-6">Carregando arquivos do Firebase...</p>
+          <p className="text-sm text-gray-500 text-center py-6">Carregando arquivos do Ocean Park...</p>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs text-gray-600">

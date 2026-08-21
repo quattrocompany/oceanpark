@@ -4,9 +4,13 @@ import { ref, listAll, getDownloadURL, getMetadata } from "firebase/storage";
 
 export const dynamic = "force-dynamic";
 
+// Identificador único deste empreendimento
+const EMPREENDIMENTO_ID = "ocean-park";
+
 export async function GET() {
   try {
-    const rootRef = ref(storage, "kit");
+    // Aponta a leitura exclusivamente para a pasta do Ocean Park
+    const rootRef = ref(storage, EMPREENDIMENTO_ID);
 
     // Função recursiva para varrer as pastas no Firebase Storage
     const listRecursive = async (folderRef: any) => {
