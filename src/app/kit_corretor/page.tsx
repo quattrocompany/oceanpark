@@ -12,12 +12,8 @@ interface ItemKit {
   dataUpload: string;
 }
 
-const imagensPadraoFallback: ItemKit[] = [
-  { id: "f1", url: "/img/01.jpg", nome: "Fachada", categoria: "imagem_avulsa", tamanho: "3.2 MB", dataUpload: "2026-08-07" },
-  { id: "f2", url: "/img/02.jpg", nome: "Portaria Central", categoria: "imagem_avulsa", tamanho: "2.8 MB", dataUpload: "2026-08-07" },
-  { id: "f3", url: "/img/03.jpg", nome: "Lazer", categoria: "imagem_avulsa", tamanho: "4.1 MB", dataUpload: "2026-08-07" },
-  { id: "f4", url: "/img/04.jpg", nome: "Planta", categoria: "imagem_avulsa", tamanho: "3.5 MB", dataUpload: "2026-08-07" },
-];
+// Esvaziado para não exibir imagens quebradas enquanto o banco estiver vazio
+const imagensPadraoFallback: ItemKit[] = [];
 
 export default function KitCorretorPage() {
   const [itens, setItens] = useState<ItemKit[]>([]);
@@ -40,7 +36,7 @@ export default function KitCorretorPage() {
           setItens(imagensPadraoFallback);
         }
       } catch (e) {
-        console.error("Erro ao carregar do servidor, utilizando imagens padrão:", e);
+        console.error("Erro ao carregar do servidor:", e);
         setItens(imagensPadraoFallback);
       } finally {
         setLoading(false);
@@ -118,10 +114,9 @@ export default function KitCorretorPage() {
             </div>
           )}
 
-          {/* BOXES DE DOWNLOADS SEPARADOS (GRID DE 4 CARDS) */}
+          {/* BOXES DE DOWNLOADS SEPARADOS */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             
-            {/* Box 1: TABELA DE PREÇOS */}
             <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-shadow flex flex-col items-center text-center">
               <div className="w-16 h-16 bg-[#0c82a0]/10 text-[#0c82a0] rounded-full flex items-center justify-center mb-6">
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -141,7 +136,6 @@ export default function KitCorretorPage() {
               </a>
             </div>
 
-            {/* Box 2: IMAGENS ZIP */}
             <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-shadow flex flex-col items-center text-center">
               <div className="w-16 h-16 bg-[#0c82a0]/10 text-[#0c82a0] rounded-full flex items-center justify-center mb-6">
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -155,13 +149,12 @@ export default function KitCorretorPage() {
                   Baixar Pacote (.ZIP)
                 </a>
               ) : (
-                <button disabled className="w-full bg-gray-200 text-gray-400 font-bold py-3 rounded-full text-sm">
+                <button disabled className="w-full bg-gray-200 text-gray-400 font-bold py-3 rounded-full text-sm cursor-not-allowed">
                   Indisponível
                 </button>
               )}
             </div>
 
-            {/* Box 3: LÂMINA E PLANTAS PDF */}
             <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-shadow flex flex-col items-center text-center">
               <div className="w-16 h-16 bg-[#0c82a0]/10 text-[#0c82a0] rounded-full flex items-center justify-center mb-6">
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -175,13 +168,12 @@ export default function KitCorretorPage() {
                   Baixar Caderno (.PDF)
                 </a>
               ) : (
-                <button disabled className="w-full bg-gray-200 text-gray-400 font-bold py-3 rounded-full text-sm">
+                <button disabled className="w-full bg-gray-200 text-gray-400 font-bold py-3 rounded-full text-sm cursor-not-allowed">
                   Indisponível
                 </button>
               )}
             </div>
 
-            {/* Box 4: VÍDEOS */}
             <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-shadow flex flex-col items-center text-center">
               <div className="w-16 h-16 bg-[#0c82a0]/10 text-[#0c82a0] rounded-full flex items-center justify-center mb-6">
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -196,7 +188,7 @@ export default function KitCorretorPage() {
                   Baixar Vídeos (.MP4)
                 </a>
               ) : (
-                <button disabled className="w-full bg-gray-200 text-gray-400 font-bold py-3 rounded-full text-sm">
+                <button disabled className="w-full bg-gray-200 text-gray-400 font-bold py-3 rounded-full text-sm cursor-not-allowed">
                   Indisponível
                 </button>
               )}
@@ -204,7 +196,7 @@ export default function KitCorretorPage() {
 
           </div>
 
-          {/* GALERIA DE IMAGENS AVULSAS (PROPORÇÃO 9:16) */}
+          {/* GALERIA DE IMAGENS AVULSAS */}
           <div className="mt-20 border-t border-gray-200 pt-16">
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-10">
               <div className="text-center sm:text-left">
@@ -234,7 +226,7 @@ export default function KitCorretorPage() {
             {loading ? (
               <p className="text-center py-10 text-gray-400 font-medium">Carregando imagens...</p>
             ) : imagensAvulsas.length === 0 ? (
-              <p className="text-center py-10 text-gray-400 font-medium">Nenhuma imagem avulsa encontrada para esta data.</p>
+              <p className="text-center py-10 text-gray-400 font-medium">Nenhum arquivo publicado até o momento.</p>
             ) : (
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
                 {imagensAvulsas.map((img) => (
@@ -272,21 +264,18 @@ export default function KitCorretorPage() {
         </div>
       </div>
 
-      {/* RODAPÉ E CONTATOS COMPLETO */}
+      {/* RODAPÉ E CONTATOS */}
       <div className="w-full mt-16 md:mt-24 flex flex-col">
-        
-        {/* Bloco de Informações - Fundo Azul Celeste do Polvo (#0c82a0) */}
         <div className="w-full bg-[#0c82a0] py-16 px-6 text-center text-white">
           <div className="max-w-3xl mx-auto flex flex-col items-center">
             <h3 className="text-3xl md:text-4xl font-black mb-4 uppercase tracking-wide">
               Ocean Park
             </h3>
             <p className="text-white/95 mb-8 text-sm md:text-base max-w-lg font-medium">
-              Acompanhe nossas redes sociais oficiais e acesse o site para ficar por dentro de todas as novidades, campanhas e materiais de divulgação!
+              Acompanhe nossas redes sociais oficiais e acesse o site para ficar por dentro de todas as novidades!
             </p>
             
             <div className="flex flex-col sm:flex-row items-center gap-4 justify-center">
-              {/* Botão Site em Azul Escuro (#064b5d) */}
               <a
                 href="https://www.oceanosasco.com.br"
                 target="_blank"
@@ -299,7 +288,6 @@ export default function KitCorretorPage() {
                 Acessar Site Oficial
               </a>
 
-              {/* Redes Sociais */}
               <div className="flex items-center gap-3 mt-2 sm:mt-0">
                 <a href="https://www.instagram.com/oceanparkosasco/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-white/10 hover:bg-[#064b5d] flex items-center justify-center transition-all hover:scale-110 shadow-lg" title="Instagram">
                   <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -316,7 +304,6 @@ export default function KitCorretorPage() {
           </div>
         </div>
 
-        {/* Imagem do Polvo - Proporção Natural de Ponta a Ponta */}
         <div className="w-full relative">
           <Image
             src="/img/polvopraia.jpg"
@@ -329,7 +316,6 @@ export default function KitCorretorPage() {
           />
         </div>
 
-        {/* BARRA DE DIREITOS - Laranja das Ondas (#e06311) */}
         <div className="w-full bg-[#e06311] py-8 px-6 text-center text-white relative z-10">
           <p className="text-xs sm:text-sm font-bold tracking-wide text-white">
             © 2026 Ocean Park | Termos de Uso e Política de Privacidade
