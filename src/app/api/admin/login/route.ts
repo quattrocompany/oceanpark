@@ -1,19 +1,29 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
+const VALID_USERS: Record<string, string> = {
+  vendrix: "GAuys87H98*71ts",
+  marketing: "Ricco9885*",
+};
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const username = body.username?.toString().trim();
+    let username = body.username?.toString().trim().toLowerCase();
     const password = body.password?.toString().trim();
 
-    if (username === "vendrix" && password === "GAuys87H98*71ts") {
+    // Remove o domínio se o usuário digitar no formato de e-mail (ex: vendrix@dominio.com -> vendrix)
+    if (username && username.includes("@")) {
+      username = username.split("@")[0];
+    }
+
+    if (username && VALID_USERS[username] === password) {
       const cookieStore = await cookies();
 
       cookieStore.set("admin_session", "autenticado", {
         path: "/",
         httpOnly: true,
-        secure: false, 
+        secure: process.env.NODE_ENV === "production", 
         sameSite: "lax",
         maxAge: 60 * 60 * 24 * 7,
       });
