@@ -24,16 +24,11 @@ interface ItemKit {
 
 const EMPREENDIMENTO_ID = "ocean-park";
 
-// Compressão segura de imagem no navegador (libera PDFs, ZIPs e Vídeos instantaneamente)
+// Filtro estrito de extensão: libera PDFs, ZIPs e Vídeos sem passar pelo FileReader
 const comprimirImagem = (file: File, maxWidth = 1920, quality = 0.8): Promise<File> => {
   return new Promise((resolve) => {
-    if (
-      !file ||
-      file.size === 0 ||
-      !file.type.startsWith("image/") ||
-      file.type.includes("gif") ||
-      file.type.includes("svg")
-    ) {
+    const ext = file.name.split(".").pop()?.toLowerCase() || "";
+    if (!["jpg", "jpeg", "png", "webp"].includes(ext)) {
       return resolve(file);
     }
 
@@ -100,6 +95,7 @@ export default function UploadInterface() {
   const [itensCadastrados, setItensCadastrados] = useState<ItemKit[]>([]);
   const [novosArquivos, setNovosArquivos] = useState<{ file: File; categoria: string }[]>([]);
   const [uploading, setUploading] = useState(false);
+  const [statusTexto, setStatusTexto] = useState<string>("");
   const [progresso, setProgresso] = useState<number>(0);
   const [loadingList, setLoadingList] = useState(true);
   const [filtroDataAdmin, setFiltroDataAdmin] = useState<string>("todas");
@@ -233,7 +229,7 @@ export default function UploadInterface() {
         for (const itemRef of res.items) {
           const url = await getDownloadURL(itemRef);
           const meta = await getMetadata(itemRef);
-          const sizeMB = (meta.size / (1024 * 1024)).toFixed(2) + " MB";
+          const sizeMB = (meta.size / (1024 * 1024)).toFixed(1) + " MB";
 
           filesList.push({
             id: itemRef.fullPath,
@@ -270,7 +266,11 @@ export default function UploadInterface() {
       const totalArquivos = novosArquivos.length;
       let concluidos = 0;
 
-      for (const item of novosArquivos) {
+      for (let i = 0; i < novosArquivos.length; i++) {
+        const item = novosArquivos[i];
+        const tamanhoMB = (item.file.size / (1024 * 1024)).toFixed(1);
+        setStatusTexto(`Enviando (${i + 1}/${totalArquivos}): "${item.file.name}" (${tamanhoMB} MB)...`);
+
         const arquivoParaUpload = await comprimirImagem(item.file);
         const storagePath = `${EMPREENDIMENTO_ID}/${dataSelecao}/${item.categoria}/${arquivoParaUpload.name}`;
         const fileRef = ref(storage, storagePath);
@@ -290,7 +290,9 @@ export default function UploadInterface() {
             "state_changed",
             (snapshot: any) => {
               const fileProgress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-              console.log(`Upload ${arquivoParaUpload.name}: ${fileProgress.toFixed(0)}%`);
+              setStatusTexto(
+                `Enviando (${i + 1}/${totalArquivos}): "${item.file.name}" - ${fileProgress.toFixed(0)}%`
+              );
             },
             (error: any) => reject(error),
             () => {
@@ -305,12 +307,14 @@ export default function UploadInterface() {
       alert("Arquivos do Ocean Park publicados com sucesso!");
       setNovosArquivos([]);
       setProgresso(0);
+      setStatusTexto("");
       await carregarArquivos();
     } catch (err: any) {
       console.error("Falha no upload:", err);
       alert(`Atenção: ${err.message || "Erro ao realizar o upload."}`);
     } finally {
       setUploading(false);
+      setStatusTexto("");
     }
   };
 
@@ -467,16 +471,44 @@ export default function UploadInterface() {
               </button>
             </div>
 
-            <div className="space-y-2 max-h-48 overflow-y-auto mb-4">
+            <div className="space-y-2 max-h-56 overflow-y-auto mb-4">
               {novosArquivos.map((item, idx) => (
-                <div key={idx} className="flex justify-between items-center text-xs bg-gray-50 p-2.5 sm:p-3 rounded-lg border border-gray-200">
-                  <span className="font-semibold text-gray-700 truncate max-w-[200px] sm:max-w-xs">{item.file.name}</span>
-                  <span className="bg-[#0c82a0] text-white px-2 py-0.5 sm:py-1 rounded text-[9px] sm:text-[10px] font-bold uppercase whitespace-nowrap">
-                    {item.categoria.replace("_", " ")}
-                  </span>
+                <div key={idx} className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 text-xs bg-gray-50 p-2.5 sm:p-3 rounded-lg border border-gray-200">
+                  <div className="flex items-center gap-2 truncate max-w-md">
+                    <span className="font-semibold text-gray-700 truncate">{item.file.name}</span>
+                    <span className="text-[10px] text-gray-400 shrink-0">
+                      ({(item.file.size / (1024 * 1024)).toFixed(1)} MB)
+                    </span>
+                  </div>
+
+                  {/* Seletor de Categoria Manual Antes do Upload */}
+                  <select
+                    value={item.categoria}
+                    onChange={(e) => {
+                      const novaCat = e.target.value;
+                      setNovosArquivos((prev) =>
+                        prev.map((f, i) => (i === idx ? { ...f, categoria: novaCat } : f))
+                      );
+                    }}
+                    className="px-2 py-1 text-[11px] font-bold uppercase rounded border border-gray-300 bg-white text-gray-700 focus:outline-none focus:border-[#0c82a0] cursor-pointer"
+                  >
+                    <option value="tabela_precos">Tabela de Preços</option>
+                    <option value="lamina_pdf">Book / Lâmina PDF</option>
+                    <option value="imagem_feed">Imagem Feed</option>
+                    <option value="imagem_story">Imagem Story</option>
+                    <option value="imagem_avulsa">Imagem Avulsa</option>
+                    <option value="video">Vídeo</option>
+                    <option value="pacote_zip">Pacote ZIP</option>
+                  </select>
                 </div>
               ))}
             </div>
+
+            {statusTexto && (
+              <p className="text-xs font-bold text-[#0c82a0] mb-2 animate-pulse truncate">
+                {statusTexto}
+              </p>
+            )}
 
             {uploading && (
               <div className="w-full bg-gray-200 rounded-full h-2.5 mb-4">
@@ -489,7 +521,7 @@ export default function UploadInterface() {
               disabled={uploading}
               className="w-full bg-[#0c82a0] hover:bg-[#096a82] text-white font-bold py-2.5 sm:py-3 text-xs sm:text-sm rounded-lg transition-colors cursor-pointer disabled:opacity-50"
             >
-              {uploading ? `Enviando... ${progresso}%` : "Confirmar e Publicar Todos"}
+              {uploading ? `Publicando no Firebase... ${progresso}%` : "Confirmar e Publicar Todos"}
             </button>
           </div>
         )}
