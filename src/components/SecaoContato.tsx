@@ -18,7 +18,16 @@ export default function SecaoContato() {
     mensagem: "",
   });
 
-  const [utms, setUtms] = useState({ source: "", medium: "", campaign: "", content: "", term: "" });
+  const [utms, setUtms] = useState({
+    source: "",
+    medium: "",
+    campaign: "",
+    content: "",
+    term: "",
+    gclid: "",
+    gbraid: "",
+    wbraid: "",
+  });
 
   const recaptchaRef = useRef<ReCAPTCHA>(null);
 
@@ -27,13 +36,33 @@ export default function SecaoContato() {
 
     if (typeof window !== "undefined") {
       const params = new URLSearchParams(window.location.search);
-      setUtms({
+
+      const currentParams = {
         source: params.get("utm_source") || "",
         medium: params.get("utm_medium") || "",
         campaign: params.get("utm_campaign") || "",
         content: params.get("utm_content") || "",
         term: params.get("utm_term") || "",
-      });
+        gclid: params.get("gclid") || "",
+        gbraid: params.get("gbraid") || "",
+        wbraid: params.get("wbraid") || "",
+      };
+
+      const hasParams = Object.values(currentParams).some((val) => val !== "");
+
+      if (hasParams) {
+        sessionStorage.setItem("ocean_park_tracking", JSON.stringify(currentParams));
+        setUtms(currentParams);
+      } else {
+        const savedTracking = sessionStorage.getItem("ocean_park_tracking");
+        if (savedTracking) {
+          try {
+            setUtms(JSON.parse(savedTracking));
+          } catch (e) {
+            console.error("Erro ao recuperar tracking do sessionStorage:", e);
+          }
+        }
+      }
     }
   }, []);
 
@@ -88,7 +117,9 @@ export default function SecaoContato() {
             lead_data: {
               nome: data.nome,
               email: data.email,
-              telefone: data.telefone
+              telefone: data.telefone,
+              gclid: utms.gclid,
+              utm_source: utms.source,
             }
           });
         }
@@ -97,7 +128,6 @@ export default function SecaoContato() {
         recaptchaRef.current?.reset();
         setCaptchaToken(null);
 
-        // Redireciona para a página de confirmação
         router.push("/confirmacao-contato");
       } else {
         setStatus("error");
