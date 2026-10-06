@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { getTrackingPayload } from "@/lib/exentTracking";
 
 interface ModalWhatsappProps {
   isOpen: boolean;
@@ -72,6 +73,7 @@ export default function ModalWhatsapp({ isOpen, onClose }: ModalWhatsappProps) {
           mensagem: "Contato via modal WhatsApp",
           via: "whatsapp",
           utms: utms,
+          tracking: getTrackingPayload(),
         }),
       });
     } catch (err) {

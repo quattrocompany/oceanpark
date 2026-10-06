@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Montserrat, Josefin_Sans, Josefin_Slab } from "next/font/google";
 import Script from "next/script";
 import ScrollToTop from "@/components/ScrollToTop";
+import ExentTracking from "@/components/ExentTracking";
 // @ts-ignore: allow importing global CSS without type declarations
 import "./globals.css";
 
@@ -87,6 +88,7 @@ export default function RootLayout({
             style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
+        <ExentTracking />
         {children}
       </body>
     </html>
